@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ShowBook</string>
+    <string name="registration">Registruj se!</string>
+    <string name="username">Korisnicko ime</string>
+    <string name="password">Lozinka</string>
+    <string name="login">Uloguj se!</string>
 </resources>
