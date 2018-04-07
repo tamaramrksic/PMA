@@ -4,4 +4,17 @@
     <string name="username">Korisnicko ime</string>
     <string name="password">Lozinka</string>
     <string name="login">Uloguj se!</string>
+    <string name="first_name">Ime</string>
+    <string name="last_name">Prezime</string>
+    <string name="adress">Adresa</string>
+    <string name="city">Grad</string>
+    <string name="city_hint">Izaberi grad</string>
+    <string name="already_registred">Vec ste registrovani? Uloguj se!</string>
+
+    <string-array name="cities">
+        <item>Izaberi grad</item>
+        <item>Novi Sad</item>
+        <item>Beograd</item>
+        <item>Subotica</item>
+    </string-array>
 </resources>
