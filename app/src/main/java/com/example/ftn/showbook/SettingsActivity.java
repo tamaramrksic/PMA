@@ -14,12 +14,22 @@ public class SettingsActivity extends PreferenceActivity {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
 
-        Preference button = findPreference(getString(R.string.pref_change_profile));
-        button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        Preference buttonChangePassword = findPreference(getString(R.string.pref_change_password));
+        buttonChangePassword.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 DialogFragment dialog = new ChangePassFragment();
                 dialog.show(getFragmentManager(), "ChangePassword");
+                return true;
+            }
+        });
+
+        Preference buttonChangeProfile = findPreference(getString(R.string.pref_change_profile));
+        buttonChangeProfile.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                DialogFragment dialog = new ChangeProfileFragment();
+                dialog.show(getFragmentManager(), "ChangeProfile");
                 return true;
             }
         });

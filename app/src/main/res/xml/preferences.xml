@@ -5,23 +5,23 @@
     <PreferenceCategory
         android:title="@string/pref_title_1"
         android:key="pref_title_1">
-            <ListPreference
-                android:dialogTitle="@string/pref_distance_title"
-                android:entries="@array/pref_distance_entries"
-                android:entryValues="@array/pref_distance_values"
-                android:key="@string/pref_distance"
-                android:title="@string/pref_distance_title"
-                android:summary="%s"
-                android:defaultValue="5"/>
+        <ListPreference
+            android:dialogTitle="@string/pref_distance_title"
+            android:entries="@array/pref_distance_entries"
+            android:entryValues="@array/pref_distance_values"
+            android:key="@string/pref_distance"
+            android:title="@string/pref_distance_title"
+            android:summary="%s"
+            android:defaultValue="5"/>
 
-            <ListPreference
-                android:dialogTitle="@string/pref_facility_type_title"
-                android:entries="@array/pref_facility_type_entries"
-                android:entryValues="@array/pref_facility_type_values"
-                android:key="@string/pref_facility_type"
-                android:title="@string/pref_facility_type_title"
-                android:summary="%s"
-                android:defaultValue="1"/>
+        <ListPreference
+            android:dialogTitle="@string/pref_facility_type_title"
+            android:entries="@array/pref_facility_type_entries"
+            android:entryValues="@array/pref_facility_type_values"
+            android:key="@string/pref_facility_type"
+            android:title="@string/pref_facility_type_title"
+            android:summary="%s"
+            android:defaultValue="1"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -39,6 +39,8 @@
         android:title="@string/pref_title_3"
         android:key="pref_title_3">
         <Preference android:title="@string/change_pass"
+            android:key="@string/pref_change_password" />
+        <Preference android:title="@string/change_profile"
             android:key="@string/pref_change_profile" />
     </PreferenceCategory>
 
