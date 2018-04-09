@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <PreferenceCategory
+        android:title="@strings/settings"
+        android:key="pref_key_storage_settings">
+        <CheckBoxPreference
+            android:key="pref_key_auto_delete"
+            android:summary="summary"
+            android:title="Naslov 1"
+            android:defaultValue="false"/>
+        <Preference
+            android:key="pref_key_sms_delete_limit"
+            android:dependency="pref_key_auto_delete"
+            android:summary="summary"
+            android:title="Naslov 2"/>
+        <Preference
+            android:key="pref_key_mms_delete_limit"
+            android:dependency="pref_key_auto_delete"
+            android:summary="summary"
+            android:title="Naslov 3"  />
+    </PreferenceCategory>
+</PreferenceScreen>
