@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\Olivera\AndroidStudioProjects\ShowBook\PMA.iml" filepath="C:\Users\Olivera\AndroidStudioProjects\ShowBook\PMA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PMA.iml" filepath="$PROJECT_DIR$/PMA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../../Olivera/AndroidStudioProjects/ShowBook/PMA.iml" filepath="$PROJECT_DIR$/../../../../Olivera/AndroidStudioProjects/ShowBook/PMA.iml" />
       <module fileurl="file://$PROJECT_DIR$/ShowBook.iml" filepath="$PROJECT_DIR$/ShowBook.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

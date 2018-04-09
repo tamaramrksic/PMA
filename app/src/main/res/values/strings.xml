@@ -10,11 +10,58 @@
     <string name="city">Grad</string>
     <string name="city_hint">Izaberi grad</string>
     <string name="already_registred">Vec ste registrovani? Uloguj se!</string>
-
     <string-array name="cities">
         <item>Izaberi grad</item>
         <item>Novi Sad</item>
         <item>Beograd</item>
         <item>Subotica</item>
     </string-array>
+    <string name="change_pass">Izmena sifre</string>
+    <string name="change_pass_button">Sacuvaj izmenu</string>
+    <string name="old_pass">Stara sifra</string>
+    <string name="new_pass">Nova sifre</string>
+    <string name="conf_pass">Potvrda sifre</string>
+
+    <string name="cancel">Odustani</string>
+    <string name="settings">Podesavanja</string>
+
+    <string name="pref_title_1">Podesavanja pretrage</string>
+    <string name="pref_distance_title">Udaljenost</string>
+    <string name="pref_distance">pref_distance</string>
+    <string-array name="pref_distance_entries">
+        <item>5 km</item>
+        <item>10 km</item>
+        <item>15 km</item>
+        <item>20 km</item>
+    </string-array>
+
+    <string-array name="pref_distance_values">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
+
+    <string name="pref_facility_type_title">Tip ustanove</string>
+    <string name="pref_facility_type">pref_facility_type</string>
+    <string-array name="pref_facility_type_entries">
+        <item>Bioskop</item>
+        <item>Pozoriste</item>
+        <item>Oba</item>
+    </string-array>
+
+    <string-array name="pref_facility_type_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string name="pref_title_2">Notifikacije</string>
+    <string name="pref_notification_title">Obavestenja za komentar</string>
+    <string name="pref_notification_key">obavestenja</string>
+    <string name="pref_notification_summary">Primaj notifikacije na komentare</string>
+
+    <string name="pref_title_3">Korisnicka podesavanja</string>
+
+    <string name="pref_change_profile">pref_change_profile</string>
 </resources>

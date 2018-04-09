@@ -35,4 +35,11 @@
             android:title="@string/pref_notification_title" />
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="@string/pref_title_3"
+        android:key="pref_title_3">
+        <Preference android:title="@string/change_pass"
+            android:key="@string/pref_change_profile" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

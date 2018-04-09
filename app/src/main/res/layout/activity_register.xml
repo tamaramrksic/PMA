@@ -30,9 +30,18 @@
         android:ems="10"
         android:hint="@string/first_name"
         android:inputType="textPersonName"
-        android:background="@color/colorText"
         android:textSize="18sp" />
 
+    <EditText
+        android:id="@+id/last_name"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/first_name"
+        android:layout_centerHorizontal="true"
+        android:drawableLeft="@drawable/ic_action_username"
+        android:ems="10"
+        android:hint="@string/last_name"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/username"
@@ -83,16 +92,6 @@
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/last_name"
-        android:layout_width="208dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/first_name"
-        android:layout_centerHorizontal="true"
-        android:drawableLeft="@drawable/ic_action_username"
-        android:ems="10"
-        android:hint="@string/last_name"
-        android:inputType="textPersonName" />
 
     <Spinner
         android:id="@+id/city"
