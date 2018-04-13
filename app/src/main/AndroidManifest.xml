@@ -16,7 +16,8 @@
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/ThemeWithoutToolBar" />
+            android:theme="@style/ThemeWithoutToolBar" >
+        </activity>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/settings"
@@ -33,6 +34,9 @@
             android:name=".RepertoireActivity"
             android:label="@string/title_activity_repertoire"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".SeatReserveActivity"
+            android:label="@string/show_name_value">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
