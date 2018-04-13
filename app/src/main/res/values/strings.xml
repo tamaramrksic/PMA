@@ -83,5 +83,6 @@
     <string name="total_price_label">Ukupan iznos: </string>
     <string name="total_price_value">1000 rsd</string>
     <string name="cancel_reservation">Otkazi rezervaciju</string>
+    <string name="confirm_reservation">Rezervisi</string>
 
 </resources>
