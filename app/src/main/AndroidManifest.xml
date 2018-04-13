@@ -21,7 +21,7 @@
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/ThemeWithoutToolBar"></activity>
+            android:theme="@style/ThemeWithoutToolBar" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/settings"
@@ -37,14 +37,16 @@
         <activity
             android:name=".RepertoireActivity"
             android:label="@string/title_activity_repertoire"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SeatReserveActivity"
-            android:label="@string/show_name_value">
-        </activity>
+            android:label="@string/show_name_value"></activity>
         <activity
             android:name=".ShowDetailsActivity"
-            android:label="@string/show_name_value">
+            android:label="@string/show_name_value"></activity>
+        <activity
+            android:name=".CommentActivity"
+            android:label="@string/comment_label">
         </activity>
     </application>
 
