@@ -95,9 +95,11 @@
     <string name="show_description_value">Očekujte neočekivano sa svim voljenim herojima okupljenim na novom zadatku.</string>
     <string name="see_timetable">Raspored termina</string>
     <string name="add_in_interested">Zainteresovan</string>
-    <string name="comment">Komentarisi</string>
     <string name="see_comments">Vidi komentare</string>
 
+    <string name="comment_label">Komentarisi</string>
+    <string name="write_comment_hint">Ovde mozete uneti vas komentar...</string>
+    <string name="send_comment">Posalji komentar</string>
 
 
     <string name="title_activity_repertoire">RepertoireActivity</string>
