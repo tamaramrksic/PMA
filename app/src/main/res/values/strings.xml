@@ -85,6 +85,21 @@
     <string name="cancel_reservation">Otkazi rezervaciju</string>
     <string name="confirm_reservation">Rezervisi</string>
 
+    <string name="show_director_label">Reziser: </string>
+    <string name="show_director_value">Anthony Russo, Joe Russo</string>
+    <string name="show_performers_label">Glumci: </string>
+    <string name="show_performers_value">Robert Downey Jr, Benedict Cumberbatch</string>
+    <string name="show_genre_label">Zanr: </string>
+    <string name="show_genre_value">Akcioni, Avantura, SF</string>
+    <string name="show_description_label">Opis: </string>
+    <string name="show_description_value">Očekujte neočekivano sa svim voljenim herojima okupljenim na novom zadatku.</string>
+    <string name="see_timetable">Raspored termina</string>
+    <string name="add_in_interested">Zainteresovan</string>
+    <string name="comment">Komentarisi</string>
+    <string name="see_comments">Vidi komentare</string>
+
+
+
     <string name="title_activity_repertoire">RepertoireActivity</string>
     <string name="tab_text_1">Repertoar</string>
     <string name="tab_text_2">Rezervacija</string>
