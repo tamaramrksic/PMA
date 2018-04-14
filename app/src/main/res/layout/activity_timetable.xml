@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/cinema10"
+    >
+
+    <TextView
+        android:id="@+id/timetable_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/show_name_value"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/timetable_title"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/firstColumn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="8dp"
+                android:paddingEnd="@dimen/table_cell_padding"
+                android:paddingStart="@dimen/table_cell_padding" />
+
+            <TextView
+                android:id="@+id/secondColumn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:padding="8dp"
+                android:paddingEnd="@dimen/table_cell_padding"
+                android:paddingStart="@dimen/table_cell_padding" />
+
+            <TextView
+                android:id="@+id/thirdColumn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="8dp"
+                android:paddingEnd="@dimen/table_cell_padding"
+                android:paddingStart="@dimen/table_cell_padding"/>
+
+            <TextView
+                android:id="@+id/fourthColumn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="8dp"
+                android:paddingEnd="@dimen/table_cell_padding"
+                android:paddingStart="@dimen/table_cell_padding"/>
+
+            <TextView
+                android:id="@+id/fifthColumn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:padding="8dp"
+                android:paddingEnd="@dimen/table_cell_padding"
+                android:paddingStart="@dimen/table_cell_padding"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/cell1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="timeClicked"
+                android:padding="8dp"
+                android:paddingEnd="@dimen/table_cell_padding"
+                android:paddingStart="@dimen/table_cell_padding"
+                android:text="10:00" />
+
+            <TextView
+                android:id="@+id/cell2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="timeClicked"
+                android:padding="8dp"
+                android:paddingEnd="@dimen/table_cell_padding"
+                android:paddingStart="@dimen/table_cell_padding"
+                android:text="12:00" />
+
+            <TextView
+                android:id="@+id/cell3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="timeClicked"
+                android:padding="8dp"
+                android:paddingEnd="@dimen/table_cell_padding"
+                android:paddingStart="@dimen/table_cell_padding"
+                android:text="10:00" />
+
+            <TextView
+                android:id="@+id/cell4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="timeClicked"
+                android:padding="8dp"
+                android:paddingEnd="@dimen/table_cell_padding"
+                android:paddingStart="@dimen/table_cell_padding"
+                android:text="10:30" />
+
+            <TextView
+                android:id="@+id/cell5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:onClick="timeClicked"
+                android:padding="8dp"
+                android:paddingEnd="@dimen/table_cell_padding"
+                android:paddingStart="@dimen/table_cell_padding"
+                android:text="18:00" />
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>
