@@ -12,9 +12,10 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/ThemeWithoutToolBar" >
+            android:theme="@style/ThemeWithoutToolBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -36,26 +37,32 @@
         <activity
             android:name=".RepertoireActivity"
             android:label="@string/title_activity_repertoire"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity
             android:name=".SeatReserveActivity"
-            android:label="@string/show_name_value">
-        </activity>
-        <activity android:name=".TimetableActivity"
+            android:label="@string/show_name_value"></activity>
+        <activity
+            android:name=".TimetableActivity"
             android:label="@string/title_timetable"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".RepertoireActivity" >
+            android:parentActivityName=".RepertoireActivity"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".RepertoireActivity" />
         </activity>
         <activity
             android:name=".ShowDetailsActivity"
-            android:label="@string/show_name_value"></activity>
+            android:label="@string/show_name_value" />
         <activity
             android:name=".CommentActivity"
             android:label="@string/comment_label">
+        </activity>
+        <activity
+            android:name=".ShowCommentsActivity"
+            android:label="@string/title_activity_show_comments">
         </activity>
     </application>
 
