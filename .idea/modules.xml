@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/PMA.iml" filepath="$PROJECT_DIR$/PMA.iml" />
+<<<<<<< Updated upstream
+      <module fileurl="file://C:/Olivera/AndroidStudioProjects/ShowBook/PMA.iml" filepath="C:/Olivera/AndroidStudioProjects/ShowBook/PMA.iml" />
+=======
       <module fileurl="file://C:\Olivera\AndroidStudioProjects\ShowBook\PMA.iml" filepath="C:\Olivera\AndroidStudioProjects\ShowBook\PMA.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ShowBook.iml" filepath="$PROJECT_DIR$/ShowBook.iml" />
+>>>>>>> Stashed changes
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

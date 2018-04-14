@@ -50,6 +50,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".RepertoireActivity" />
         </activity>
+        <activity
+            android:name=".ShowDetailsActivity"
+            android:label="@string/show_name_value"></activity>
+        <activity
+            android:name=".CommentActivity"
+            android:label="@string/comment_label">
+        </activity>
     </application>
 
 </manifest>
