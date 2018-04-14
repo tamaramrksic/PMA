@@ -30,7 +30,10 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+//                startActivity(intent);
+
+                Intent intent = new Intent(getApplicationContext(), TimetableActivity.class);
                 startActivity(intent);
 
             }

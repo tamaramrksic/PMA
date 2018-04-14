@@ -107,5 +107,9 @@
     <string name="tab_text_2">Rezervacija</string>
     <string name="tab_text_3">Zainteresovan</string>
     <string name="action_settings">Podesavanja</string>
+    <string name="title_activity_timetable">TimetableActivity</string>
+    <string name="title_activity_proba">ProbaActivity</string>
+
+    <string name="title_timetable">Schedule</string>
 
 </resources>
