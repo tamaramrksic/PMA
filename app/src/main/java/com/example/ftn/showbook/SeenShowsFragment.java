@@ -1,7 +1,7 @@
 package com.example.ftn.showbook;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,22 +10,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+public class SeenShowsFragment  extends Fragment {
 
-public class Tab1Repertoire extends Fragment {
-
-    String[] movies = {"Osvetnici", "Zeka Rodzer", "Hari Poter"};
+    String[] movies = {"Osvetnici", "Zec Petar"};
     Integer[] imgid={
             R.drawable.avengers,
-            R.drawable.peter_rabbit,
-            R.drawable.hari
+            R.drawable.peter_rabbit
     };
-    String[] durations = {"186", "93", "124"};
-    String[] ratings = {"4.5", "5", "4.8"};
+    String[] dates = {"15.04.2018", "16.04.2018"};
+    String[] times = {"20:00", "21:00"};
+    String[] ratings = {"5", "4.8"};
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.tab1repertoire, container, false);
-        RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.tab1_recycler_view);
+        View rootView = inflater.inflate(R.layout.fragment_seen_shows, container, false);
+
+        RecyclerView mRecyclerView = rootView.findViewById(R.id.seen_show_recycler_view);
 
         // use a linear layout manager
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -37,7 +38,7 @@ public class Tab1Repertoire extends Fragment {
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
         // set adapter
-        RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), movies, imgid, durations, ratings);
+        RecyclerView.Adapter mAdapter = new ReservationListAdapter(getActivity(), movies, imgid, dates, times, ratings);
         mRecyclerView.setAdapter(mAdapter);
 
         return rootView;

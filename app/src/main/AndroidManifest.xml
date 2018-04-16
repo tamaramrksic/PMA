@@ -9,9 +9,8 @@
         android:roundIcon="@mipmap/show_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".MainActivity"
             android:theme="@style/ThemeWithoutToolBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,17 +19,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".LoginActivity"
+            android:theme="@style/ThemeWithoutToolBar">
+
+        </activity>
+        <activity
             android:name=".RegisterActivity"
             android:theme="@style/ThemeWithoutToolBar" />
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/settings"
-            android:parentActivityName=".LoginActivity"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity" />
-        </activity>
         <activity
             android:name=".ReservedShowDetailsActivity"
             android:label="@string/show_name_value" />
@@ -39,7 +34,6 @@
             android:label="@string/title_activity_repertoire"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
         <activity
             android:name=".SeatReserveActivity"

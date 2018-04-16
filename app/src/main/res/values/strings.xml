@@ -113,4 +113,11 @@
 
     <string name="title_timetable">Schedule</string>
 
+    <string name="user1_username">Pera Peric</string>
+    <string name="nav_map_label">Mapa</string>
+    <string name="nav_reserved_label">Rezervacije</string>
+    <string name="nav_interested_label">Zainteresovan</string>
+    <string name="nav_seen_label">Pogledano</string>
+
+
 </resources>
