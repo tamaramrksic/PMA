@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <group android:id="@+id/option_menu" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_map"
+            android:title="@string/nav_map_label"
+            android:checked="true"/>
+        <item
+            android:id="@+id/nav_reserved"
+            android:icon="@drawable/ic_movie_reserved"
+            android:title="@string/nav_reserved_label" />
+        <item
+            android:id="@+id/nav_interested"
+            android:icon="@drawable/ic_movie_interested"
+            android:title="@string/nav_interested_label" />
+        <item
+            android:id="@+id/nav_seen"
+            android:icon="@drawable/ic_movie_seen"
+            android:title="@string/nav_seen_label" />
+    </group>
+
+    <group android:id="@+id/settings_menu" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/settings" />
+    </group>
+</menu>

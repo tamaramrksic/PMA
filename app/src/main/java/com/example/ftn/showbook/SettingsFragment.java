@@ -1,17 +1,17 @@
 package com.example.ftn.showbook;
 
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.app.DialogFragment;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceFragmentCompat;
 
+public class SettingsFragment extends PreferenceFragmentCompat {
 
-public class SettingsActivity extends PreferenceActivity {
-
-    @SuppressWarnings("deprecation")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preferences);
 
         Preference buttonChangePassword = findPreference(getString(R.string.pref_change_password));
@@ -33,5 +33,10 @@ public class SettingsActivity extends PreferenceActivity {
                 return true;
             }
         });
+    }
+
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+
     }
 }
