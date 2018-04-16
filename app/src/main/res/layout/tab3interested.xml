@@ -7,7 +7,7 @@
     tools:context="com.example.ftn.showbook.RepertoireActivity">
 
     <TextView
-        android:id="@+id/section_label"
+        android:id="@+id/tab3_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
@@ -19,10 +19,13 @@
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1" />
 
-    <ListView
-        android:id="@+id/tab3_list"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/tab3_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:headerDividersEnabled="false" />
+        android:scrollbars="vertical"
+        android:layout_below="@id/tab3_label"
+        android:paddingTop="5dp">
+    </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>
