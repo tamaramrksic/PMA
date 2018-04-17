@@ -2,6 +2,7 @@ package com.example.ftn.showbook;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,15 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
             date = (TextView) view.findViewById(R.id.date_value);
             time = (TextView) view.findViewById(R.id.time_value);
             rating = (TextView) view.findViewById(R.id.show_reserved_rating);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, ReservedShowDetailsActivity.class);
+                    context.startActivity(intent);
+                }
+            });
 
         }
     }

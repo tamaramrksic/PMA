@@ -1,6 +1,7 @@
 package com.example.ftn.showbook;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,15 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
             description = (TextView) view.findViewById(R.id.show_repertoire_description);
             duration = (TextView) view.findViewById(R.id.show_repertoire_duration);
             rating = (TextView) view.findViewById(R.id.show_repertoire_rating);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, ShowDetailsActivity.class);
+                    context.startActivity(intent);
+                }
+            });
 
         }
     }
