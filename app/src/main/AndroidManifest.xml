@@ -9,9 +9,8 @@
         android:roundIcon="@mipmap/show_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".MainActivity"
             android:theme="@style/ThemeWithoutToolBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,31 +19,44 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity"
-            android:theme="@style/ThemeWithoutToolBar"></activity>
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/settings"
-            android:parentActivityName=".LoginActivity"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity" />
+            android:name=".LoginActivity"
+            android:theme="@style/ThemeWithoutToolBar">
+
         </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/ThemeWithoutToolBar" />
         <activity
             android:name=".ReservedShowDetailsActivity"
             android:label="@string/show_name_value" />
         <activity
             android:name=".RepertoireActivity"
             android:label="@string/title_activity_repertoire"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".SeatReserveActivity"
-            android:label="@string/show_name_value">
+            android:label="@string/show_name_value"></activity>
+        <activity
+            android:name=".TimetableActivity"
+            android:label="@string/title_timetable"
+            android:parentActivityName=".RepertoireActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RepertoireActivity" />
         </activity>
         <activity
             android:name=".ShowDetailsActivity"
-            android:label="@string/show_name_value">
+            android:label="@string/show_name_value" />
+        <activity
+            android:name=".CommentActivity"
+            android:label="@string/comment_label">
+        </activity>
+        <activity
+            android:name=".ShowCommentsActivity"
+            android:label="@string/title_activity_show_comments">
         </activity>
     </application>
 

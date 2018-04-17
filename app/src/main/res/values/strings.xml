@@ -95,9 +95,12 @@
     <string name="show_description_value">Očekujte neočekivano sa svim voljenim herojima okupljenim na novom zadatku.</string>
     <string name="see_timetable">Raspored termina</string>
     <string name="add_in_interested">Zainteresovan</string>
-    <string name="comment">Komentarisi</string>
     <string name="see_comments">Vidi komentare</string>
 
+    <string name="comment_label">Komentarisi</string>
+    <string name="write_comment_hint">Ovde mozete uneti vas komentar...</string>
+    <string name="send_comment">Posalji komentar</string>
+    <string name="title_activity_show_comments">Komentari</string>
 
 
     <string name="title_activity_repertoire">RepertoireActivity</string>
@@ -105,5 +108,16 @@
     <string name="tab_text_2">Rezervacija</string>
     <string name="tab_text_3">Zainteresovan</string>
     <string name="action_settings">Podesavanja</string>
+    <string name="title_activity_timetable">TimetableActivity</string>
+    <string name="title_activity_proba">ProbaActivity</string>
+
+    <string name="title_timetable">Schedule</string>
+
+    <string name="user1_username">Pera Peric</string>
+    <string name="nav_map_label">Mapa</string>
+    <string name="nav_reserved_label">Rezervacije</string>
+    <string name="nav_interested_label">Zainteresovan</string>
+    <string name="nav_seen_label">Pogledano</string>
+
 
 </resources>
