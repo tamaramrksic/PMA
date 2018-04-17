@@ -42,6 +42,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+
         return view;
     }
 
@@ -51,11 +52,11 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback{
         // Add a marker in Sydney and move the camera
         LatLng cinplex = new LatLng(45.254313, 19.853547);
         map.addMarker(new MarkerOptions().position(cinplex).title("Marker in Cineplex"));
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(cinplex, 5));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(cinplex, 17));
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                Intent intent = new Intent(getActivity(), TimetableActivity.class);
+                Intent intent = new Intent(getActivity(), RepertoireActivity.class);
                 startActivity(intent);
 
                 return false;
