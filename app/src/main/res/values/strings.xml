@@ -120,4 +120,8 @@
     <string name="nav_seen_label">Pogledano</string>
 
 
+    <string name="find">Pronadji</string>
+    <string name="hint_find">Ukucaj adresu</string>
+
+    <string name="google_map_api">AIzaSyCe3gdaNJoKjz_sFrfGYHWra9NsMgRCiRU</string>
 </resources>

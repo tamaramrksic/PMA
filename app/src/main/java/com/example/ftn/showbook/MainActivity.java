@@ -69,8 +69,7 @@ public class MainActivity extends AppCompatActivity {
                                     fragment = new Tab3Interested();
                                     break;
                                 case R.id.nav_seen:
-                                    //this should be replaced with another (seen) fragment
-                                    fragment = new Tab2Reserved();
+                                    fragment = new SeenShowsFragment();
                                     break;
                                 case R.id.nav_settings:
                                     fragment = new SettingsFragment();
@@ -79,12 +78,12 @@ public class MainActivity extends AppCompatActivity {
                             }
                             fragmentManager.beginTransaction()
                                     .replace(R.id.main_container, fragment)
+                                    .addToBackStack(null)
                                     .commit();
 
                             return true;
                         }
                     });
-
 
 
     }
@@ -97,6 +96,44 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            FragmentManager manager = getSupportFragmentManager();
+            if(manager.getBackStackEntryCount() > 0) {
+                super.onBackPressed();
+                Fragment currentFragment = manager.findFragmentById(R.id.main_container);
+                if(currentFragment instanceof HomeFragment){
+                    navigationView.getMenu().getItem(0).setChecked(true);
+                    getSupportActionBar().setTitle(navigationView.getMenu().getItem(0).getTitle());
+                }
+                else if(currentFragment instanceof Tab2Reserved){
+                    navigationView.getMenu().getItem(1).setChecked(true);
+                    getSupportActionBar().setTitle(navigationView.getMenu().getItem(1).getTitle());
+                }
+                else if(currentFragment instanceof Tab3Interested){
+                    navigationView.getMenu().getItem(2).setChecked(true);
+                    getSupportActionBar().setTitle(navigationView.getMenu().getItem(2).getTitle());
+                }
+                else if(currentFragment instanceof SeenShowsFragment){
+                    navigationView.getMenu().getItem(3).setChecked(true);
+                    getSupportActionBar().setTitle(navigationView.getMenu().getItem(3).getTitle());
+
+                }
+                else if(currentFragment instanceof SettingsFragment){
+                    navigationView.getMenu().getItem(4).setChecked(true);
+                    getSupportActionBar().setTitle(navigationView.getMenu().getItem(4).getTitle());
+                }
+            }
+        }
 
     }
 
