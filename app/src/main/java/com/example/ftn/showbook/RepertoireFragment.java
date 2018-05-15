@@ -1,72 +1,57 @@
 package com.example.ftn.showbook;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatCallback;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+public class RepertoireFragment extends Fragment {
 
-public class RepertoireFragment extends Fragment{
-
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    /**
+     * The {@link android.support.v4.view.PagerAdapter} that will provide
+     * fragments for each of the sections. We use a
+     * {@link FragmentPagerAdapter} derivative, which will keep every
+     * loaded fragment in memory. If this becomes too memory intensive, it
+     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
+     */
+    private RepertoireFragment.SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
 
-    public RepertoireFragment() {
-        // Required empty public constructor
-    }
-    public static RepertoireFragment newInstance(boolean isAdmin){
-        RepertoireFragment fragment = new RepertoireFragment();
-        return fragment;
-    }
-
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_repertoire, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_repertoire, container, false);
 
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-            ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-            // Create the adapter that will return a fragment for each of the three
-            // primary sections of the activity.
-            mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+        // Create the adapter that will return a fragment for each of the three
+        // primary sections of the activity.
+        mSectionsPagerAdapter = new RepertoireFragment.SectionsPagerAdapter(getActivity().getSupportFragmentManager());
 
-            // Set up the ViewPager with the sections adapter.
-            mViewPager = (ViewPager)getActivity().findViewById(R.id.container);
-            mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager = view.findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
 
-            TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tabs);
+        TabLayout tabLayout = view.findViewById(R.id.tabs);
 
-            mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-            tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        }
         return view;
+    }
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_repertoire, menu);
+        return true;
     }
 
     @Override

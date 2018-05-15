@@ -1,24 +1,23 @@
 package com.example.ftn.showbook;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
-public class SeatReserveActivity extends AppCompatActivity {
+public class SeatReserveFragment extends Fragment {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seat_reserve);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_seat_reserve, container, false);
 
 
-
-        GridView gridview = (GridView) findViewById(R.id.gridview);
-        final ImageAdapter adapter = new ImageAdapter(this);
+        GridView gridview = rootView.findViewById(R.id.gridview);
+        final ImageAdapter adapter = new ImageAdapter(getContext());
         gridview.setAdapter(adapter);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
@@ -37,5 +36,7 @@ public class SeatReserveActivity extends AppCompatActivity {
                 }
             }
         });
+        return rootView;
     }
+
 }

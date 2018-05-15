@@ -1,16 +1,16 @@
 package com.example.ftn.showbook;
 
+
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
-public class ShowCommentsActivity extends AppCompatActivity {
+public class ShowCommentsFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -21,13 +21,13 @@ public class ShowCommentsActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_comments);
-        mRecyclerView = (RecyclerView) findViewById(R.id.comments_recycler_view);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_show_comments, container, false);
+
+        mRecyclerView = rootView.findViewById(R.id.comments_recycler_view);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         //add divider between items
@@ -36,10 +36,8 @@ public class ShowCommentsActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
         // set adapter
-        mAdapter = new CommentListAdapter(this, comments, usernames);
+        mAdapter = new CommentListAdapter(getContext(), comments, usernames);
         mRecyclerView.setAdapter(mAdapter);
-
-
+        return rootView;
     }
-
 }

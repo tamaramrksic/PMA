@@ -29,35 +29,6 @@
         <activity
             android:name=".RegisterActivity"
             android:theme="@style/ThemeWithoutToolBar" />
-        <activity
-            android:name=".ReservedShowDetailsActivity"
-            android:label="@string/show_name_value" />
-        <activity
-            android:name=".RepertoireActivity"
-            android:label="@string/title_activity_repertoire"
-            android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".SeatReserveActivity"
-            android:label="@string/show_name_value" />
-        <activity
-            android:name=".TimetableActivity"
-            android:label="@string/title_timetable"
-            android:parentActivityName=".RepertoireActivity"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RepertoireActivity" />
-        </activity>
-        <activity
-            android:name=".ShowDetailsActivity"
-            android:label="@string/show_name_value" />
-        <activity
-            android:name=".CommentActivity"
-            android:label="@string/comment_label"></activity>
-        <activity
-            android:name=".ShowCommentsActivity"
-            android:label="@string/title_activity_show_comments"></activity>
         <activity android:name=".SplashScreenActivity"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
