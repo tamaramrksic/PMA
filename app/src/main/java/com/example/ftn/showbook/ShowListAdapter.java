@@ -1,7 +1,7 @@
 package com.example.ftn.showbook;
 
 import android.content.Context;
-import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +21,7 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView title, description, duration, rating;
         public ImageView image;
+        private Context context;
 
         public ViewHolder(View view) {
             super(view);
@@ -30,12 +31,15 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
             duration = (TextView) view.findViewById(R.id.show_repertoire_duration);
             rating = (TextView) view.findViewById(R.id.show_repertoire_rating);
 
+            context = view.getContext();
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Context context = v.getContext();
-                    Intent intent = new Intent(context, ShowDetailsActivity.class);
-                    context.startActivity(intent);
+                    ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.main_container, new ShowDetailsFragment())
+                            .addToBackStack(null)
+                            .commit();
                 }
             });
 
@@ -71,7 +75,8 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
         return titles.length;
     }
 
-//    public ShowListAdapter(Activity activity, String[] itemname, Integer[] imgid) {
+
+    //    public ShowListAdapter(Activity activity, String[] itemname, Integer[] imgid) {
 //        super(activity, R.layout.show_list, itemname);
 //        this.activity=activity;
 //        this.itemname=itemname;

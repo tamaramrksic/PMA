@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -134,6 +136,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+
+    }
+
+    //moved here from TimetableFragment
+    public void timeClicked(View view) {
+        TextView textView = (TextView)view;
+        //        Toast.makeText(this, textView.getText(), Toast.LENGTH_LONG).show();
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_container, new SeatReserveFragment())
+                .addToBackStack(null)
+                .commit();
 
     }
 
