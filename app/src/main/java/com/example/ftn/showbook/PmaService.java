@@ -1,4 +1,6 @@
 package com.example.ftn.showbook;
+import com.example.ftn.showbook.model.User;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -16,4 +18,6 @@ public interface  PmaService {
     })
     @GET("users/{id}")
     Call<ResponseBody> get(@Path("id")Long id);
+    @POST("users/registr")
+    Call<ResponseBody> registr(@Body User user);
 }
