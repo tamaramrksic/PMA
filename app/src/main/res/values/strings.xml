@@ -113,7 +113,6 @@
 
     <string name="title_timetable">Schedule</string>
 
-    <string name="user1_username">Pera Peric</string>
     <string name="nav_map_label">Mapa</string>
     <string name="nav_reserved_label">Rezervacije</string>
     <string name="nav_interested_label">Zainteresovan</string>
@@ -124,4 +123,6 @@
     <string name="hint_find">Ukucaj adresu</string>
 
     <string name="google_map_api">AIzaSyCe3gdaNJoKjz_sFrfGYHWra9NsMgRCiRU</string>
+
+    <string name="invalid_login_message">Neispravano korisničko ime i/ili lozinka!</string>
 </resources>
