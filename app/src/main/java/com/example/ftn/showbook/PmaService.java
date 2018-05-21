@@ -9,6 +9,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface  PmaService {
@@ -25,4 +26,7 @@ public interface  PmaService {
 
     @POST("users/login")
     Call<User> login(@Body UserCredentials userCredentials);
+
+    @PUT("users/changePass")
+    Call<User> changePass(@Body UserCredentials userCredentials);
 }
