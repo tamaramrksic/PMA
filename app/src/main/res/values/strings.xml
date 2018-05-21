@@ -117,6 +117,7 @@
     <string name="nav_reserved_label">Rezervacije</string>
     <string name="nav_interested_label">Zainteresovan</string>
     <string name="nav_seen_label">Pogledano</string>
+    <string name="nav_logout_label">Odjavi se</string>
 
 
     <string name="find">Pronadji</string>
