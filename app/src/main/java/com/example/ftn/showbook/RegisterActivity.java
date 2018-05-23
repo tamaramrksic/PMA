@@ -50,12 +50,20 @@ public class RegisterActivity extends AppCompatActivity {
                 String address_string = address.getText().toString();
                 Spinner city=(Spinner) findViewById(R.id.city);
                 String city_value = city.getSelectedItem().toString();
+                Long city_number = 0L;
+                if(city_value.equals("Novi Sad")) {
+                    city_number = 1L;
+                }else if(city_value.equals("Beograd")){
+                    city_number = 2L;
+                }else {
+                    city_number = 3L;
+                }
                 user.setFirstName(first_name_string);
                 user.setLastName(last_name_string);
                 user.setUsername(username_string);
                 user.setPassword(password_string);
                 user.setAddress(address_string);
-                Call<ResponseBody> call = ServiceUtils.pmaService.registr(user);
+                Call<ResponseBody> call = ServiceUtils.pmaService.registr(user, city_number);
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

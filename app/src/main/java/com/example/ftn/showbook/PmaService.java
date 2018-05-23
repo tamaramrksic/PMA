@@ -18,6 +18,6 @@ public interface  PmaService {
     })
     @GET("users/{id}")
     Call<ResponseBody> get(@Path("id")Long id);
-    @POST("users/registr")
-    Call<ResponseBody> registr(@Body User user);
+    @POST("users/registr/{id}")
+    Call<ResponseBody> registr(@Body User user, @Path("id")Long id);
 }
