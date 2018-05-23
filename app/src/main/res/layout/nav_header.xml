@@ -16,9 +16,9 @@
         android:src="@drawable/logo" />
 
     <TextView
+        android:id="@+id/drawer_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/user1_username"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:drawableLeft="@drawable/ic_person"/>
 
