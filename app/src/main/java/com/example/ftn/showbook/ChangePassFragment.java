@@ -6,9 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,11 +18,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ChangePassFragment  extends DialogFragment {
-    android.content.res.Resources res;
     LayoutInflater inflater;
-    @Override
+    private String new_password_value;
+    Intent intent;
+      @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        res = getResources();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         inflater = getActivity().getLayoutInflater();
@@ -36,14 +34,14 @@ public class ChangePassFragment  extends DialogFragment {
                 .setPositiveButton(R.string.change_pass_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent intent = getActivity().getIntent();
+                        intent = getActivity().getIntent();
                         String username = intent.getStringExtra("drawerUsername");
                         String password = intent.getStringExtra("drawerPass");
                         System.out.println("USERNAME JE : "+ username + " a password je : " + password);
                         EditText old_password = (EditText) getDialog().findViewById(R.id.old_password);
                         String old_password_value = old_password.getText().toString();
                         EditText new_password = (EditText) getDialog().findViewById(R.id.new_password);
-                        String new_password_value = new_password.getText().toString();
+                        new_password_value = new_password.getText().toString();
 
                         EditText conf_password = (EditText) getDialog().findViewById(R.id.conf_password);
                         String conf_password_value = conf_password.getText().toString();
@@ -56,12 +54,15 @@ public class ChangePassFragment  extends DialogFragment {
                                 @Override
                                 public void onResponse(Call<User> call, Response<User> response) {
                                     Toast.makeText(inflater.getContext(), R.string.success_message, Toast.LENGTH_SHORT).show();
+                                    intent.putExtra("drawerPass", new_password_value);
+
                                 }
 
                                 @Override
                                 public void onFailure(Call<User> call, Throwable t) {
                                     Toast.makeText(inflater.getContext(), R.string.fail_message, Toast.LENGTH_SHORT).show();
                                 }
+
 
                             });
                         }else {
