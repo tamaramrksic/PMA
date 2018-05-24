@@ -5,7 +5,6 @@ import com.example.ftn.showbook.model.UserCredentials;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -18,8 +17,12 @@ public interface  PmaService {
             "User-Agent: Mobile-Android",
             "Content-Type:application/json"
     })
+
     @GET("users/{id}")
     Call<ResponseBody> get(@Path("id")Long id);
+
+    @POST("users")
+    Call<User> getUser(@Body String username);
 
     @POST("users/registr/{id}")
     Call<ResponseBody> registr(@Body User user, @Path("id")Long id);
