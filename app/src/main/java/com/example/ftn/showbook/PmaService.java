@@ -18,9 +18,6 @@ public interface  PmaService {
             "Content-Type:application/json"
     })
 
-    @GET("users/{id}")
-    Call<ResponseBody> get(@Path("id")Long id);
-
     @POST("users")
     Call<User> getUser(@Body String username);
 
@@ -32,5 +29,8 @@ public interface  PmaService {
 
     @PUT("users/changePass")
     Call<User> changePass(@Body UserCredentials userCredentials);
+
+    @PUT("users/{id}")
+    Call<User> updateUser(@Body User user, long userId);
 
 }
