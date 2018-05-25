@@ -52,9 +52,9 @@ public class LoginActivity extends AppCompatActivity {
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.putExtra("drawerUsername", response.body().getUsername());
+                        intent.putExtra("drawerPass", response.body().getPassword());
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); // clears all previous activities task
                         finish();

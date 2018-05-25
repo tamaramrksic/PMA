@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ShowBook</string>
     <string name="registration">Registruj se!</string>
-    <string name="username">Korisnicko ime</string>
+    <string name="username">Korisničko ime</string>
     <string name="password">Lozinka</string>
     <string name="login">Uloguj se!</string>
     <string name="first_name">Ime</string>
@@ -9,23 +9,23 @@
     <string name="adress">Adresa</string>
     <string name="city">Grad</string>
     <string name="city_hint">Izaberi grad</string>
-    <string name="already_registred">Vec ste registrovani? Uloguj se!</string>
+    <string name="already_registred">Već ste registrovani? Uloguj se!</string>
     <string-array name="cities">
         <item>Izaberi grad</item>
         <item>Novi Sad</item>
         <item>Beograd</item>
         <item>Subotica</item>
     </string-array>
-    <string name="change_pass">Izmena sifre</string>
-    <string name="change_pass_button">Sacuvaj izmenu</string>
-    <string name="old_pass">Stara sifra</string>
-    <string name="new_pass">Nova sifre</string>
-    <string name="conf_pass">Potvrda sifre</string>
+    <string name="change_pass">Izmena šifre</string>
+    <string name="change_pass_button">Sačuvaj izmenu</string>
+    <string name="old_pass">Stara šifra</string>
+    <string name="new_pass">Nova šifre</string>
+    <string name="conf_pass">Potvrda šifre</string>
 
     <string name="cancel">Odustani</string>
-    <string name="settings">Podesavanja</string>
+    <string name="settings">Podešavanja</string>
 
-    <string name="pref_title_1">Podesavanja pretrage</string>
+    <string name="pref_title_1">Podešavanja pretrage</string>
     <string name="pref_distance_title">Udaljenost</string>
     <string name="pref_distance">pref_distance</string>
     <string-array name="pref_distance_entries">
@@ -117,6 +117,7 @@
     <string name="nav_reserved_label">Rezervacije</string>
     <string name="nav_interested_label">Zainteresovan</string>
     <string name="nav_seen_label">Pogledano</string>
+    <string name="nav_logout_label">Odjavi se</string>
 
 
     <string name="find">Pronadji</string>
@@ -125,4 +126,14 @@
     <string name="google_map_api">AIzaSyCe3gdaNJoKjz_sFrfGYHWra9NsMgRCiRU</string>
 
     <string name="invalid_login_message">Neispravano korisničko ime i/ili lozinka!</string>
+    <string name="success_message">Uspešno!</string>
+    <string name="fail_message">Greška!</string>
+    <string name="fail_pass_message">Šifre se ne poklapaju!</string>
+
+    <string name="first_name_required">Ime je obavezno!</string>
+    <string name="last_name_required">Prezime je obavezno!</string>
+    <string name="address_required">Adresa je obavezan!</string>
+    <string name="username_required">Korisničko ime je obavezno!</string>
+    <string name="password_required">Šifra je obavezna!</string>
+    <string name="city_required">Odabir grada je obavezan!</string>
 </resources>

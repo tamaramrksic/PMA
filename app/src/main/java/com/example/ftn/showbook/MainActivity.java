@@ -1,5 +1,6 @@
 package com.example.ftn.showbook;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                             // Update the UI based on the item selected
                             // Swap UI fragments
                             Fragment fragment = new HomeFragment();
-
+                            
                             switch (menuItem.getItemId()) {
                                 default:
                                     fragment = new HomeFragment();
@@ -81,12 +82,21 @@ public class MainActivity extends AppCompatActivity {
                                 case R.id.nav_settings:
                                     fragment = new SettingsFragment();
                                     break;
+                                case R.id.nav_logout:
+                                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); // clears all previous activities task
+                                    finish();
+                                    startActivity(intent);
+                                    break;
 
                             }
-                            fragmentManager.beginTransaction()
-                                    .replace(R.id.main_container, fragment)
-                                    .addToBackStack(null)
-                                    .commit();
+                            if (menuItem.getItemId() != R.id.nav_logout) {
+                                fragmentManager.beginTransaction()
+                                        .replace(R.id.main_container, fragment)
+                                        .addToBackStack(null)
+                                        .commit();
+                            }
 
                             return true;
                         }
