@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ftn.showbook.database.DatabaseHelper;
+import com.example.ftn.showbook.database.UserDB;
 import com.example.ftn.showbook.model.User;
 import com.example.ftn.showbook.model.UserCredentials;
 import com.google.gson.Gson;
@@ -23,11 +25,16 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private DatabaseHelper db;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
+
+        db = new DatabaseHelper(this);
 
         TextView clickableTextLink = (TextView)findViewById(R.id.registration);
         clickableTextLink.setOnClickListener(new View.OnClickListener() {
@@ -52,9 +59,17 @@ public class LoginActivity extends AppCompatActivity {
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
+                        UserDB userDB = db.getUserByUsername(response.body().getUsername());
+                        if (userDB == null) {
+                            System.out.println("ovde sammmmmmm");
+                            db.insertUser(response.body().getUsername(),response.body().getFirstName(),
+                                    response.body().getLastName(), response.body().getAddress(),response.body().getLocation().getName().toString(), response.body().getMaxDistance(),
+                                    response.body().getFacilityType().toString(), true);
+
+                        }
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.putExtra("drawerUsername", response.body().getUsername());
-                        intent.putExtra("drawerPass", response.body().getPassword());
+                        intent.putExtra("userPass", response.body().getPassword());
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); // clears all previous activities task
                         finish();
