@@ -2,6 +2,7 @@ package com.example.ftn.showbook.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -62,5 +63,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // return newly inserted row id
         return id;
+    }
+
+    public UserDB getUserByUsername(String username) {
+        // get readable database as we are not inserting anything
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(UserDB.TABLE_NAME,
+                null,
+                UserDB.COLUMN_USERNAME + "=?",
+                new String[]{String.valueOf(username)}, null, null, null, null);
+
+        UserDB userDB = null;
+
+        if (cursor.moveToFirst()) {
+
+            System.out.println("cursor count" + cursor.getCount());
+            // prepare UserDB object
+            boolean comment_notification = cursor.getInt(cursor.getColumnIndex(UserDB.COLUMN_COMMENT_NOTIFICATION)) > 0;
+            userDB = new UserDB(
+                    cursor.getInt(cursor.getColumnIndex(UserDB.COLUMN_ID)),
+                    cursor.getString(cursor.getColumnIndex(UserDB.COLUMN_USERNAME)),
+                    cursor.getString(cursor.getColumnIndex(UserDB.COLUMN_FIRSTNAME)),
+                    cursor.getString(cursor.getColumnIndex(UserDB.COLUMN_LASTNAME)),
+                    cursor.getString(cursor.getColumnIndex(UserDB.COLUMN_ADDRESS)),
+                    cursor.getString(cursor.getColumnIndex(UserDB.COLUMN_LOCATION)),
+                    cursor.getInt(cursor.getColumnIndex(UserDB.COLUMN_MAXDISTANCE)),
+                    cursor.getString(cursor.getColumnIndex(UserDB.COLUMN_FACILITYTYPE)),
+                    comment_notification);
+        }
+
+        // close the db connection
+        cursor.close();
+
+        return userDB;
     }
 }
