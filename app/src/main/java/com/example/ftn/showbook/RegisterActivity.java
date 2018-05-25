@@ -130,8 +130,6 @@ public class RegisterActivity extends AppCompatActivity{
                     call.enqueue(new Callback<User>() {
                         @Override
                         public void onResponse(Call<User> call, Response<User> response) {
-                            response.
-                                    response.getStatusLine().getStatusCode()
                             Long id = db.insertUser(response.body().getUsername(),response.body().getFirstName(),
                                     response.body().getLastName(), response.body().getAddress(),response.body().getLocation().getName().toString(), response.body().getMaxDistance(),
                                     response.body().getFacilityType().toString(), true);
