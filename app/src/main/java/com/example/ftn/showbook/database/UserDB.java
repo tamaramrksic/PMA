@@ -8,54 +8,58 @@ public class UserDB {
     public static final String COLUMN_FIRSTNAME = "first_name";
     public static final String COLUMN_LASTNAME = "last_name";
     public static final String COLUMN_ADDRESS = "address";
+    public static final String COLUMN_LOCATION = "location";
     public static final String COLUMN_MAXDISTANCE = "max_distance";
     public static final String COLUMN_FACILITYTYPE = "facility_type";
-    public static final String COLUMN_COMMENTS = "comments";
+    public static final String COLUMN_COMMENT_NOTIFICATION = "comment_notification";
 
 
-    private Long id;
+    private Integer id;
     private String username;
     private String firstName;
     private String lastName;
     private String address;
+    private String location;
     private Integer maxDistance;
     private String facilityType;
-    private boolean comments;
+    private boolean comment_notification;
 
 
     // Create table SQL query
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
-                    + COLUMN_ID + " LONG PRIMARY KEY AUTOINCREMENT,"
+                    + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COLUMN_USERNAME + " TEXT,"
                     + COLUMN_FIRSTNAME + " TEXT,"
                     + COLUMN_LASTNAME + " TEXT,"
                     + COLUMN_ADDRESS + " TEXT,"
+                    + COLUMN_LOCATION + " TEXT,"
                     + COLUMN_MAXDISTANCE + " INTEGER,"
                     + COLUMN_FACILITYTYPE + " TEXT,"
-                    + COLUMN_COMMENTS + " BOOLEAN,"
+                    + COLUMN_COMMENT_NOTIFICATION + " BOOLEAN"
                     + ")";
 
     public UserDB() {
     }
 
-    public UserDB(Long id, String username, String firstName, String lastName, String address,
-                  Integer maxDistance, String facilityType, boolean comments) {
+    public UserDB(Integer id, String username, String firstName, String lastName, String address, String location,
+                  Integer maxDistance, String facilityType, boolean comment_notification) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
+        this.location = location;
         this.maxDistance = maxDistance;
         this.facilityType = facilityType;
-        this.comments = comments;
+        this.comment_notification = comment_notification;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -107,11 +111,19 @@ public class UserDB {
         this.facilityType = facilityType;
     }
 
-    public boolean isComments() {
-        return comments;
+    public boolean isComment_notification() {
+        return comment_notification;
     }
 
-    public void setComments(boolean comments) {
-        this.comments = comments;
+    public void setComment_notification(boolean comment_notification) {
+        this.comment_notification = comment_notification;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

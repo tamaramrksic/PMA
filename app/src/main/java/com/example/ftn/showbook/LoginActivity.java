@@ -52,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.putExtra("drawerUsername", response.body().getUsername());
                         intent.putExtra("drawerPass", response.body().getPassword());

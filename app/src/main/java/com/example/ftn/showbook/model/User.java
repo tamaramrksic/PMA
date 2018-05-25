@@ -33,6 +33,8 @@ public class User {
     @Expose
     private Integer maxDistance;
 
+    private Location location;
+
 
     public enum FacilityType {
         ALL,
@@ -46,7 +48,7 @@ public class User {
 
     public User() {}
 
-    public User(Long id, String firstName, String lastName, String address, String username, String password, Integer maxDistance, FacilityType facilityType) {
+    public User(Long id, String firstName, String lastName, String address, String username, String password, Integer maxDistance, FacilityType facilityType, Location location) {
         super();
         this.id = id;
         this.firstName = firstName;
@@ -56,6 +58,7 @@ public class User {
         this.password = password;
         this.maxDistance = maxDistance;
         this.facilityType = facilityType;
+        this.location = location;
     }
 
     public Long getId() {
@@ -120,5 +123,13 @@ public class User {
 
     public void setFacilityType(FacilityType facilityType) {
         this.facilityType = facilityType;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }

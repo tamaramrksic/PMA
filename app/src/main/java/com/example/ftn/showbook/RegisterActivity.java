@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ftn.showbook.database.DatabaseHelper;
 import com.example.ftn.showbook.model.User;
 
 import okhttp3.ResponseBody;
@@ -24,11 +25,14 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity{
 
+    private DatabaseHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        db = new DatabaseHelper(this);
 
         TextView clickableTextLink = (TextView)findViewById(R.id.login);
         clickableTextLink.setOnClickListener(new View.OnClickListener() {
@@ -122,17 +126,23 @@ public class RegisterActivity extends AppCompatActivity{
                     user.setUsername(username_string);
                     user.setPassword(password_string);
                     user.setAddress(address_string);
-                    Call<ResponseBody> call = ServiceUtils.pmaService.registr(user, city_number);
-                    call.enqueue(new Callback<ResponseBody>() {
+                    Call<User> call = ServiceUtils.pmaService.registr(user, city_number);
+                    call.enqueue(new Callback<User>() {
                         @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        public void onResponse(Call<User> call, Response<User> response) {
+                            response.
+                                    response.getStatusLine().getStatusCode()
+                            Long id = db.insertUser(response.body().getUsername(),response.body().getFirstName(),
+                                    response.body().getLastName(), response.body().getAddress(),response.body().getLocation().getName().toString(), response.body().getMaxDistance(),
+                                    response.body().getFacilityType().toString(), true);
+                            System.out.println("id " + id);
                             Toast.makeText(getApplicationContext(), getResources().getString(R.string.success_message), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);
                         }
 
                         @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        public void onFailure(Call<User> call, Throwable t) {
                             System.out.println("Error!");
                             Toast.makeText(getApplicationContext(), getResources().getString(R.string.fail_message), Toast.LENGTH_SHORT).show();
                         }
