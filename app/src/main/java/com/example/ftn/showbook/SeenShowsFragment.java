@@ -38,8 +38,8 @@ public class SeenShowsFragment  extends Fragment {
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
         // set adapter
-        RecyclerView.Adapter mAdapter = new ReservationListAdapter(getActivity(), movies, imgid, dates, times, ratings);
-        mRecyclerView.setAdapter(mAdapter);
+//        RecyclerView.Adapter mAdapter = new ReservationListAdapter(getActivity(), movies, imgid, dates, times, ratings);
+//        mRecyclerView.setAdapter(mAdapter);
 
         return rootView;
     }
