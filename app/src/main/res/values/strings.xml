@@ -16,6 +16,11 @@
         <item>Beograd</item>
         <item>Subotica</item>
     </string-array>
+    <string-array name="cities_update">
+        <item>Novi Sad</item>
+        <item>Beograd</item>
+        <item>Subotica</item>
+    </string-array>
     <string name="change_pass">Izmena šifre</string>
     <string name="change_pass_button">Sačuvaj izmenu</string>
     <string name="old_pass">Stara šifra</string>

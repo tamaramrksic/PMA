@@ -5,7 +5,6 @@ import com.example.ftn.showbook.model.UserCredentials;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -19,7 +18,7 @@ public interface  PmaService {
     })
 
     @POST("users")
-    Call<User> getUser(@Body String username);
+    Call<User> getUser(@Body UserCredentials userCredentials);
 
     @POST("users/registr/{id}")
     Call<ResponseBody> registr(@Body User user, @Path("id")Long id);
@@ -30,7 +29,7 @@ public interface  PmaService {
     @PUT("users/changePass")
     Call<User> changePass(@Body UserCredentials userCredentials);
 
-    @PUT("users/{id}")
-    Call<User> updateUser(@Body User user, long userId);
+    @PUT("users/{id}/{location}")
+    Call<User> updateUser(@Body User user, @Path("id")Long userId, @Path("location") String location);
 
 }
