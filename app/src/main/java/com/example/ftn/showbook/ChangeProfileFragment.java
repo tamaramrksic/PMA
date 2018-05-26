@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.ftn.showbook.database.DatabaseHelper;
 import com.example.ftn.showbook.model.Location;
 import com.example.ftn.showbook.model.User;
 import com.example.ftn.showbook.model.UserCredentials;
@@ -20,6 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ChangeProfileFragment extends DialogFragment {
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -41,15 +43,17 @@ public class ChangeProfileFragment extends DialogFragment {
                 last_name.setText(response.body().getLastName());
                 address.setText(response.body().getAddress());
                 Location location = response.body().getLocation();
-                if(location.getName().equals("Novi Sad")) {
-                    city.setSelection(0);
-                } else if(location.getName().equals("Beograd")) {
-                    city.setSelection(1);
-                } else if(location.getName().equals("Subotica")) {
-                    city.setSelection(2);
+                switch (location.getName()) {
+                    case "Novi Sad":
+                        city.setSelection(0);
+                        break;
+                    case "Beograd":
+                        city.setSelection(1);
+                        break;
+                    case "Subotica":
+                        city.setSelection(2);
+                        break;
                 }
-
-                intent.putExtra("userId", response.body().getId());
             }
 
             @Override
@@ -63,7 +67,7 @@ public class ChangeProfileFragment extends DialogFragment {
                 .setPositiveButton(R.string.change_pass_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        User user = new User();
+                        final User user = new User();
 
                         EditText first_name = getDialog().findViewById(R.id.first_name);
                         String first_name_new_value = first_name.getText().toString();
@@ -72,16 +76,18 @@ public class ChangeProfileFragment extends DialogFragment {
                         EditText address = getDialog().findViewById(R.id.address);
                         String address_new_value = address.getText().toString();
                         Spinner city = getDialog().findViewById(R.id.city);
-                        String city_new_value = city.getSelectedItem().toString();
+                        final String city_new_value = city.getSelectedItem().toString();
 
                         user.setFirstName(first_name_new_value);
                         user.setLastName(last_name_new_value);
                         user.setAddress(address_new_value);
 
-                        Call<User> call = ServiceUtils.pmaService.updateUser(user, intent.getLongExtra("userId", -1L), city_new_value);
+                        Call<User> call = ServiceUtils.pmaService.updateUser(user, intent.getStringExtra("drawerUsername"), city_new_value);
                         call.enqueue(new Callback<User>() {
                             @Override
                             public void onResponse(Call<User> call, Response<User> response) {
+                                DatabaseHelper db = new DatabaseHelper(inflater.getContext());
+                                db.updateUser(user, intent.getStringExtra("drawerUsername"), city_new_value);
                                 Toast.makeText(inflater.getContext(), R.string.success_message, Toast.LENGTH_SHORT).show();
                             }
 

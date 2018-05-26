@@ -98,4 +98,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return userDB;
     }
+
+    public UserDB updateUser(User user, String username, String city_new_value) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        UserDB userDB = this.getUserByUsername(username);
+        ContentValues values = new ContentValues();
+
+        if (userDB != null) {
+            values.put(UserDB.COLUMN_FIRSTNAME, user.getFirstName());
+            values.put(UserDB.COLUMN_LASTNAME, user.getLastName());
+            values.put(UserDB.COLUMN_ADDRESS, user.getAddress());
+            values.put(UserDB.COLUMN_LOCATION, city_new_value);
+        }
+
+        // Which row to update, based on the title
+        String selection = UserDB.COLUMN_USERNAME + " LIKE ?";
+        String[] selectionArgs = {username};
+
+        int count = db.update(
+                UserDB.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        
+        return userDB;
+    }
+
 }
