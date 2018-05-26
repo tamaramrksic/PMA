@@ -136,4 +136,8 @@
     <string name="username_required">Korisničko ime je obavezno!</string>
     <string name="password_required">Šifra je obavezna!</string>
     <string name="city_required">Odabir grada je obavezan!</string>
+
+    <string name="no_reservations_message">Nemate rezervacija.</string>
+    <string name="reservations_failure_message">Nije moguće učitati Vaše rezervacije.</string>
+
 </resources>

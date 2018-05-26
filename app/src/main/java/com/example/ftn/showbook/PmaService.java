@@ -1,6 +1,9 @@
 package com.example.ftn.showbook;
+import com.example.ftn.showbook.model.Reservation;
 import com.example.ftn.showbook.model.User;
 import com.example.ftn.showbook.model.UserCredentials;
+
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -29,5 +32,8 @@ public interface  PmaService {
 
     @PUT("users/changePass")
     Call<User> changePass(@Body UserCredentials userCredentials);
+
+    @GET("reservations/{username}")
+    Call<List<Reservation>> getUserReservations(@Path("username")String username);
 
 }
