@@ -33,6 +33,8 @@ public class User {
     @Expose
     private Integer maxDistance;
 
+    @SerializedName("location")
+    @Expose
     private Location location;
 
 

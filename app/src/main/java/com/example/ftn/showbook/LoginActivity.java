@@ -61,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(Call<User> call, Response<User> response) {
                         UserDB userDB = db.getUserByUsername(response.body().getUsername());
                         if (userDB == null) {
-                            System.out.println("ovde sammmmmmm");
                             db.insertUser(response.body().getUsername(),response.body().getFirstName(),
                                     response.body().getLastName(), response.body().getAddress(),response.body().getLocation().getName().toString(), response.body().getMaxDistance(),
                                     response.body().getFacilityType().toString(), true);
