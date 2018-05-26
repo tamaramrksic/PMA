@@ -33,8 +33,9 @@ public class User {
     @Expose
     private Integer maxDistance;
 
+    @SerializedName("location")
+    @Expose
     private Location location;
-
 
     public enum FacilityType {
         ALL,
@@ -48,8 +49,7 @@ public class User {
 
     public User() {}
 
-    public User(Long id, String firstName, String lastName, String address, String username, String password, Integer maxDistance, FacilityType facilityType, Location location) {
-        super();
+    public User(Long id, String firstName, String lastName, String address, String username, String password, Integer maxDistance, Location location, FacilityType facilityType) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -57,8 +57,8 @@ public class User {
         this.username = username;
         this.password = password;
         this.maxDistance = maxDistance;
-        this.facilityType = facilityType;
         this.location = location;
+        this.facilityType = facilityType;
     }
 
     public Long getId() {

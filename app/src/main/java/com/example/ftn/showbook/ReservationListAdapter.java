@@ -10,14 +10,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ftn.showbook.model.Reservation;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class ReservationListAdapter extends RecyclerView.Adapter<ReservationListAdapter.ViewHolder>{
 
-    private String[] titles;
     private Integer[] images;
-    private String[] dates;
-    private String[] times;
-    private String[] ratings;
     private LayoutInflater mInflater;
+
+    private ArrayList<Reservation> reservations;
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView title, date, time, rating;
@@ -48,14 +53,10 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
         }
     }
 
-    public ReservationListAdapter(Context context, String[] titles, Integer[] images,
-                                  String[] dates, String[] times, String[] ratings) {
+    public ReservationListAdapter(Context context, ArrayList<Reservation> reservations, Integer[] images) {
         this.mInflater = LayoutInflater.from(context);
-        this.titles = titles;
+        this.reservations = reservations;
         this.images = images;
-        this.dates = dates;
-        this.times = times;
-        this.ratings = ratings;
     }
 
     @Override
@@ -68,14 +69,33 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.image.setImageResource(images[position]);
-        holder.title.setText(titles[position]);
-        holder.date.setText(dates[position]);
-        holder.time.setText(times[position]);
-        holder.rating.setText(ratings[position]);
+        holder.title.setText(reservations.get(position).getEvent().getShow().getName());
+        holder.date.setText(getDateOrTime(reservations.get(position).getEvent().getStart(),"date"));
+        holder.time.setText(getDateOrTime(reservations.get(position).getEvent().getStart(),"time"));
+        if (reservations.get(position).getRating() != null) {
+            holder.rating.setText(reservations.get(position).getRating().getRate());
+        } else {
+            holder.rating.setText("0.0");
+        }
     }
 
     @Override
     public int getItemCount() {
-        return titles.length;
+        if (reservations != null) {
+            return reservations.size();
+        }
+        return 0;
+    }
+
+    public String getDateOrTime(Date date, String datePart) {
+        SimpleDateFormat simpleDateFormat;
+
+        if (datePart.equals("date")) {
+            simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        } else {
+            simpleDateFormat = new SimpleDateFormat("HH:mm");
+        }
+
+        return simpleDateFormat.format(date);
     }
 }

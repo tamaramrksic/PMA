@@ -36,7 +36,7 @@ public class ChangePassFragment  extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         intent = getActivity().getIntent();
                         String username = intent.getStringExtra("drawerUsername");
-                        String password = intent.getStringExtra("drawerPass");
+                        String password = intent.getStringExtra("userPass");
                         System.out.println("USERNAME JE : "+ username + " a password je : " + password);
                         EditText old_password = (EditText) getDialog().findViewById(R.id.old_password);
                         String old_password_value = old_password.getText().toString();
@@ -54,7 +54,7 @@ public class ChangePassFragment  extends DialogFragment {
                                 @Override
                                 public void onResponse(Call<User> call, Response<User> response) {
                                     Toast.makeText(inflater.getContext(), R.string.success_message, Toast.LENGTH_SHORT).show();
-                                    intent.putExtra("drawerPass", new_password_value);
+                                    intent.putExtra("userPass", new_password_value);
 
                                 }
 

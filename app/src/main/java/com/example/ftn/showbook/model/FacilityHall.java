@@ -3,7 +3,7 @@ package com.example.ftn.showbook.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Location {
+public class FacilityHall {
 
     @SerializedName("id")
     @Expose
@@ -13,21 +13,16 @@ public class Location {
     @Expose
     private String name;
 
-    @SerializedName("zipCode")
+    @SerializedName("facility")
     @Expose
-    private String zipCode;
+    private Facility facility;
 
-    @SerializedName("state")
-    @Expose
-    private String state;
+    public FacilityHall() {}
 
-    public Location() {}
-
-    public Location(Long id, String name, String zipCode, String state) {
+    public FacilityHall(Long id, String name, Facility facility) {
         this.id = id;
         this.name = name;
-        this.zipCode = zipCode;
-        this.state = state;
+        this.facility = facility;
     }
 
     public Long getId() {
@@ -46,19 +41,11 @@ public class Location {
         this.name = name;
     }
 
-    public String getZipCode() {
-        return zipCode;
+    public Facility getFacility() {
+        return facility;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
+    public void setFacility(Facility facility) {
+        this.facility = facility;
     }
 }

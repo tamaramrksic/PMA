@@ -2,6 +2,7 @@ package com.example.ftn.showbook.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -64,6 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+
     public Long insertFacility(String name, String type, String address, String location,Double latitude,
                            Double longitude) {
         // get writable database as we want to write data
@@ -88,4 +90,64 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // return newly inserted row id
         return id;
     }
+
+    public UserDB getUserByUsername(String username) {
+        // get readable database as we are not inserting anything
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(UserDB.TABLE_NAME,
+                null,
+                UserDB.COLUMN_USERNAME + "=?",
+                new String[]{String.valueOf(username)}, null, null, null, null);
+
+        UserDB userDB = null;
+
+        if (cursor.moveToFirst()) {
+
+            System.out.println("cursor count" + cursor.getCount());
+            // prepare UserDB object
+            boolean comment_notification = cursor.getInt(cursor.getColumnIndex(UserDB.COLUMN_COMMENT_NOTIFICATION)) > 0;
+            userDB = new UserDB(
+                    cursor.getInt(cursor.getColumnIndex(UserDB.COLUMN_ID)),
+                    cursor.getString(cursor.getColumnIndex(UserDB.COLUMN_USERNAME)),
+                    cursor.getString(cursor.getColumnIndex(UserDB.COLUMN_FIRSTNAME)),
+                    cursor.getString(cursor.getColumnIndex(UserDB.COLUMN_LASTNAME)),
+                    cursor.getString(cursor.getColumnIndex(UserDB.COLUMN_ADDRESS)),
+                    cursor.getString(cursor.getColumnIndex(UserDB.COLUMN_LOCATION)),
+                    cursor.getInt(cursor.getColumnIndex(UserDB.COLUMN_MAXDISTANCE)),
+                    cursor.getString(cursor.getColumnIndex(UserDB.COLUMN_FACILITYTYPE)),
+                    comment_notification);
+        }
+
+        // close the db connection
+        cursor.close();
+
+        return userDB;
+    }
+
+    public UserDB updateUser(User user, String username, String city_new_value) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        UserDB userDB = this.getUserByUsername(username);
+        ContentValues values = new ContentValues();
+
+        if (userDB != null) {
+            values.put(UserDB.COLUMN_FIRSTNAME, user.getFirstName());
+            values.put(UserDB.COLUMN_LASTNAME, user.getLastName());
+            values.put(UserDB.COLUMN_ADDRESS, user.getAddress());
+            values.put(UserDB.COLUMN_LOCATION, city_new_value);
+        }
+
+        // Which row to update, based on the title
+        String selection = UserDB.COLUMN_USERNAME + " LIKE ?";
+        String[] selectionArgs = {username};
+
+        int count = db.update(
+                UserDB.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        
+        return userDB;
+    }
+
 }

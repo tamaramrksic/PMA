@@ -16,6 +16,11 @@
         <item>Beograd</item>
         <item>Subotica</item>
     </string-array>
+    <string-array name="cities_update">
+        <item>Novi Sad</item>
+        <item>Beograd</item>
+        <item>Subotica</item>
+    </string-array>
     <string name="change_pass">Izmena šifre</string>
     <string name="change_pass_button">Sačuvaj izmenu</string>
     <string name="old_pass">Stara šifra</string>
@@ -137,6 +142,7 @@
     <string name="password_required">Šifra je obavezna!</string>
     <string name="city_required">Odabir grada je obavezan!</string>
 
+
     <string name="location_disabled_message">Lokacija je onemogućena, da li želiš da je omogućiš?</string>
 
     <string name="oops">Uups</string>
@@ -144,5 +150,9 @@
     <string name="yes">Da</string>
     <string name="no">Ne</string>
     <string name="pref_radius">pref_radius</string>
+
+    <string name="no_reservations_message">Nemate rezervacija.</string>
+    <string name="reservations_failure_message">Nije moguće učitati Vaše rezervacije.</string>
+
 
 </resources>

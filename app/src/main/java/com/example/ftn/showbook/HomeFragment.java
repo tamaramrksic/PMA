@@ -1,169 +1,49 @@
 package com.example.ftn.showbook;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.example.ftn.showbook.database.FacilityDB;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.HashMap;
 
-
-public class HomeFragment extends Fragment implements OnMapReadyCallback, LocationListener{
+public class HomeFragment extends Fragment implements OnMapReadyCallback{
 
     private GoogleMap map;
     private FragmentManager fragmentManager;
-    private String locationProvider;
-    private LocationManager locationManager;
-    private Location myLocation;
-    private Marker home;
-    private SupportMapFragment mMapFragment;
-    private AlertDialog dialog;
-    private Criteria criteria;
-    private HashMap<Marker, FacilityDB> markers;
-    public static HomeFragment newInstance() {
-
-        HomeFragment hf = new HomeFragment();
-
-        return hf;
-    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        createMapFragmentAndInflate();
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
+        fragmentManager = getActivity().getSupportFragmentManager();
+
+
         return view;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
-        super.onCreate(savedInstanceState);
-
-
-    }
-
-    private void createMapFragmentAndInflate() {
-        // Get LocationManager object from System Service LOCATION_SERVIC
-        mMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        mMapFragment.getMapAsync(this);
-        fragmentManager = getActivity().getSupportFragmentManager();
-        locationManager = (LocationManager) getActivity().getSystemService(getContext().LOCATION_SERVICE);
-        locationManager = (LocationManager) getActivity().getSystemService(
-                Context.LOCATION_SERVICE);
-        criteria = new Criteria();
-        locationProvider = locationManager.getBestProvider(criteria, true);
-       /* FragmentTransaction transaction = getChildFragmentManager()
-                .beginTransaction();
-        transaction.replace(R.id.main_container, mMapFragment).commit();
-
-*/
-
-    }
-    @Override
-    public void onResume() {
-        // TODO Auto-generated method stub
-        super.onResume();
-        // Toast.makeText(getActivity(), "onResume()",
-        // Toast.LENGTH_SHORT).show();
-
-        //Toast.makeText(getActivity(), "onResume()", Toast.LENGTH_SHORT).show();
-
-        locationProvider = locationManager.getBestProvider(criteria, true);
-        boolean gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        boolean wifi = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-        if (!gps && !wifi){
-            //new LocationDialog(getActivity()).prepareDialog().show();
-            showLocatonDialog();
-        } else {
-            // Toast.makeText(getActivity(), "noService",
-            // Toast.LENGTH_SHORT).show();
-            if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                locationManager.requestLocationUpdates(locationProvider, 25, 0, this);
-                myLocation = locationManager.getLastKnownLocation(locationProvider);
-              // System.out.println("Longitude jee " + myLocation.getLongitude());
-               // System.out.println("Latitude jee " + myLocation.getLatitude());
-             }else {
-                System.out.println("nema odobrenje izgleda");
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        1);
-            }
-        }
-        if(markers == null)
-        {
-            markers = new HashMap<Marker, FacilityDB>();
-        }
-
-    }
-
-    @Override
-    public void onPause() {
-        // TODO Auto-generated method stub
-        super.onPause();
-
-        locationManager.removeUpdates(this);
-    }
-
-    @Override
-    public void onDestroy() {
-        // TODO Auto-generated method stub
-        super.onDestroy();
-
-        locationManager.removeUpdates(this);
-    }
-    private void showLocatonDialog(){
-        if(dialog == null){
-            dialog = new LocationDialog(getActivity()).prepareDialog();
-        }else{
-            if(dialog.isShowing()){
-                dialog.dismiss();
-            }
-        }
-
-        dialog.show();
-    }
-
-    @Override
     public void onMapReady(GoogleMap googleMap) {
-        //LatLng myLtnLng = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
         map = googleMap;
-       /* map.addMarker(new MarkerOptions()
-                .position(myLtnLng).title("Ovde se ti nalazis!")
-                .title("Zdravo!"));
-
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(myLtnLng, 15
-        ));
+        // Add a marker in Sydney and move the camera
+        LatLng cinplex = new LatLng(45.254313, 19.853547);
+        map.addMarker(new MarkerOptions().position(cinplex).title("Marker in Cineplex"));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(cinplex, 17));
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
