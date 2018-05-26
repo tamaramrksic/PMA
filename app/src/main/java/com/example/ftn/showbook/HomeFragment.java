@@ -3,6 +3,8 @@ package com.example.ftn.showbook;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +13,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -18,12 +21,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.ftn.showbook.database.DatabaseHelper;
 import com.example.ftn.showbook.database.FacilityDB;
+import com.example.ftn.showbook.database.UserDB;
+import com.example.ftn.showbook.model.Facility;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -35,6 +42,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.zip.Inflater;
 
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback, LocationListener{
@@ -49,6 +58,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     private AlertDialog dialog;
     private Criteria criteria;
     private HashMap<Marker, FacilityDB> markers;
+    private DatabaseHelper db;
     public static HomeFragment newInstance() {
 
         HomeFragment hf = new HomeFragment();
@@ -68,6 +78,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     public void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
+        db = new DatabaseHelper(getActivity());
 
 
     }
@@ -192,6 +203,22 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
             }
         });
 
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                if(markers.get(marker) != null) {
+                    FacilityDB facilityDB = markers.get(marker);
+                    System.out.println("pritisnut je neki facilitiy a id mu je " + facilityDB.getId());
+                }
+               /* fragmentManager.beginTransaction()
+                        .replace(R.id.main_container, new RepertoireFragment())
+                        .addToBackStack(null)
+                        .commit();
+*/
+                return false;
+            }
+        });
+
       /*  map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
 
             @Override
@@ -240,14 +267,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
         fillTheMapWithFacilities(map, myLocation);
         home = map.addMarker(new MarkerOptions()
                 .position(loc)
-                .title("Zdravo!")
+                .title("Hej!")
                 .snippet("Ovde se trenutno nalaziš!")
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_my_location))
 
         );
 
         CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(loc).zoom(17).build();
+                .target(loc).zoom(13).build();
         home.showInfoWindow();
 
         map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
@@ -256,12 +283,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
 
     private void fillTheMapWithFacilities(GoogleMap map, Location location)
     {
-       /* SharedPreferences sharedPreferences = PreferenceManager
+        SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(getActivity().getApplicationContext());
-        String lookupRadius = sharedPreferences.getString(getString(R.string.pref_radius), "5");//1km
+        Intent intent = getActivity().getIntent();
+        String username = intent.getStringExtra("drawerUsername");
+        String  personalRadius = db.getUserByUsername(username).getMaxDistance().toString();
+        String lookupRadius = sharedPreferences.getString(getString(R.string.pref_radius), personalRadius);
         double radius = Double.parseDouble(lookupRadius);
-
-        List<FacilityDB> list = FacilityDB.filterByDistance(ReviewerTools.stringListToTagList(tagFilter),
+        List<FacilityDB> facilityDBS = db.getAllFacilities();
+        List<FacilityDB> list = FacilityDB.filterByDistance(facilityDBS,
                 location.getLatitude(), location.getLongitude(), radius);
 
         //clear from list
@@ -270,38 +300,33 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
         //clear marker
         markers.clear();
 
-        for(FacilityDB facility : list)
+        for(FacilityDB facility : facilityDBS)
         {
 
-            Geocoder geocoder = new Geocoder(getActivity().getApplicationContext());
-            List<Address> addresses = new ArrayList<>();
-            try {
-               // addresses = geocoder.getFromLocationName(facility.getAddress() + ',' + facility.getLocation().getName(), 1);
-            }catch (IOException io ){
-                System.out.println(io);
-            }
-            if(facility.getType().equals(Facility.Type.CINEMA)) {
-                LatLng loc = new LatLng(addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
+            if(facility.getType().equals("CINEMA")) {
+                LatLng loc = new LatLng(Double.parseDouble(facility.getLatitude()), Double.parseDouble(facility.getLongitude()));
                 Marker marker = map.addMarker(new MarkerOptions()
                         .title(facility.getName())
                         .snippet(facility.getAddress())
-                        .icon(BitmapDescriptorFactory
-                                .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                        .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_cinema))
                         .position(loc));
-
+                marker.showInfoWindow();
                 markers.put(marker, facility);
-            }else if(facility.getType().equals(Facility.Type.THEATER)) {
-                LatLng loc = new LatLng(addresses.get(0).getLatitude(), addresses.get(0).getLongitude());
+            }else if(facility.getType().equals("THEATER")) {
+                LatLng loc = new LatLng(Double.parseDouble(facility.getLatitude()), Double.parseDouble(facility.getLongitude()));
                 Marker marker = map.addMarker(new MarkerOptions()
                         .title(facility.getName())
                         .snippet(facility.getAddress())
-                        .icon(BitmapDescriptorFactory
-                                .defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                        .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_theater))
                         .position(loc));
+                marker.showInfoWindow();
                 markers.put(marker, facility);
 
+
             }
-        }*/
+
+        }
+
     }
 
 

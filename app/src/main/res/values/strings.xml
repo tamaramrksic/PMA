@@ -134,7 +134,6 @@
     <string name="success_message">Uspešno!</string>
     <string name="fail_message">Takvo korisničko ime već postoji!</string>
     <string name="fail_pass_message">Šifre se ne poklapaju!</string>
-
     <string name="first_name_required">Ime je obavezno!</string>
     <string name="last_name_required">Prezime je obavezno!</string>
     <string name="address_required">Adresa je obavezan!</string>

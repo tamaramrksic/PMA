@@ -16,7 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ftn.showbook.database.DatabaseHelper;
+import com.example.ftn.showbook.database.FacilityDB;
+import com.example.ftn.showbook.model.Facility;
 import com.example.ftn.showbook.model.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

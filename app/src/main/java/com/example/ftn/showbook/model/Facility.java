@@ -31,14 +31,24 @@ public class Facility {
     @Expose
     private Location location;
 
+    @SerializedName("longitude")
+    @Expose
+    private String longitude;
+
+    @SerializedName("latitude")
+    @Expose
+    private String latitude;
+
     public Facility() {}
 
-    public Facility(Long id, String name, Type type, String address, Location location) {
+    public Facility(Long id, String name, Type type, String address, Location location,String longitude, String latitude) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.address = address;
         this.location = location;
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
     public Long getId() {
@@ -79,5 +89,21 @@ public class Facility {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
 }

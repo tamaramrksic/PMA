@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.ftn.showbook.model.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Database Version
@@ -27,6 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // create notes table
         db.execSQL(UserDB.CREATE_TABLE);
+        db.execSQL(FacilityDB.CREATE_TABLE);
     }
 
     // Upgrading database
@@ -34,7 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + UserDB.TABLE_NAME);
-
+        db.execSQL("DROP TABLE IF EXISTS " + FacilityDB.TABLE_NAME);
         // Create tables again
         onCreate(db);
     }
@@ -66,8 +70,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public Long insertFacility(String name, String type, String address, String location,Double latitude,
-                           Double longitude) {
+    public Long insertFacility(String name, String type, String address, String location,String latitude,
+                           String longitude) {
         // get writable database as we want to write data
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -89,6 +93,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // return newly inserted row id
         return id;
+    }
+
+    public List<FacilityDB>  getAllFacilities() {
+        // get readable database as we are not inserting anything
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(FacilityDB.TABLE_NAME,
+                null,
+                null, null, null, null, null);
+
+
+
+        List facilityDBList = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                System.out.println("cursor count" + cursor.getCount());
+                // prepare UserDB object
+                FacilityDB facilityDB = new FacilityDB(
+                        cursor.getInt(cursor.getColumnIndex(FacilityDB.COLUMN_ID)),
+                        cursor.getString(cursor.getColumnIndex(FacilityDB.COLUMN_NAME)),
+                        cursor.getString(cursor.getColumnIndex(FacilityDB.COLUMN_TYPE)),
+                        cursor.getString(cursor.getColumnIndex(FacilityDB.COLUMN_ADDRESS)),
+                        cursor.getString(cursor.getColumnIndex(FacilityDB.COLUMN_LOCATION)),
+                        cursor.getString(cursor.getColumnIndex(FacilityDB.COLUMN_LATITUDE)),
+                        cursor.getString(cursor.getColumnIndex(FacilityDB.COLUMN_LONGITUDE))
+                );
+                cursor.moveToNext();
+                facilityDBList.add(facilityDB);
+            }
+
+        }
+
+        // close the db connection
+        cursor.close();
+
+        return facilityDBList;
     }
 
     public UserDB getUserByUsername(String username) {

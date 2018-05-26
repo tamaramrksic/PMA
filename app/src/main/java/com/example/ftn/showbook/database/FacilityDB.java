@@ -25,8 +25,8 @@ public class FacilityDB {
     private String type;
     private String address;
     private String location;
-    private Double latitude;
-    private Double longitude;
+    private String latitude;
+    private String longitude;
 
     // Create table SQL query
     public static final String CREATE_TABLE =
@@ -36,13 +36,13 @@ public class FacilityDB {
                     + COLUMN_TYPE + " TEXT,"
                     + COLUMN_ADDRESS + " TEXT,"
                     + COLUMN_LOCATION + " TEXT,"
-                    + COLUMN_LATITUDE + " DOUBLE,"
-                    + COLUMN_LONGITUDE + " DOUBLE"
+                    + COLUMN_LATITUDE + " TEXT,"
+                    + COLUMN_LONGITUDE + " TEXT"
                     + ")";
 
     FacilityDB(){}
 
-    public FacilityDB(Integer id, String name, String type, String address, String location, Double latitude, Double longitude) {
+    public FacilityDB(Integer id, String name, String type, String address, String location, String latitude, String longitude) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -92,19 +92,19 @@ public class FacilityDB {
         this.location = location;
     }
 
-    public Double getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Double latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
-    public Double getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Double longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 
@@ -133,7 +133,7 @@ public class FacilityDB {
         {
             FacilityDB revob = it.next();
             if(haversineDistance(latitude, longitude,
-                    revob.getLatitude(), revob.getLongitude()) > distance) // ako je udaljen vise od distance
+                    Double.parseDouble(revob.getLatitude()), Double.parseDouble(revob.getLongitude())) > distance) // ako je udaljen vise od distance
             {
                 it.remove(); // izbaci ga
             }
