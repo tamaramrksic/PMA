@@ -136,4 +136,13 @@
     <string name="username_required">Korisničko ime je obavezno!</string>
     <string name="password_required">Šifra je obavezna!</string>
     <string name="city_required">Odabir grada je obavezan!</string>
+
+    <string name="location_disabled_message">Lokacija je onemogućena, da li želiš da je omogućiš?</string>
+
+    <string name="oops">Uups</string>
+
+    <string name="yes">Da</string>
+    <string name="no">Ne</string>
+    <string name="pref_radius">pref_radius</string>
+
 </resources>

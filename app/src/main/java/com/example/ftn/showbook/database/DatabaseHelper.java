@@ -63,4 +63,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // return newly inserted row id
         return id;
     }
+
+    public Long insertFacility(String name, String type, String address, String location,Double latitude,
+                           Double longitude) {
+        // get writable database as we want to write data
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(FacilityDB.COLUMN_NAME, name);
+        values.put(FacilityDB.COLUMN_TYPE, type);
+        values.put(FacilityDB.COLUMN_ADDRESS, address);
+        values.put(FacilityDB.COLUMN_LOCATION, location);
+        values.put(FacilityDB.COLUMN_LATITUDE, latitude);
+        values.put(FacilityDB.COLUMN_LONGITUDE, longitude);
+
+
+
+        // insert row
+        long id = db.insert(FacilityDB.TABLE_NAME, null, values);
+
+        // close db connection
+        db.close();
+
+        // return newly inserted row id
+        return id;
+    }
 }
