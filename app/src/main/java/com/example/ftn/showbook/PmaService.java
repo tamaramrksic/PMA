@@ -7,8 +7,10 @@ import com.example.ftn.showbook.model.UserCredentials;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -48,5 +50,8 @@ public interface  PmaService {
 
     @GET("facilities")
     Call<List<Facility>> getAllFacilities();
+
+    @DELETE("reservations/{id}")
+    Call<ResponseBody> cancelReservation(@Path("id")Long id);
 
 }
