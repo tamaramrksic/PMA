@@ -50,7 +50,12 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
                     args.putString("showGenre", shows.get(getAdapterPosition()).getGenre());
                     args.putString("showDuration", Double.toString(shows.get(getAdapterPosition()).getDuration()));
                     args.putString("showDescription", shows.get(getAdapterPosition()).getDescription());
-                    args.putFloat("showRating", shows.get(getAdapterPosition()).getRating().floatValue());
+                    if(shows.get(getAdapterPosition()).getRating() != null) {
+                        args.putFloat("showRating", shows.get(getAdapterPosition()).getRating().floatValue());
+                    } else {
+                        args.putFloat("showRating", 0);
+                    }
+
                     fragment.setArguments(args);
 
                     ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction()
