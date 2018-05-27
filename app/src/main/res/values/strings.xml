@@ -154,7 +154,6 @@
     <string name="no_reservations_message">Nemate rezervacija.</string>
     <string name="no_repertoire_message">Repertoar trenutno ne postoji.</string>
 
-    <string name="facility_label">Objekat: </string>
     <string name="reservations_failure_message">Nije moguće učitati Vaše rezervacije.</string>
     <string name="cancel_reservation_failure_message">Nije moguće otkazati registraciju.</string>
 

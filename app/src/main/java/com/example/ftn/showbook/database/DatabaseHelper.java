@@ -109,7 +109,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                System.out.println("cursor count" + cursor.getCount());
                 // prepare UserDB object
                 FacilityDB facilityDB = new FacilityDB(
                         cursor.getInt(cursor.getColumnIndex(FacilityDB.COLUMN_ID)),
@@ -145,7 +144,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
 
-            System.out.println("cursor count" + cursor.getCount());
+
             // prepare UserDB object
             boolean comment_notification = cursor.getInt(cursor.getColumnIndex(UserDB.COLUMN_COMMENT_NOTIFICATION)) > 0;
             userDB = new UserDB(
