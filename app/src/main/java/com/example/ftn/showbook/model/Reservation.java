@@ -4,6 +4,8 @@ package com.example.ftn.showbook.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Reservation {
 
     @SerializedName("id")
@@ -26,14 +28,20 @@ public class Reservation {
     @Expose
     private Event event;
 
+    @SerializedName("seats")
+    @Expose
+    private List<SeatAvailability> seats;
+
+
     public Reservation() {}
 
-    public Reservation(Long id, Double totalPrice, Rating rating, User user, Event event) {
+    public Reservation(Long id, Double totalPrice, Rating rating, User user, Event event, List<SeatAvailability> seats) {
         this.id = id;
         this.totalPrice = totalPrice;
         this.rating = rating;
         this.user = user;
         this.event = event;
+        this.seats = seats;
     }
 
     public Long getId() {
@@ -74,5 +82,13 @@ public class Reservation {
 
     public void setEvent(Event event) {
         this.event = event;
+    }
+
+    public List<SeatAvailability> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(List<SeatAvailability> seats) {
+        this.seats = seats;
     }
 }

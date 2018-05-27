@@ -2,6 +2,7 @@ package com.example.ftn.showbook;
 
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,12 +24,14 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
 
     private ArrayList<Reservation> reservations;
 
+    public ArrayList<Reservation> getReservations() {
+        return reservations;
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView title, date, time, rating;
         public ImageView image;
         private Context context;
-
 
         public ViewHolder(View view) {
             super(view);
@@ -43,8 +46,20 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ArrayList<Reservation> reservations = (ArrayList<Reservation>) itemView.getTag();
+                    ReservedShowDetailsFragment fragment = new ReservedShowDetailsFragment();
+                    Bundle args = new Bundle();
+                    args.putString("showName", reservations.get(getAdapterPosition()).getEvent().getShow().getName());
+                    args.putString("showDuration", reservations.get(getAdapterPosition()).getEvent().getShow().getDuration().toString());
+                    args.putString("date", getDateOrTime(reservations.get(getAdapterPosition()).getEvent().getStart(), "date"));
+                    args.putString("time", getDateOrTime(reservations.get(getAdapterPosition()).getEvent().getStart(), "time"));
+                    args.putString("facilityHall", reservations.get(getAdapterPosition()).getEvent().getFacilityHall().getName());
+                    args.putString("facility", reservations.get(getAdapterPosition()).getEvent().getFacilityHall().getFacility().getName());
+                    args.putString("numOfTickets", Integer.toString(reservations.get(getAdapterPosition()).getSeats().size()));
+                    args.putString("totalPrice", reservations.get(getAdapterPosition()).getTotalPrice().toString());
+                    fragment.setArguments(args);
                     ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.main_container, new ReservedShowDetailsFragment())
+                            .replace(R.id.main_container, fragment)
                             .addToBackStack(null)
                             .commit();
                 }
@@ -63,6 +78,7 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View view = mInflater.inflate(R.layout.reservation_list, parent, false);
+        view.setTag(reservations);
         return new ViewHolder(view);
     }
 
@@ -87,7 +103,7 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
         return 0;
     }
 
-    public String getDateOrTime(Date date, String datePart) {
+    public static String getDateOrTime(Date date, String datePart) {
         SimpleDateFormat simpleDateFormat;
 
         if (datePart.equals("date")) {
