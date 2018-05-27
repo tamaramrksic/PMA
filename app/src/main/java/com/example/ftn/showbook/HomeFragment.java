@@ -210,7 +210,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
                 if(markers.get(marker) != null) {
                     FacilityDB facilityDB = markers.get(marker);
                     System.out.println("pritisnut je neki facilitiy a id mu je " + facilityDB.getId());
-                    intent.putExtra("FacilityId", facilityDB.getId().toString());
                 }
                 fragmentManager.beginTransaction()
                         .replace(R.id.main_container, new RepertoireFragment())
@@ -287,7 +286,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(getActivity().getApplicationContext());
-
+        Intent intent = getActivity().getIntent();
         String username = intent.getStringExtra("drawerUsername");
         String  personalRadius = db.getUserByUsername(username).getMaxDistance().toString();
         String lookupRadius = sharedPreferences.getString(getString(R.string.pref_radius), personalRadius);

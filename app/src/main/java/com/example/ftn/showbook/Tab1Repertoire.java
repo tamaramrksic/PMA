@@ -58,6 +58,7 @@ public class Tab1Repertoire extends Fragment {
         intent = getActivity().getIntent();
         facilityId = Long.parseLong(intent.getStringExtra("FacilityId"));
         // set adapter
+
         System.out.println("KREIRAN TAB 1");
         getRepertoire();
 

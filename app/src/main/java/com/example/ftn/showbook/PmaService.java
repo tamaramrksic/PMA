@@ -44,6 +44,9 @@ public interface  PmaService {
     @GET("reservations/seen/{username}")
     Call<List<Reservation>> getUserSeenShows(@Path("username")String username);
 
+    @GET("shows/interested/{username}")
+    Call<List<Show>> getUserInterestedShows(@Path("username")String username);
+
     @GET("facilities")
     Call<List<Facility>> getAllFacilities();
 

@@ -158,4 +158,8 @@
     <string name="no_seen_shows_message">Nemate pogledanih predstava ni filmova.</string>
     <string name="seen_shows_failure_message">Nije moguće učitati Vaše pogledane predstave/filmove.</string>
 
+    <string name="no_interested_shows_message">Trenutno nema filmova/predstava za koji ste zainteresovani.</string>
+    <string name="interested_shows_failure_message">Nije moguće učitati predstave/filmove za koje ste zainteresovani.</string>
+
+
 </resources>

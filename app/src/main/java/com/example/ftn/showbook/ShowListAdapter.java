@@ -35,6 +35,7 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
             description =(TextView) view.findViewById(R.id.show_repertoire_description);
             rating = (TextView) view.findViewById(R.id.show_repertoire_rating);
 
+
             context = view.getContext();
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +55,7 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
         this.mInflater = LayoutInflater.from(context);
         this.images = images;
         this.shows = shows;
+
     }
 
     @Override
@@ -69,7 +71,13 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
         holder.title.setText(shows.get(position).getName());
         holder.description.setText(shows.get(position).getDescription());
         holder.duration.setText(shows.get(position).getDuration().toString());
-        holder.rating.setText(shows.get(position).getRating().toString());
+        holder.duration.setText(String.valueOf(shows.get(position).getDuration()));
+        if(shows.get(position).getRating() != null) {
+            holder.rating.setText(String.valueOf(shows.get(position).getRating()));
+        } else {
+            holder.rating.setText("0.0");
+        }
+
     }
 
     @Override
@@ -79,25 +87,4 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
         }
         return 0;
     }
-
-
-    //    public ShowListAdapter(Activity activity, String[] itemname, Integer[] imgid) {
-//        super(activity, R.layout.show_list, itemname);
-//        this.activity=activity;
-//        this.itemname=itemname;
-//        this.imgid=imgid;
-//    }
-//    public View getView(int position, View view, ViewGroup parent) {
-//        LayoutInflater inflater=activity.getLayoutInflater();
-//        View rowView=inflater.inflate(R.layout.show_list, null,true);
-//
-//        TextView txtTitle = (TextView) rowView.findViewById(R.id.item);
-//        ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-//        TextView extratxt = (TextView) rowView.findViewById(R.id.textView1);
-//
-//        txtTitle.setText(itemname[position]);
-//        imageView.setImageResource(imgid[position]);
-//        extratxt.setText("Description "+itemname[position]);
-//        return rowView;
-//    };
 }

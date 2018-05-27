@@ -1,0 +1,9 @@
+diff a/app/src/main/java/com/example/ftn/showbook/PmaService.java b/app/src/main/java/com/example/ftn/showbook/PmaService.java	(rejected hunks)
+@@ -47,4 +47,7 @@
+     @GET("facilities")
+     Call<List<Facility>> getAllFacilities();
+ 
++    @GET("shows/{idFacility}")
++    Call<List<Show>> getShowsByFacility(@Path("idFacility")Long idFacility);
++
+ }

@@ -1,5 +1,6 @@
 package com.example.ftn.showbook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -8,6 +9,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.ftn.showbook.model.Show;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import com.example.ftn.showbook.model.Show;
 
@@ -16,21 +28,20 @@ import java.util.ArrayList;
 
 public class Tab3Interested extends Fragment {
 
-    String[] movies = {"Kapetan Amerika", "Zec Petar"};
     Integer[] imgid={
             R.drawable.avengers,
             R.drawable.peter_rabbit
     };
-    String[] durations = {"152", "93"};
-    String[] ratings = {"4.1", "5"};
-    ArrayList<Show> shows;
+    private ArrayList<Show> interestedShows;
+    private RecyclerView mRecyclerView;
+    private TextView emptyView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab3interested, container, false);
 
-        RecyclerView mRecyclerView = (RecyclerView) rootView.findViewById(R.id.tab3_recycler_view);
-        //ListAdapter listadapter = new ShowListAdapter(getActivity(), movies, imgid);
+        mRecyclerView = rootView.findViewById(R.id.tab3_recycler_view);
+        emptyView = rootView.findViewById(R.id.no_interested_shows_view);
 
         // use a linear layout manager
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -41,11 +52,38 @@ public class Tab3Interested extends Fragment {
                 ((LinearLayoutManager) mLayoutManager).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
-        // set adapter
-        RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), shows, imgid);
-        mRecyclerView.setAdapter(mAdapter);
+
+        getInterestedShows();
 
         return rootView;
     }
 
+    public void getInterestedShows() {
+        Intent intent = getActivity().getIntent();
+        String username = intent.getStringExtra("drawerUsername");
+        Call<List<Show>> call = ServiceUtils.pmaService.getUserInterestedShows(username);
+        call.enqueue(new Callback<List<Show>>() {
+            @Override
+            public void onResponse(Call<List<Show>> call, Response<List<Show>> response) {
+                interestedShows = new ArrayList<>(response.body());
+
+                if (interestedShows.isEmpty()) {
+                    mRecyclerView.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                }
+                else {
+                    RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows, imgid);
+                    mRecyclerView.setAdapter(mAdapter);
+                    mRecyclerView.setVisibility(View.VISIBLE);
+                    emptyView.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Show>> call, Throwable t) {
+                Toast.makeText(getActivity(),getResources().getString(R.string.interested_shows_failure_message), Toast.LENGTH_LONG).show();
+            }
+
+        });
+    }
 }
