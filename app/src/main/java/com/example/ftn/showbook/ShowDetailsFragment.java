@@ -7,28 +7,30 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 public class ShowDetailsFragment extends Fragment implements View.OnClickListener {
 
-    private Button btn_timetable, btn_comment, btn_see_comments;
     private FragmentManager fragmentManager;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_show_details, container, false);
+        Bundle args = this.getArguments();
+        ((TextView)rootView.findViewById(R.id.show_name)).setText(args.getString("showName"));
+        ((TextView)rootView.findViewById(R.id.show_directors)).setText(args.getString("showDirectors"));
+        ((TextView)rootView.findViewById(R.id.show_performers)).setText(args.getString("showPerformers"));
+        ((TextView)rootView.findViewById(R.id.show_genre)).setText(args.getString("showGenre"));
+        ((TextView)rootView.findViewById(R.id.show_duration)).setText(args.getString("showDuration"));
+        ((TextView)rootView.findViewById(R.id.show_description)).setText(args.getString("showDescription") + " min");
+        ((RatingBar)rootView.findViewById(R.id.rating_bar)).setRating(args.getFloat("showRating"));
 
-        btn_timetable = rootView.findViewById(R.id.button_see_timetable);
-        btn_comment = rootView.findViewById(R.id.button_comment);
-        btn_see_comments = rootView.findViewById(R.id.button_see_comments);
-
-        btn_timetable.setOnClickListener(this);
-        btn_comment.setOnClickListener(this);
-        btn_see_comments.setOnClickListener(this);
+        rootView.findViewById(R.id.button_see_timetable).setOnClickListener(this);
+        rootView.findViewById(R.id.button_comment).setOnClickListener(this);
+        rootView.findViewById(R.id.button_see_comments).setOnClickListener(this);
 
         fragmentManager = getActivity().getSupportFragmentManager();
-
         return rootView;
     }
 

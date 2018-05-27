@@ -93,8 +93,8 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
         holder.title.setText(reservations.get(position).getEvent().getShow().getName());
         holder.date.setText(getDateOrTime(reservations.get(position).getEvent().getStart(),"date"));
         holder.time.setText(getDateOrTime(reservations.get(position).getEvent().getStart(),"time"));
-        if (reservations.get(position).getRating() != null) {
-            holder.rating.setText(reservations.get(position).getRating().getRate());
+        if (reservations.get(position).getEvent().getShow().getRating() != null) {
+            holder.rating.setText(reservations.get(position).getEvent().getShow().getRating().toString());
         } else {
             holder.rating.setText("0.0");
         }

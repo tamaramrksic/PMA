@@ -17,30 +17,29 @@
         app:srcCompat="@drawable/avengers"/>
 
     <TextView
-        android:id="@+id/show_name_heading"
+        android:id="@+id/show_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/show_image"
-        android:text="@string/show_name_value"
         android:textSize="25sp"
         android:textStyle="bold"/>
 
-    <ImageView
-        android:id="@+id/stars_image"
-        android:layout_width="match_parent"
-        android:scaleType="fitStart"
-        android:layout_height="30dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
-        app:srcCompat="@drawable/stars"
-        android:layout_below="@id/show_name_heading"/>
+    <RatingBar
+        android:id="@+id/rating_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/show_name"
+        android:clickable="false"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="1.0" />
 
     <LinearLayout
         android:id="@+id/show_director_row"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/stars_image"
+        android:layout_below="@id/rating_bar"
         android:paddingTop="30dp">
 
         <TextView
@@ -51,9 +50,9 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/show_directors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/show_director_value"
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -73,9 +72,9 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/show_performers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/show_performers_value"
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -95,9 +94,9 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/show_genre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/show_genre_value"
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -117,9 +116,9 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/show_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/show_duration_value"
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -139,9 +138,9 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/show_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/show_description_value"
             android:textSize="18sp"/>
 
     </LinearLayout>
