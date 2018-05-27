@@ -9,6 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ftn.showbook.model.Show;
+
+import java.util.ArrayList;
+
 
 public class Tab3Interested extends Fragment {
 
@@ -19,6 +23,7 @@ public class Tab3Interested extends Fragment {
     };
     String[] durations = {"152", "93"};
     String[] ratings = {"4.1", "5"};
+    ArrayList<Show> shows;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,7 +42,7 @@ public class Tab3Interested extends Fragment {
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
         // set adapter
-        RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), movies, imgid, durations, ratings);
+        RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), shows, imgid);
         mRecyclerView.setAdapter(mAdapter);
 
         return rootView;

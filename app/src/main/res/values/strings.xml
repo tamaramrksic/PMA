@@ -151,8 +151,10 @@
     <string name="pref_radius">pref_radius</string>
 
     <string name="no_reservations_message">Nemate rezervacija.</string>
-    <string name="reservations_failure_message">Nije moguće učitati Vaše rezervacije.</string>
+    <string name="no_repertoire_message">Repertoar trenutno ne postoji.</string>
 
+    <string name="reservations_failure_message">Nije moguće učitati Vaše rezervacije.</string>
+    <string name="repertoire_failure_message">Nije moguće učitati repertoar.</string>
     <string name="no_seen_shows_message">Nemate pogledanih predstava ni filmova.</string>
     <string name="seen_shows_failure_message">Nije moguće učitati Vaše pogledane predstave/filmove.</string>
 

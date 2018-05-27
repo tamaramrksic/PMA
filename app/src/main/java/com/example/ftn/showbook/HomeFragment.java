@@ -59,6 +59,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     private Criteria criteria;
     private HashMap<Marker, FacilityDB> markers;
     private DatabaseHelper db;
+    private Intent intent;
     public static HomeFragment newInstance() {
 
         HomeFragment hf = new HomeFragment();
@@ -79,6 +80,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         db = new DatabaseHelper(getActivity());
+        intent = getActivity().getIntent();
 
 
     }
@@ -142,7 +144,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     public void onPause() {
         // TODO Auto-generated method stub
         super.onPause();
-
         locationManager.removeUpdates(this);
     }
 
@@ -209,12 +210,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
                 if(markers.get(marker) != null) {
                     FacilityDB facilityDB = markers.get(marker);
                     System.out.println("pritisnut je neki facilitiy a id mu je " + facilityDB.getId());
+                    intent.putExtra("FacilityId", facilityDB.getId().toString());
                 }
-               /* fragmentManager.beginTransaction()
+                fragmentManager.beginTransaction()
                         .replace(R.id.main_container, new RepertoireFragment())
                         .addToBackStack(null)
                         .commit();
-*/
+
                 return false;
             }
         });
@@ -285,7 +287,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(getActivity().getApplicationContext());
-        Intent intent = getActivity().getIntent();
+
         String username = intent.getStringExtra("drawerUsername");
         String  personalRadius = db.getUserByUsername(username).getMaxDistance().toString();
         String lookupRadius = sharedPreferences.getString(getString(R.string.pref_radius), personalRadius);
