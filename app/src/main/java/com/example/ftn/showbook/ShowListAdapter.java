@@ -1,6 +1,7 @@
 package com.example.ftn.showbook;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -39,13 +40,25 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ArrayList<Show> shows = (ArrayList<Show>) itemView.getTag();
+                    ShowDetailsFragment fragment = new ShowDetailsFragment();
+
+                    Bundle args = new Bundle();
+                    args.putString("showName", shows.get(getAdapterPosition()).getName());
+                    args.putString("showDirectors", shows.get(getAdapterPosition()).getDirectors());
+                    args.putString("showPerformers", shows.get(getAdapterPosition()).getPerformers());
+                    args.putString("showGenre", shows.get(getAdapterPosition()).getGenre());
+                    args.putString("showDuration", Double.toString(shows.get(getAdapterPosition()).getDuration()));
+                    args.putString("showDescription", shows.get(getAdapterPosition()).getDescription());
+                    args.putFloat("showRating", shows.get(getAdapterPosition()).getRating().floatValue());
+                    fragment.setArguments(args);
+
                     ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.main_container, new ShowDetailsFragment())
+                            .replace(R.id.main_container, fragment)
                             .addToBackStack(null)
                             .commit();
                 }
             });
-
         }
     }
 
@@ -59,6 +72,7 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View view = mInflater.inflate(R.layout.show_list, parent, false);
+        view.setTag(shows);
         return new ViewHolder(view);
     }
 
