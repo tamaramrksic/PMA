@@ -68,7 +68,7 @@ public class SeenShowsFragment  extends Fragment {
                     emptyView.setVisibility(View.VISIBLE);
                 }
                 else {
-                    RecyclerView.Adapter mAdapter = new ReservationListAdapter(getActivity(), seenShows, imgid);
+                    RecyclerView.Adapter mAdapter = new ReservationListAdapter(getActivity(), seenShows, imgid, "seen");
                     mRecyclerView.setAdapter(mAdapter);
                     mRecyclerView.setVisibility(View.VISIBLE);
                     emptyView.setVisibility(View.GONE);

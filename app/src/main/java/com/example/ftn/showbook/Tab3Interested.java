@@ -21,6 +21,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import com.example.ftn.showbook.model.Show;
+
+import java.util.ArrayList;
+
 
 public class Tab3Interested extends Fragment {
 
@@ -47,6 +51,7 @@ public class Tab3Interested extends Fragment {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
                 ((LinearLayoutManager) mLayoutManager).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
+
 
         getInterestedShows();
 

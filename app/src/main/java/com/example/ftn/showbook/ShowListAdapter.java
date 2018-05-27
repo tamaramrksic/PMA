@@ -29,11 +29,13 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
 
         public ViewHolder(View view) {
             super(view);
-            image = view.findViewById(R.id.show_repertoire_poster);
-            title = view.findViewById(R.id.show_repertoire_title);
-            description = view.findViewById(R.id.show_repertoire_description);
-            duration = view.findViewById(R.id.show_repertoire_duration);
-            rating = view.findViewById(R.id.show_repertoire_rating);
+            image = (ImageView) view.findViewById(R.id.show_repertoire_poster);
+            title = (TextView) view.findViewById(R.id.show_repertoire_title);
+            description = (TextView) view.findViewById(R.id.show_repertoire_description);
+            duration = (TextView) view.findViewById(R.id.show_repertoire_duration);
+            description =(TextView) view.findViewById(R.id.show_repertoire_description);
+            rating = (TextView) view.findViewById(R.id.show_repertoire_rating);
+
 
             context = view.getContext();
 
@@ -69,8 +71,9 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
 
     public ShowListAdapter(Context context, ArrayList<Show> shows, Integer[] images) {
         this.mInflater = LayoutInflater.from(context);
-        this.shows = shows;
         this.images = images;
+        this.shows = shows;
+
     }
 
     @Override
@@ -86,6 +89,7 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
         holder.image.setImageResource(images[position]);
         holder.title.setText(shows.get(position).getName());
         holder.description.setText(shows.get(position).getDescription());
+        holder.duration.setText(shows.get(position).getDuration().toString());
         holder.duration.setText(String.valueOf(shows.get(position).getDuration()));
         if(shows.get(position).getRating() != null) {
             holder.rating.setText(String.valueOf(shows.get(position).getRating()));
@@ -97,7 +101,7 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        if(shows != null) {
+        if (shows != null) {
             return shows.size();
         }
         return 0;

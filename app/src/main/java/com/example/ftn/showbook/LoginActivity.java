@@ -40,32 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         db = new DatabaseHelper(this);
-        if(db.getAllFacilities().size() == 0 ) {
-            Call<List<Facility>> call = ServiceUtils.pmaService.getAllFacilities();
-            call.enqueue(new Callback<List<Facility>>() {
-                @Override
-                public void onResponse(Call<List<Facility>> call, Response<List<Facility>> response) {
-                    List<FacilityDB> facilities = new ArrayList<>();
-
-
-                    for (int i = 0; i < response.body().size(); i++) {
-                        Long id = db.insertFacility(response.body().get(i).getName(), response.body().get(i).getType().toString(),
-                                response.body().get(i).getAddress(), response.body().get(i).getLocation().getName().toString(),
-                                response.body().get(i).getLatitude(), response.body().get(i).getLongitude());
-                        System.out.println("dodat facility a id je " + id);
-                    }
-                    facilities = db.getAllFacilities();
-                    System.out.println("dodat facility a velicina je " + facilities.size());
-
-                }
-
-                @Override
-                public void onFailure(Call<List<Facility>> call, Throwable t) {
-                    System.out.println("Greska prilikom ucitavanja facilitia!");
-                }
-
-            });
-        }
+        new GetFacilitiesTask(getApplicationContext()).execute();
 
         TextView clickableTextLink = (TextView)findViewById(R.id.registration);
         clickableTextLink.setOnClickListener(new View.OnClickListener() {
