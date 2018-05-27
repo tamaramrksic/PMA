@@ -68,7 +68,12 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
         holder.title.setText(shows.get(position).getName());
         holder.description.setText(shows.get(position).getDescription());
         holder.duration.setText(String.valueOf(shows.get(position).getDuration()));
-        holder.rating.setText(String.valueOf(shows.get(position).getRating()));
+        if(shows.get(position).getRating() != null) {
+            holder.rating.setText(String.valueOf(shows.get(position).getRating()));
+        } else {
+            holder.rating.setText("0.0");
+        }
+
     }
 
     @Override
