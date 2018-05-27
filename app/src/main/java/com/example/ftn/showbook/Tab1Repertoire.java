@@ -37,8 +37,8 @@ public class Tab1Repertoire extends Fragment {
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
         // set adapter
-        RecyclerView.Adapter mAdapter = new ShowListAdapter(getContext(), movies, imgid, durations, ratings);
-        mRecyclerView.setAdapter(mAdapter);
+//        RecyclerView.Adapter mAdapter = new ShowListAdapter(getContext(), movies, imgid, durations, ratings);
+//        mRecyclerView.setAdapter(mAdapter);
 
         return rootView;
     }

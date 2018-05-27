@@ -1,6 +1,7 @@
 package com.example.ftn.showbook;
 import com.example.ftn.showbook.model.Facility;
 import com.example.ftn.showbook.model.Reservation;
+import com.example.ftn.showbook.model.Show;
 import com.example.ftn.showbook.model.User;
 import com.example.ftn.showbook.model.UserCredentials;
 
@@ -41,6 +42,9 @@ public interface  PmaService {
 
     @GET("reservations/seen/{username}")
     Call<List<Reservation>> getUserSeenShows(@Path("username")String username);
+
+    @GET("shows/interested/{username}")
+    Call<List<Show>> getUserInterestedShows(@Path("username")String username);
 
     @GET("facilities")
     Call<List<Facility>> getAllFacilities();

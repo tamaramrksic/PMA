@@ -9,14 +9,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ftn.showbook.model.Show;
+
+import java.util.ArrayList;
+
 
 public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHolder> {
 
-    private String[] titles;
     private Integer[] images;
-    private String[] durations;
-    private String[] ratings;
     private LayoutInflater mInflater;
+
+    private ArrayList<Show> shows;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView title, description, duration, rating;
@@ -25,11 +28,11 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
 
         public ViewHolder(View view) {
             super(view);
-            image = (ImageView) view.findViewById(R.id.show_repertoire_poster);
-            title = (TextView) view.findViewById(R.id.show_repertoire_title);
-            description = (TextView) view.findViewById(R.id.show_repertoire_description);
-            duration = (TextView) view.findViewById(R.id.show_repertoire_duration);
-            rating = (TextView) view.findViewById(R.id.show_repertoire_rating);
+            image = view.findViewById(R.id.show_repertoire_poster);
+            title = view.findViewById(R.id.show_repertoire_title);
+            description = view.findViewById(R.id.show_repertoire_description);
+            duration = view.findViewById(R.id.show_repertoire_duration);
+            rating = view.findViewById(R.id.show_repertoire_rating);
 
             context = view.getContext();
 
@@ -46,12 +49,10 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
         }
     }
 
-    public ShowListAdapter(Context context, String[] titles, Integer[] images, String[] durations, String[] ratings) {
+    public ShowListAdapter(Context context, ArrayList<Show> shows, Integer[] images) {
         this.mInflater = LayoutInflater.from(context);
-        this.titles = titles;
+        this.shows = shows;
         this.images = images;
-        this.durations = durations;
-        this.ratings = ratings;
     }
 
     @Override
@@ -64,35 +65,17 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.image.setImageResource(images[position]);
-        holder.title.setText(titles[position]);
-        holder.description.setText("opis filma");
-        holder.duration.setText(durations[position]);
-        holder.rating.setText(ratings[position]);
+        holder.title.setText(shows.get(position).getName());
+        holder.description.setText(shows.get(position).getDescription());
+        holder.duration.setText(String.valueOf(shows.get(position).getDuration()));
+        holder.rating.setText(String.valueOf(shows.get(position).getRating()));
     }
 
     @Override
     public int getItemCount() {
-        return titles.length;
+        if(shows != null) {
+            return shows.size();
+        }
+        return 0;
     }
-
-
-    //    public ShowListAdapter(Activity activity, String[] itemname, Integer[] imgid) {
-//        super(activity, R.layout.show_list, itemname);
-//        this.activity=activity;
-//        this.itemname=itemname;
-//        this.imgid=imgid;
-//    }
-//    public View getView(int position, View view, ViewGroup parent) {
-//        LayoutInflater inflater=activity.getLayoutInflater();
-//        View rowView=inflater.inflate(R.layout.show_list, null,true);
-//
-//        TextView txtTitle = (TextView) rowView.findViewById(R.id.item);
-//        ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-//        TextView extratxt = (TextView) rowView.findViewById(R.id.textView1);
-//
-//        txtTitle.setText(itemname[position]);
-//        imageView.setImageResource(imgid[position]);
-//        extratxt.setText("Description "+itemname[position]);
-//        return rowView;
-//    };
 }
