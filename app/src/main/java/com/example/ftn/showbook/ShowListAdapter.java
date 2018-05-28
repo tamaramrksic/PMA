@@ -46,6 +46,7 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
                     ShowDetailsFragment fragment = new ShowDetailsFragment();
 
                     Bundle args = new Bundle();
+                    args.putLong("showId", shows.get(getAdapterPosition()).getId());
                     args.putString("showName", shows.get(getAdapterPosition()).getName());
                     args.putString("showDirectors", shows.get(getAdapterPosition()).getDirectors());
                     args.putString("showPerformers", shows.get(getAdapterPosition()).getPerformers());
