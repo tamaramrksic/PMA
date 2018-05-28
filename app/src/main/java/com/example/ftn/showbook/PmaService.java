@@ -1,4 +1,5 @@
 package com.example.ftn.showbook;
+import com.example.ftn.showbook.model.Comment;
 import com.example.ftn.showbook.model.Facility;
 import com.example.ftn.showbook.model.Repertoire;
 import com.example.ftn.showbook.model.Reservation;
@@ -57,5 +58,8 @@ public interface  PmaService {
 
     @DELETE("reservations/{id}")
     Call<ResponseBody> cancelReservation(@Path("id")Long id);
+
+    @POST("comments/{showId}/{username}")
+    Call<Comment> commentShow(@Body Comment comment, @Path("showId")Long id, @Path("username")String username);
 
 }
