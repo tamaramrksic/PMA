@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ftn.showbook.model.Repertoire;
-import com.example.ftn.showbook.model.Reservation;
 import com.example.ftn.showbook.model.Show;
 
 import java.util.ArrayList;
@@ -27,15 +25,11 @@ import retrofit2.Response;
 
 public class Tab1Repertoire extends Fragment {
 
-    String[] movies = {"Osvetnici", "Zeka Rodzer", "Hari Poter"};
     Integer[] imgid={
             R.drawable.avengers,
             R.drawable.peter_rabbit,
             R.drawable.hari
     };
-    String[] durations = {"186", "93", "124"};
-    String[] descriptions ={};
-    String[] ratings = {"4.5", "5", "4.8"};
     private Intent intent;
     private ArrayList<Show> shows;
     private RecyclerView mRecyclerView;
@@ -96,7 +90,7 @@ public class Tab1Repertoire extends Fragment {
                     emptyView.setVisibility(View.VISIBLE);
                 }
                 else{
-                    RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), shows, imgid);
+                    RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), shows, imgid, "repertoire");
                     mRecyclerView.setAdapter(mAdapter);
                     mRecyclerView.setVisibility(View.VISIBLE);
                     emptyView.setVisibility(View.GONE);

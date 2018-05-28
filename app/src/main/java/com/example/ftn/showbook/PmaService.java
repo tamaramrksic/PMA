@@ -49,6 +49,15 @@ public interface  PmaService {
     @GET("shows/interested/{username}")
     Call<List<Show>> getUserInterestedShows(@Path("username")String username);
 
+    @GET("shows/interested/{username}/{idShow}")
+    Call<Boolean> isInterestedShow(@Path("username")String username, @Path("idShow")Long idShow);
+
+    @POST("shows/interested/add/{username}/{idShow}")
+    Call<Show> addInterestedShow(@Path("username")String username, @Path("idShow")Long idShow);
+
+    @POST("shows/interested/remove/{username}/{idShow}")
+    Call<Show> removeInterestedShow(@Path("username")String username, @Path("idShow")Long idShow);
+
     @GET("facilities")
     Call<List<Facility>> getAllFacilities();
 

@@ -32,7 +32,7 @@
         android:clickable="false"
         android:isIndicator="true"
         android:numStars="5"
-        android:stepSize="1.0" />
+        android:stepSize="0.1" />
 
     <LinearLayout
         android:id="@+id/show_director_row"
@@ -164,12 +164,12 @@
             android:drawableLeft="@android:drawable/ic_menu_today"/>
 
         <Button
-            android:id="@+id/button_add_interested_in"
+            android:id="@+id/button_interested_in"
             android:layout_width="30dp"
             android:layout_marginLeft="5dp"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:drawableLeft="@android:drawable/ic_menu_add"/>
+            android:drawableLeft="@drawable/ic_add"/>
 
         <Button
             android:id="@+id/button_comment"

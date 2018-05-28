@@ -72,7 +72,7 @@ public class Tab3Interested extends Fragment {
                     emptyView.setVisibility(View.VISIBLE);
                 }
                 else {
-                    RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows, imgid);
+                    RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows, imgid, "interested");
                     mRecyclerView.setAdapter(mAdapter);
                     mRecyclerView.setVisibility(View.VISIBLE);
                     emptyView.setVisibility(View.GONE);

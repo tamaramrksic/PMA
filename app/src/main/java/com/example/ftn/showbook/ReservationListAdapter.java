@@ -76,7 +76,7 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
         this.mInflater = LayoutInflater.from(context);
         this.reservations = reservations;
         this.images = images;
-        this.fragmentName = fragmentName;
+        ReservationListAdapter.fragmentName = fragmentName;
     }
 
     @Override

@@ -19,6 +19,7 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
 
     private Integer[] images;
     private LayoutInflater mInflater;
+    private static String fragmentName;
 
     private ArrayList<Show> shows;
 
@@ -29,12 +30,12 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
 
         public ViewHolder(View view) {
             super(view);
-            image = (ImageView) view.findViewById(R.id.show_repertoire_poster);
-            title = (TextView) view.findViewById(R.id.show_repertoire_title);
-            description = (TextView) view.findViewById(R.id.show_repertoire_description);
-            duration = (TextView) view.findViewById(R.id.show_repertoire_duration);
-            description =(TextView) view.findViewById(R.id.show_repertoire_description);
-            rating = (TextView) view.findViewById(R.id.show_repertoire_rating);
+            image = view.findViewById(R.id.show_repertoire_poster);
+            title = view.findViewById(R.id.show_repertoire_title);
+            description = view.findViewById(R.id.show_repertoire_description);
+            duration = view.findViewById(R.id.show_repertoire_duration);
+            description = view.findViewById(R.id.show_repertoire_description);
+            rating = view.findViewById(R.id.show_repertoire_rating);
 
 
             context = view.getContext();
@@ -46,6 +47,8 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
                     ShowDetailsFragment fragment = new ShowDetailsFragment();
 
                     Bundle args = new Bundle();
+                    args.putString("fragmentName", fragmentName);
+                    args.putLong("showId", shows.get(getAdapterPosition()).getId());
                     args.putString("showName", shows.get(getAdapterPosition()).getName());
                     args.putString("showDirectors", shows.get(getAdapterPosition()).getDirectors());
                     args.putString("showPerformers", shows.get(getAdapterPosition()).getPerformers());
@@ -69,10 +72,11 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
         }
     }
 
-    public ShowListAdapter(Context context, ArrayList<Show> shows, Integer[] images) {
+    public ShowListAdapter(Context context, ArrayList<Show> shows, Integer[] images, String fragmentName) {
         this.mInflater = LayoutInflater.from(context);
         this.images = images;
         this.shows = shows;
+        ShowListAdapter.fragmentName = fragmentName;
 
     }
 
