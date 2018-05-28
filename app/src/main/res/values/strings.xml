@@ -165,5 +165,8 @@
     <string name="no_interested_shows_message">Trenutno nema filmova/predstava za koji ste zainteresovani.</string>
     <string name="interested_shows_failure_message">Nije moguće učitati predstave/filmove za koje ste zainteresovani.</string>
 
+    <string name="add_interested_show_failure_message">Nije moguće dodati predstavu/film na listu zainteresovanih.</string>
+    <string name="remove_interested_show_failure_message">Nije moguće ukloniti predstavu/film sa liste zainteresovanih.</string>
+
 
 </resources>

@@ -1,11 +1,8 @@
 package com.example.ftn.showbook;
 
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +11,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import okhttp3.ResponseBody;
+import com.example.ftn.showbook.model.Show;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,26 +44,22 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
             interestedBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_remove,0,0,0);
             interestedBtn.setTag("add");
         } else if(args.getString("fragmentName").equals("repertoire")) {
-            //interestedBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_remove,0,0,0);
-            System.out.println("USERNAME  " + getActivity().getIntent().getStringExtra("drawerUsername"));
             Call<Boolean> call = ServiceUtils.pmaService.isInterestedShow(getActivity().getIntent().getStringExtra("drawerUsername"), args.getLong("showId"));
             call.enqueue(new Callback<Boolean>() {
                 @Override
                 public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                    System.out.println("RESPONSE " + response.body());
-//                    if(true)
-//                        interestedBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_remove,0,0,0);
-//                        interestedBtn.setTag("remove");
-//                    else
-//                        interestedBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_add,0,0,0);
-//                        interestedBtn.setTag("add");
+                    if(response.body()) {
+                        interestedBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_remove,0,0,0);
+                        interestedBtn.setTag("remove");
+                    } else {
+                        interestedBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_add,0,0,0);
+                        interestedBtn.setTag("add");
+                    }
                 }
-
                 @Override
                 public void onFailure(Call<Boolean> call, Throwable t) {
                     Toast.makeText(getActivity(), R.string.fail_message, Toast.LENGTH_SHORT).show();
                 }
-
             });
         }
 
@@ -95,11 +89,36 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
                         .commit();
                 break;
             case R.id.button_interested_in:
-                Button btn = view.findViewById(R.id.button_interested_in);
-                if(btn.getTag().equals("add")) {
-                    System.out.println("dodaj");
-                } else if(btn.getTag().equals("remove")) {
-                    System.out.println("obrisi");
+                Bundle args = this.getArguments();
+                final Button interestedBtn = view.findViewById(R.id.button_interested_in);
+                if(interestedBtn.getTag().equals("add")) {
+                    Call<Show> call = ServiceUtils.pmaService.addInterestedShow(getActivity().getIntent().getStringExtra("drawerUsername"), args.getLong("showId"));
+                    call.enqueue(new Callback<Show>() {
+                        @Override
+                        public void onResponse(Call<Show> call, Response<Show> response) {
+                            interestedBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_remove,0,0,0);
+                            interestedBtn.setTag("remove");
+                        }
+
+                        @Override
+                        public void onFailure(Call<Show> call, Throwable t) {
+                            Toast.makeText(getActivity(), R.string.add_interested_show_failure_message, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else if(interestedBtn.getTag().equals("remove")) {
+                    Call<Show> call = ServiceUtils.pmaService.removeInterestedShow(getActivity().getIntent().getStringExtra("drawerUsername"), args.getLong("showId"));
+                    call.enqueue(new Callback<Show>() {
+                        @Override
+                        public void onResponse(Call<Show> call, Response<Show> response) {
+                            interestedBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_add,0,0,0);
+                            interestedBtn.setTag("add");
+                        }
+
+                        @Override
+                        public void onFailure(Call<Show> call, Throwable t) {
+                            Toast.makeText(getActivity(), R.string.remove_interested_show_failure_message, Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
                 break;
             default:
