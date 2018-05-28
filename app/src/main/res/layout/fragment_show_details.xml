@@ -13,8 +13,7 @@
         android:scaleType="fitXY"
         android:layout_height="150dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        app:srcCompat="@drawable/avengers"/>
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/show_name"
