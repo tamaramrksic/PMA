@@ -165,5 +165,11 @@
     <string name="no_interested_shows_message">Trenutno nema filmova/predstava za koji ste zainteresovani.</string>
     <string name="interested_shows_failure_message">Nije moguće učitati predstave/filmove za koje ste zainteresovani.</string>
 
+    <string name="no_comments_message">Trenutno nema komentara.</string>
+
+    <string name="leave_comment_title">Ostavite komentar za </string>
+    <string name="send_comment_failure">Nije moguće sačuvati Vaš komentar.</string>
+
+
 
 </resources>

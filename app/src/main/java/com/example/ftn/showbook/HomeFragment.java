@@ -8,7 +8,9 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
 import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -41,6 +43,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.List;
 import java.util.zip.Inflater;
@@ -53,6 +57,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     private String locationProvider;
     private LocationManager locationManager;
     private Location myLocation;
+    private LatLng myLocationLatLng;
     private Marker home;
     private SupportMapFragment mMapFragment;
     private AlertDialog dialog;
@@ -60,6 +65,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     private HashMap<Marker, FacilityDB> markers;
     private DatabaseHelper db;
     private Intent intent;
+    private Geocoder geocoder;
+    private String address;
     public static HomeFragment newInstance() {
 
         HomeFragment hf = new HomeFragment();
@@ -81,6 +88,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
         super.onCreate(savedInstanceState);
         db = new DatabaseHelper(getActivity());
         intent = getActivity().getIntent();
+        geocoder = new Geocoder(getActivity());
+        UserDB user = db.getUserByUsername(intent.getStringExtra("drawerUsername"));
+        address = user.getAddress()+ ", "+user.getLocation() + ", Srbija";
+
 
 
     }
@@ -95,11 +106,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
                 Context.LOCATION_SERVICE);
         criteria = new Criteria();
         locationProvider = locationManager.getBestProvider(criteria, true);
-       /* FragmentTransaction transaction = getChildFragmentManager()
-                .beginTransaction();
-        transaction.replace(R.id.main_container, mMapFragment).commit();
-
-*/
+        setMyLocationOff();
 
     }
     @Override
@@ -110,6 +117,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
         // Toast.LENGTH_SHORT).show();
 
         //Toast.makeText(getActivity(), "onResume()", Toast.LENGTH_SHORT).show();
+
 
         locationProvider = locationManager.getBestProvider(criteria, true);
         boolean gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -124,6 +132,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
             if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 locationManager.requestLocationUpdates(locationProvider, 25, 0, this);
                 myLocation = locationManager.getLastKnownLocation(locationProvider);
+                myLocationLatLng = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
                 // System.out.println("Longitude jee " + myLocation.getLongitude());
                 // System.out.println("Latitude jee " + myLocation.getLatitude());
             }else {
@@ -131,6 +140,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
                 ActivityCompat.requestPermissions(getActivity(),
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         1);
+
             }
         }
         if(markers == null)
@@ -151,7 +161,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     public void onDestroy() {
         // TODO Auto-generated method stub
         super.onDestroy();
-
         locationManager.removeUpdates(this);
     }
     private void showLocatonDialog(){
@@ -169,26 +178,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     @Override
     public void onMapReady(GoogleMap googleMap) {
         //LatLng myLtnLng = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
-        map = googleMap;
-       /* map.addMarker(new MarkerOptions()
-                .position(myLtnLng).title("Ovde se ti nalazis!")
-                .title("Zdravo!"));
-
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(myLtnLng, 15
-        ));
-        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-
-                fragmentManager.beginTransaction()
-                        .replace(R.id.main_container, new RepertoireFragment())
-                        .addToBackStack(null)
-                        .commit();
-
-                return false;
-            }
-        });*/
-
         map = googleMap;
         //  map.setInfoWindowAdapter(new MapInfoAdapter());
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -223,52 +212,45 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
             }
         });
 
-      /*  map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-
-            @Override
-            public void onInfoWindowClick(Marker arg0) {
-                Facility facility = markers.get(arg0);
-
-                FragmentTransition.to(ReviewObjectTabsFragment.newInstance(rev.getModelId()), getActivity());
-
-            }
-        });
-*/
-        if (myLocation != null) {
-            addMarker(myLocation);
+        if (myLocationLatLng != null) {
+            addMarker(myLocationLatLng);
         }
     }
 
     @Override
     public void onLocationChanged(Location location) {
         // Toast.makeText(getActivity(), "onLocationChange()", Toast.LENGTH_SHORT).show();
-        addMarker(location);
+        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        addMarker(latLng);
     }
 
     @Override
     public void onStatusChanged(String s, int i, Bundle bundle) {
-
+        System.out.println("STANJE SE PROMENILO I SAD JE " + s);
+        System.out.println("NEKO INT JE " + i);
     }
 
     @Override
     public void onProviderEnabled(String s) {
+        System.out.println("SADA JE OMOGUCEN PROVIDED: "+s);
 
     }
 
     @Override
     public void onProviderDisabled(String s) {
+        System.out.println("SADA JE ONEMOGUCE PROVIDER: "+s);
 
     }
 
-    private void addMarker(Location location) {
+    private void addMarker(LatLng loc) {
         // Toast.makeText(getActivity(), "addMarker",
         // Toast.LENGTH_SHORT).show();
-        LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+        //LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
 
         if (home != null) {
             home.remove();
         }
-        fillTheMapWithFacilities(map, myLocation);
+        fillTheMapWithFacilities(map, myLocationLatLng);
         home = map.addMarker(new MarkerOptions()
                 .position(loc)
                 .title("Hej!")
@@ -285,7 +267,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     }
 
 
-    private void fillTheMapWithFacilities(GoogleMap map, Location location)
+    private void fillTheMapWithFacilities(GoogleMap map, LatLng latLng)
     {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(getActivity().getApplicationContext());
@@ -296,7 +278,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
         double radius = Double.parseDouble(lookupRadius);
         List<FacilityDB> facilityDBS = db.getAllFacilities();
         List<FacilityDB> list = FacilityDB.filterByDistance(facilityDBS,
-                location.getLatitude(), location.getLongitude(), radius);
+                latLng.latitude, latLng.longitude, radius);
 
         //clear from list
         map.clear();
@@ -331,6 +313,21 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
 
         }
 
+
+
+    }
+    public void setMyLocationOff() {
+        try {
+
+            List<Address> addresses = geocoder.getFromLocationName(address, 1);
+            Address myLocationOff = addresses.get(0);
+            System.out.println("latitude je " + myLocationOff.getLatitude());
+//            myLocation.setLatitude(myLocationOff.getLatitude());
+            //      myLocation.setLongitude(myLocationOff.getLongitude());
+            myLocationLatLng = new LatLng(myLocationOff.getLatitude(),myLocationOff.getLongitude() );
+        }catch (IOException io) {
+            System.out.println("ovo je porukica  " +io.toString());
+        }
     }
 
 

@@ -8,9 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ftn.showbook.model.Comment;
+
+import java.util.ArrayList;
+
 public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.ViewHolder> {
 
-    private String[] mComments;
+    private ArrayList<Comment> mComments;
     private String[] mUsernames;
     private LayoutInflater mInflater;
 
@@ -34,10 +38,9 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CommentListAdapter(Context context, String[] comments, String[] usernames) {
+    public CommentListAdapter(Context context, ArrayList<Comment> comments) {
         mInflater = LayoutInflater.from(context);
         mComments = comments;
-        mUsernames = usernames;
     }
 
     // Create new views (invoked by the layout manager)
@@ -57,8 +60,8 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.tvComment.setText(mComments[position]);
-        holder.tvUsername.setText(mUsernames[position]);
+        holder.tvComment.setText(mComments.get(position).getText());
+        holder.tvUsername.setText(mComments.get(position).getUser().getUsername());
         holder.icon.setImageResource(R.drawable.if_comment_user_36887);
 
     }
@@ -66,8 +69,12 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
-    public int getItemCount() {
-        return mComments.length;
+    public int getItemCount(){
+    if(mComments == null){
+        return 0;
+    }else {
+        return mComments.size();
+    }
     }
 }
 
