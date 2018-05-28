@@ -43,7 +43,7 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
         interestedBtn.setOnClickListener(this);
 
         if (args.getString("fragmentName").equals("interested")) {
-            interestedBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_add,0,0,0);
+            interestedBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_remove,0,0,0);
             interestedBtn.setTag("add");
         } else if(args.getString("fragmentName").equals("repertoire")) {
             //interestedBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_remove,0,0,0);
@@ -95,9 +95,10 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
                         .commit();
                 break;
             case R.id.button_interested_in:
-                if(this.getTag().equals("add")) {
+                Button btn = view.findViewById(R.id.button_interested_in);
+                if(btn.getTag().equals("add")) {
                     System.out.println("dodaj");
-                } else if(this.getTag().equals("remove")) {
+                } else if(btn.getTag().equals("remove")) {
                     System.out.println("obrisi");
                 }
                 break;
