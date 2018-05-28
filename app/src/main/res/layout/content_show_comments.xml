@@ -32,4 +32,6 @@
             android:textStyle="italic|bold"
             android:textAppearance="?android:attr/textAppearanceSmall"/>
     </LinearLayout>
+
+
 </LinearLayout>

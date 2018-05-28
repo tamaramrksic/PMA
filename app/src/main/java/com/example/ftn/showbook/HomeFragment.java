@@ -219,7 +219,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
 
     @Override
     public void onLocationChanged(Location location) {
-         Toast.makeText(getActivity(), "onLocationChange()", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(getActivity(), "onLocationChange()", Toast.LENGTH_SHORT).show();
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         addMarker(latLng);
     }

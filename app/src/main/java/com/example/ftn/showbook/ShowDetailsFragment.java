@@ -45,19 +45,23 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
                 break;
             case R.id.button_comment:
                 Fragment commentFragment = new CommentFragment();
+
                 Bundle commentArgs = new Bundle();
                 commentArgs.putLong("showId", args.getLong("showId"));
                 commentArgs.putString("showName", args.getString("showName"));
                 commentFragment.setArguments(commentArgs);
-
                 fragmentManager.beginTransaction()
                         .replace(R.id.main_container, commentFragment)
                         .addToBackStack(null)
                         .commit();
                 break;
             case R.id.button_see_comments:
+                Fragment commentsFragment = new ShowCommentsFragment();
+                Bundle commentsArgs = new Bundle();
+                commentsArgs.putLong("showId", args.getLong("showId"));
+                commentsFragment.setArguments(commentsArgs);
                 fragmentManager.beginTransaction()
-                        .replace(R.id.main_container, new ShowCommentsFragment())
+                        .replace(R.id.main_container, commentsFragment)
                         .addToBackStack(null)
                         .commit();
                 break;

@@ -62,4 +62,7 @@ public interface  PmaService {
     @POST("comments/{showId}/{username}")
     Call<Comment> commentShow(@Body Comment comment, @Path("showId")Long id, @Path("username")String username);
 
+    @GET("comments/{showId}")
+    Call<List<Comment>> getCommentsByShow(@Path("showId")Long id);
+
 }
