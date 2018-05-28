@@ -40,7 +40,7 @@ public class ReservedShowDetailsFragment extends Fragment {
             cancelReservationBtn.setVisibility(View.INVISIBLE);
         }
 
-        cancelReservationBtn.setOnClickListener(new View.OnClickListener() {
+      /*  cancelReservationBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -64,7 +64,7 @@ public class ReservedShowDetailsFragment extends Fragment {
 
             }
         });
-
+*/
         return rootView;
     }
 }

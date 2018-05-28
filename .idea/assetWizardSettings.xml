@@ -44,8 +44,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="imageAsset" value="C:\Users\tamar\Desktop\logo.png" />
-                                      <entry key="outputName" value="ic_action_theater" />
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="C:\Users\tamar\Desktop\Deadpool-2.jpg" />
+                                      <entry key="outputName" value="ic_deadpool_2" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -110,12 +111,25 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                      <entry key="image">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="paddingPercent" value="-10" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                     </map>
                                   </option>
                                   <option name="values">
                                     <map>
+                                      <entry key="assetType" value="IMAGE" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="outputName" value="ic_cinema" />
+                                      <entry key="imageAsset" value="C:\Users\tamar\Desktop\Deadpool-2.jpg" />
+                                      <entry key="outputName" value="ic_cin" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -125,7 +139,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputIconType" value="LAUNCHER_LEGACY" />
+                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>
@@ -134,6 +148,11 @@
                 </map>
               </option>
             </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState />
           </value>
         </entry>
       </map>

@@ -1,4 +1,7 @@
 package com.example.ftn.showbook;
+import android.graphics.Bitmap;
+import android.media.Image;
+
 import com.example.ftn.showbook.model.Facility;
 import com.example.ftn.showbook.model.Repertoire;
 import com.example.ftn.showbook.model.Reservation;
@@ -55,7 +58,7 @@ public interface  PmaService {
     @GET("shows/{idFacility}")
     Call<List<Show>> getShowsByFacility(@Path("idFacility")Long idFacility);
 
-    @DELETE("reservations/{id}")
-    Call<ResponseBody> cancelReservation(@Path("id")Long id);
+
+
 
 }

@@ -33,9 +33,7 @@ public class Tab1Repertoire extends Fragment {
             R.drawable.peter_rabbit,
             R.drawable.hari
     };
-    String[] durations = {"186", "93", "124"};
-    String[] descriptions ={};
-    String[] ratings = {"4.5", "5", "4.8"};
+
     private Intent intent;
     private ArrayList<Show> shows;
     private RecyclerView mRecyclerView;
