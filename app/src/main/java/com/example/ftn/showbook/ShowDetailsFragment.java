@@ -13,11 +13,11 @@ import android.widget.TextView;
 public class ShowDetailsFragment extends Fragment implements View.OnClickListener {
 
     private FragmentManager fragmentManager;
-
+    private Bundle args;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_show_details, container, false);
-        Bundle args = this.getArguments();
+        args = this.getArguments();
         ((TextView)rootView.findViewById(R.id.show_name)).setText(args.getString("showName"));
         ((TextView)rootView.findViewById(R.id.show_directors)).setText(args.getString("showDirectors"));
         ((TextView)rootView.findViewById(R.id.show_performers)).setText(args.getString("showPerformers"));
@@ -44,8 +44,14 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
                         .commit();
                 break;
             case R.id.button_comment:
+                Fragment commentFragment = new CommentFragment();
+                Bundle commentArgs = new Bundle();
+                commentArgs.putLong("showId", args.getLong("showId"));
+                commentArgs.putString("showName", args.getString("showName"));
+                commentFragment.setArguments(commentArgs);
+
                 fragmentManager.beginTransaction()
-                        .replace(R.id.main_container, new CommentFragment())
+                        .replace(R.id.main_container, commentFragment)
                         .addToBackStack(null)
                         .commit();
                 break;
