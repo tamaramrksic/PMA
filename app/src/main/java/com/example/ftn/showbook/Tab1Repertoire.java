@@ -96,7 +96,7 @@ public class Tab1Repertoire extends Fragment {
                     emptyView.setVisibility(View.VISIBLE);
                 }
                 else{
-                    RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), shows, imgid);
+                    RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), shows);
                     mRecyclerView.setAdapter(mAdapter);
                     mRecyclerView.setVisibility(View.VISIBLE);
                     emptyView.setVisibility(View.GONE);

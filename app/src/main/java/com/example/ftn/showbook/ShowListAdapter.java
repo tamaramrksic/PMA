@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHolder> {
 
-    private Integer[] images;
     private LayoutInflater mInflater;
 
     private ArrayList<Show> shows;
@@ -70,9 +69,8 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
         }
     }
 
-    public ShowListAdapter(Context context, ArrayList<Show> shows, Integer[] images) {
+    public ShowListAdapter(Context context, ArrayList<Show> shows) {
         this.mInflater = LayoutInflater.from(context);
-        this.images = images;
         this.shows = shows;
 
     }
@@ -87,7 +85,7 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.image.setImageResource(images[position]);
+        holder.image.setImageResource(getImage(shows.get(position).getId()));
         holder.title.setText(shows.get(position).getName());
         holder.description.setText(shows.get(position).getDescription());
         holder.duration.setText(shows.get(position).getDuration().toString());
@@ -107,4 +105,25 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
         }
         return 0;
     }
+
+    public Integer getImage(Long id) {
+        Integer result = 0;
+        if(id.equals(1L)){
+            result = R.drawable.slika_1;
+        }else if(id.equals(2L)){
+            result = R.drawable.slika_2;
+        }else if(id.equals(3L)){
+            result = R.drawable.slika_3;
+        }else if(id.equals(4L)){
+            result = R.drawable.slika_4;
+        }else if(id.equals(5L)){
+            result = R.drawable.slika_5;
+        }else if(id.equals(6L)){
+            result = R.drawable.slika_6;
+        }else if(id.equals(7L)){
+            result = R.drawable.slika_7;
+        }
+        return result;
+    }
+
 }
