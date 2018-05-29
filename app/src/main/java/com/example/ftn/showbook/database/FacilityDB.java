@@ -126,18 +126,33 @@ public class FacilityDB {
     }
 
 
-    public static List<FacilityDB> filterByDistance(List<FacilityDB> toFilter, double latitude, double longitude, double distance)
+    public static List<FacilityDB> filterByDistanceAndType(List<FacilityDB> toFilter, double latitude, double longitude, double distance, String type)
     {
         Iterator<FacilityDB> it = toFilter.iterator();
-        while(it.hasNext())
-        {
-            FacilityDB revob = it.next();
-            if(haversineDistance(latitude, longitude,
-                    Double.parseDouble(revob.getLatitude()), Double.parseDouble(revob.getLongitude())) > distance) // ako je udaljen vise od distance
+        if(!type.equals("ALL")){
+
+            while(it.hasNext())
             {
-                it.remove(); // izbaci ga
+                FacilityDB revob = it.next();
+                if(haversineDistance(latitude, longitude,
+                        Double.parseDouble(revob.getLatitude()), Double.parseDouble(revob.getLongitude())) > distance ||
+                        !revob.getType().equals(type) ) // ako je udaljen vise od distance i u odnosu na tip facilitija
+                {
+                    it.remove(); // izbaci ga
+                }
             }
+        }else {
+            while(it.hasNext()) {
+                FacilityDB revob = it.next();
+                if (haversineDistance(latitude, longitude,
+                        Double.parseDouble(revob.getLatitude()), Double.parseDouble(revob.getLongitude())) > distance) // ako je udaljen vise od distance
+                {
+                    it.remove(); // izbaci ga
+                }
+            }
+
         }
+
         return toFilter;
     }
 }

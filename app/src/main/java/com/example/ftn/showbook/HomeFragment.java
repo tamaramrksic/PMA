@@ -273,12 +273,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
                 .getDefaultSharedPreferences(getActivity().getApplicationContext());
         Intent intent = getActivity().getIntent();
         String username = intent.getStringExtra("drawerUsername");
-        String  personalRadius = db.getUserByUsername(username).getMaxDistance().toString();
+        UserDB userDb = db.getUserByUsername(username);
+        String  personalRadius = userDb.getMaxDistance().toString();
         String lookupRadius = sharedPreferences.getString(getString(R.string.pref_radius), personalRadius);
         double radius = Double.parseDouble(lookupRadius);
         List<FacilityDB> facilityDBS = db.getAllFacilities();
-        List<FacilityDB> list = FacilityDB.filterByDistance(facilityDBS,
-                latLng.latitude, latLng.longitude, radius);
+        List<FacilityDB> list = FacilityDB.filterByDistanceAndType(facilityDBS,
+                latLng.latitude, latLng.longitude, radius, userDb.getFacilityType());
 
         //clear from list
         map.clear();
