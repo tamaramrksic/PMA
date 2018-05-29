@@ -190,4 +190,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return userDB;
     }
 
+    public UserDB updatePreferences(String username, Integer distance, String facilityType, Boolean notification) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        UserDB userDB = this.getUserByUsername(username);
+        ContentValues values = new ContentValues();
+
+        if (userDB != null) {
+            values.put(UserDB.COLUMN_FIRSTNAME, userDB.getFirstName());
+            values.put(UserDB.COLUMN_LASTNAME, userDB.getLastName());
+            values.put(UserDB.COLUMN_ADDRESS, userDB.getAddress());
+            values.put(UserDB.COLUMN_LOCATION, userDB.getLocation());
+            values.put(UserDB.COLUMN_USERNAME, username);
+
+        }
+        if(distance != null) {
+            values.put(UserDB.COLUMN_MAXDISTANCE, distance);
+        }else {
+            values.put(UserDB.COLUMN_MAXDISTANCE, userDB.getMaxDistance());
+        }
+        if(facilityType != null ){
+            values.put(UserDB.COLUMN_FACILITYTYPE, facilityType);
+        }else {
+            values.put(UserDB.COLUMN_FACILITYTYPE, userDB.getFacilityType());
+        }
+        if(notification != null ) {
+            values.put(UserDB.COLUMN_COMMENT_NOTIFICATION, notification);
+        }else {
+            values.put(UserDB.COLUMN_COMMENT_NOTIFICATION, userDB.isComment_notification());
+        }
+
+        // Which row to update, based on the title
+        String selection = UserDB.COLUMN_USERNAME + " LIKE ?";
+        String[] selectionArgs = {username};
+
+        int count = db.update(
+                UserDB.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+
+        return userDB;
+    }
+
 }

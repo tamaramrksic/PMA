@@ -51,14 +51,14 @@
     <string name="pref_facility_type">pref_facility_type</string>
     <string-array name="pref_facility_type_entries">
         <item>Bioskop</item>
-        <item>Pozoriste</item>
+        <item>Pozorište</item>
         <item>Oba</item>
     </string-array>
 
     <string-array name="pref_facility_type_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
+        <item>CINEMA</item>
+        <item>THEATER</item>
+        <item>ALL</item>
     </string-array>
 
     <string name="pref_title_2">Notifikacije</string>

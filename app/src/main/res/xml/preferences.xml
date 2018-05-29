@@ -11,8 +11,7 @@
             android:entryValues="@array/pref_distance_values"
             android:key="@string/pref_distance"
             android:title="@string/pref_distance_title"
-            android:summary="%s"
-            android:defaultValue="5"/>
+            android:summary="%s" />
 
         <ListPreference
             android:dialogTitle="@string/pref_facility_type_title"
@@ -20,8 +19,7 @@
             android:entryValues="@array/pref_facility_type_values"
             android:key="@string/pref_facility_type"
             android:title="@string/pref_facility_type_title"
-            android:summary="%s"
-            android:defaultValue="1"/>
+            android:summary="%s" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -29,10 +27,11 @@
         android:key="pref_title_2">
 
         <CheckBoxPreference
-            android:defaultValue="true"
+
             android:key="@string/pref_notification_key"
             android:summary="@string/pref_notification_summary"
-            android:title="@string/pref_notification_title" />
+            android:title="@string/pref_notification_title"
+            android:defaultValue="false"/>
     </PreferenceCategory>
 
     <PreferenceCategory
