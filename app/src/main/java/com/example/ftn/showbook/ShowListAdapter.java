@@ -114,7 +114,7 @@ public class ShowListAdapter extends RecyclerView.Adapter<ShowListAdapter.ViewHo
         return 0;
     }
 
-    public Integer getImage(Long id) {
+    public static Integer getImage(Long id) {
         Integer result = 0;
         if(id.equals(1L)){
             result = R.drawable.slika_1;

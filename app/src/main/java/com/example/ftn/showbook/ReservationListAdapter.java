@@ -53,6 +53,7 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
                     Bundle args = new Bundle();
                     args.putString("fragmentName", fragmentName);
                     args.putLong("reservationId", reservations.get(getAdapterPosition()).getId());
+                    args.putLong("showId", reservations.get(getAdapterPosition()).getEvent().getShow().getId());
                     args.putString("showName", reservations.get(getAdapterPosition()).getEvent().getShow().getName());
                     args.putString("showDuration", reservations.get(getAdapterPosition()).getEvent().getShow().getDuration().toString());
                     args.putString("date", getDateOrTime(reservations.get(getAdapterPosition()).getEvent().getStart(), "date"));
@@ -72,10 +73,9 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
         }
     }
 
-    public ReservationListAdapter(Context context, ArrayList<Reservation> reservations, Integer[] images, String fragmentName) {
+    public ReservationListAdapter(Context context, ArrayList<Reservation> reservations, String fragmentName) {
         this.mInflater = LayoutInflater.from(context);
         this.reservations = reservations;
-        this.images = images;
         ReservationListAdapter.fragmentName = fragmentName;
     }
 
@@ -89,7 +89,7 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.image.setImageResource(images[position]);
+        holder.image.setImageResource(ShowListAdapter.getImage(reservations.get(position).getEvent().getShow().getId()));
         holder.title.setText(reservations.get(position).getEvent().getShow().getName());
         holder.date.setText(getDateOrTime(reservations.get(position).getEvent().getStart(),"date"));
         holder.time.setText(getDateOrTime(reservations.get(position).getEvent().getStart(),"time"));
@@ -119,4 +119,6 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
 
         return simpleDateFormat.format(date);
     }
+
+
 }

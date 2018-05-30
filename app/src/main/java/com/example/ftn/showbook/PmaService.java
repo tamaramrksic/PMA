@@ -74,4 +74,9 @@ public interface  PmaService {
     @GET("comments/{showId}")
     Call<List<Comment>> getCommentsByShow(@Path("showId")Long id);
 
+
+    @GET("reservations/rating/{id}/{username}/{rating}")
+    Call<ResponseBody> ratingReservation(@Path("id")Long id,@Path("username")String username,  @Path("rating")Integer rating);
+
+
 }
