@@ -9,9 +9,9 @@ public class Rating {
     @Expose
     private Long id;
 
-    @SerializedName("rate")
+    @SerializedName("num")
     @Expose
-    private Integer rate;
+    private Integer num;
 
     @SerializedName("show")
     @Expose
@@ -19,9 +19,9 @@ public class Rating {
 
     public Rating() {}
 
-    public Rating(Long id, Integer rate, Show show) {
+    public Rating(Long id, Integer num, Show show) {
         this.id = id;
-        this.rate = rate;
+        this.num = num;
         this.show = show;
     }
 
@@ -33,12 +33,12 @@ public class Rating {
         this.id = id;
     }
 
-    public Integer getRate() {
-        return rate;
+    public Integer getNum() {
+        return num;
     }
 
-    public void setRate(Integer rate) {
-        this.rate = rate;
+    public void setNum(Integer num) {
+        this.num = num;
     }
 
     public Show getShow() {

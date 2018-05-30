@@ -97,6 +97,7 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
                 Fragment commentsFragment = new ShowCommentsFragment();
                 Bundle commentsArgs = new Bundle();
                 commentsArgs.putLong("showId", args.getLong("showId"));
+                commentsArgs.putString("showName", args.getString("showName"));
                 commentsFragment.setArguments(commentsArgs);
                 fragmentManager.beginTransaction()
                         .replace(R.id.main_container, commentsFragment)

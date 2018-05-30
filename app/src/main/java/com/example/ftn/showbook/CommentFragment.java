@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
         args = this.getArguments();
 
 //        getActivity().setTitle(getResources().getString(R.string.leave_comment_title) + args.getString("showName"));
-
+        ((ImageView)rootView.findViewById(R.id.show_image)).setImageResource(ShowListAdapter.getImage(args.getLong("showId")));
         ((TextView)rootView.findViewById(R.id.show_name_heading)).setText(args.getString("showName"));
         commentEditText = rootView.findViewById(R.id.write_comment);
         Button sendCommentBtn = rootView.findViewById(R.id.button_send_comment);

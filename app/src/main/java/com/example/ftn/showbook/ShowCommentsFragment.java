@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +45,9 @@ public class ShowCommentsFragment extends Fragment {
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
+        ((ImageView)rootView.findViewById(R.id.show_image)).setImageResource(ShowListAdapter.getImage(args.getLong("showId")));
 
+        ((TextView)rootView.findViewById(R.id.show_name_heading)).setText(args.getString("showName"));
         //add divider between items
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
                 ((LinearLayoutManager)mLayoutManager).getOrientation());

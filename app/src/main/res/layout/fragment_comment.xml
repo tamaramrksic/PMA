@@ -14,7 +14,7 @@
         android:layout_height="150dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        app:srcCompat="@drawable/avengers"/>
+        />
 
     <TextView
         android:id="@+id/show_name_heading"

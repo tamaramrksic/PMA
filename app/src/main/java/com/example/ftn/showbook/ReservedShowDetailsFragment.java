@@ -24,6 +24,7 @@ public class ReservedShowDetailsFragment extends Fragment {
     private RatingBar ratingBar;
     private Intent intent;
     private String username;
+    private Long reservationId;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_reserved_show_details, container, false);
@@ -39,6 +40,7 @@ public class ReservedShowDetailsFragment extends Fragment {
         ((TextView)rootView.findViewById(R.id.facility_value)).setText(args.getString("facility"));
         ((TextView)rootView.findViewById(R.id.num_of_seats_value)).setText(args.getString("numOfTickets"));
         ((TextView)rootView.findViewById(R.id.total_price_value)).setText(args.getString("totalPrice") + " rsd");
+        reservationId = args.getLong("reservationId");
 
         Button cancelReservationBtn = rootView.findViewById(R.id.button_cancel_reservation);
         ratingBar = rootView.findViewById(R.id.rating_bar);
@@ -50,6 +52,7 @@ public class ReservedShowDetailsFragment extends Fragment {
         } else if (args.getString("fragmentName").equals("seen")) {
             cancelReservationBtn.setVisibility(View.INVISIBLE);
             ratingBar.setVisibility(View.VISIBLE);
+            ((RatingBar)rootView.findViewById(R.id.rating_bar)).setRating(Float.parseFloat(args.getString("rating")));
         }
 
         cancelReservationBtn.setOnClickListener(new View.OnClickListener() {
@@ -77,15 +80,18 @@ public class ReservedShowDetailsFragment extends Fragment {
             }
         });
 
+
+
         ratingButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+
                 Float ratingFloat = ratingBar.getRating();
                 Integer rating = Math.round(ratingFloat);
 
 
-                Call<ResponseBody> call = ServiceUtils.pmaService.ratingReservation(args.getLong("reservationId"), username,rating);
+                Call<ResponseBody> call = ServiceUtils.pmaService.ratingReservation(reservationId, username,rating);
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -105,6 +111,9 @@ public class ReservedShowDetailsFragment extends Fragment {
             }
         });
 
+
         return rootView;
     }
+
+
 }
