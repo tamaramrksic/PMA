@@ -128,6 +128,7 @@ public class FacilityDB {
 
     public static List<FacilityDB> filterByDistanceAndType(List<FacilityDB> toFilter, double latitude, double longitude, double distance, String type)
     {
+        System.out.println("uslo u metodu");
         Iterator<FacilityDB> it = toFilter.iterator();
         if(!type.equals("ALL")){
 

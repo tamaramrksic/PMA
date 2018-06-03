@@ -14,6 +14,7 @@ public class LocationDialog extends AlertDialog.Builder {
     }
 
     private void setUpDialog(){
+
         setTitle(R.string.oops);
         setMessage(R.string.location_disabled_message);
         setCancelable(false);

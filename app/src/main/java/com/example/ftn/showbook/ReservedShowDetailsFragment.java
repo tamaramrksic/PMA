@@ -25,6 +25,7 @@ public class ReservedShowDetailsFragment extends Fragment {
     private Intent intent;
     private String username;
     private Long reservationId;
+    private Integer oldRate;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_reserved_show_details, container, false);
@@ -53,6 +54,12 @@ public class ReservedShowDetailsFragment extends Fragment {
             cancelReservationBtn.setVisibility(View.INVISIBLE);
             ratingBar.setVisibility(View.VISIBLE);
             ((RatingBar)rootView.findViewById(R.id.rating_bar)).setRating(Float.parseFloat(args.getString("rating")));
+            oldRate = Integer.parseInt(args.getString("rating"));
+            if(oldRate != 0) {
+                ratingButton.setText(getString(R.string.rating_button_change));
+            }else {
+                ratingButton.setText(getString(R.string.rating_button));
+            }
         }
 
         cancelReservationBtn.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +102,7 @@ public class ReservedShowDetailsFragment extends Fragment {
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        Toast.makeText(getActivity(),getResources().getString(R.string.success_message), Toast.LENGTH_LONG).show();
                         ((AppCompatActivity)getContext()).getSupportFragmentManager().popBackStack();
 
                     }
