@@ -88,7 +88,11 @@ public class RepertoireFragment extends Fragment {
                 case 1:
                     return new Tab2Reserved();
                 case 2:
-                    return new Tab3Interested();
+                    Fragment tab3Interested = new Tab3Interested();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("parent", "repertoire");
+                    tab3Interested.setArguments(bundle);
+                    return tab3Interested;
                 default:
                     return null;
             }

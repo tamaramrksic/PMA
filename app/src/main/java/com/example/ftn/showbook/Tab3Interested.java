@@ -21,17 +21,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import com.example.ftn.showbook.model.Show;
-
-import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class Tab3Interested extends Fragment {
 
-    Integer[] imgid={
-            R.drawable.avengers,
-            R.drawable.peter_rabbit
-    };
     private ArrayList<Show> interestedShows;
     private RecyclerView mRecyclerView;
     private TextView emptyView;
@@ -52,8 +46,13 @@ public class Tab3Interested extends Fragment {
                 ((LinearLayoutManager) mLayoutManager).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
-
-        getInterestedShows();
+        Bundle args = this.getArguments();
+        if(Objects.equals(args.getString("parent"), "main")) {
+            getInterestedShows();
+        }
+        else if(Objects.equals(args.getString("parent"), "repertoire")) {
+            getFacilityInterestedShows();
+        }
 
         return rootView;
     }
@@ -72,10 +71,37 @@ public class Tab3Interested extends Fragment {
                     emptyView.setVisibility(View.VISIBLE);
                 }
                 else {
-
-
                     RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows,"interested");
+                    mRecyclerView.setAdapter(mAdapter);
+                    mRecyclerView.setVisibility(View.VISIBLE);
+                    emptyView.setVisibility(View.GONE);
+                }
+            }
 
+            @Override
+            public void onFailure(Call<List<Show>> call, Throwable t) {
+                Toast.makeText(getActivity(),getResources().getString(R.string.interested_shows_failure_message), Toast.LENGTH_LONG).show();
+            }
+
+        });
+    }
+
+    public void getFacilityInterestedShows() {
+        Intent intent = getActivity().getIntent();
+        String username = intent.getStringExtra("drawerUsername");
+        Long facilityId = Long.parseLong(intent.getStringExtra("FacilityId"));
+        Call<List<Show>> call = ServiceUtils.pmaService.getFacilityInterestedShows(username, facilityId);
+        call.enqueue(new Callback<List<Show>>() {
+            @Override
+            public void onResponse(Call<List<Show>> call, Response<List<Show>> response) {
+                interestedShows = new ArrayList<>(response.body());
+
+                if (interestedShows.isEmpty()) {
+                    mRecyclerView.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                }
+                else {
+                    RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows, "interested");
                     mRecyclerView.setAdapter(mAdapter);
                     mRecyclerView.setVisibility(View.VISIBLE);
                     emptyView.setVisibility(View.GONE);
