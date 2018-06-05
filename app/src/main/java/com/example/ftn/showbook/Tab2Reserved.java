@@ -17,6 +17,7 @@ import com.example.ftn.showbook.model.Reservation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,10 +26,6 @@ import retrofit2.Response;
 
 public class Tab2Reserved  extends Fragment {
 
-    Integer[] imgid={
-            R.drawable.avengers,
-            R.drawable.hari
-    };
     private ArrayList<Reservation> reservations;
     private RecyclerView mRecyclerView;
     private TextView emptyView;
@@ -51,15 +48,19 @@ public class Tab2Reserved  extends Fragment {
                 ((LinearLayoutManager) mLayoutManager).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
-        // get data for adapter
-        getReservations();
-
+        //get data for adapter
+        Bundle args = this.getArguments();
+        if(Objects.equals(args.getString("parent"), "main")) {
+            getReservations();
+        }
+        else if(Objects.equals(args.getString("parent"), "repertoire")) {
+            getFacilityReservations();
+        }
 
         return rootView;
     }
 
-    public void getReservations()
-    {
+    public void getReservations() {
         Intent intent = getActivity().getIntent();
         String username = intent.getStringExtra("drawerUsername");
         Call<List<Reservation>> call = ServiceUtils.pmaService.getUserReservations(username);
@@ -85,6 +86,34 @@ public class Tab2Reserved  extends Fragment {
                 Toast.makeText(getActivity(),getResources().getString(R.string.reservations_failure_message), Toast.LENGTH_LONG).show();
             }
 
+        });
+    }
+
+    public void getFacilityReservations() {
+        Intent intent = getActivity().getIntent();
+        String username = intent.getStringExtra("drawerUsername");
+        Long facilityId = Long.parseLong(intent.getStringExtra("FacilityId"));
+        Call<List<Reservation>> call = ServiceUtils.pmaService.getUserReservationsByFacility(username, facilityId);
+        call.enqueue(new Callback<List<Reservation>>() {
+            @Override
+            public void onResponse(Call<List<Reservation>> call, Response<List<Reservation>> response) {
+                reservations = new ArrayList<>(response.body());
+
+                if (reservations.isEmpty()) {
+                    mRecyclerView.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                } else {
+                    RecyclerView.Adapter mAdapter = new ReservationListAdapter(getActivity(), reservations, "reserved");
+                    mRecyclerView.setAdapter(mAdapter);
+                    mRecyclerView.setVisibility(View.VISIBLE);
+                    emptyView.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Reservation>> call, Throwable t) {
+                Toast.makeText(getActivity(), getResources().getString(R.string.reservations_failure_message), Toast.LENGTH_LONG).show();
+            }
         });
     }
 }
