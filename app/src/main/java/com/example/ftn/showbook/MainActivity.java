@@ -78,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
                                     break;
                                 case R.id.nav_interested:
                                     fragment = new Tab3Interested();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("parent", "main");
+                                    fragment.setArguments(bundle);
                                     break;
                                 case R.id.nav_seen:
                                     fragment = new SeenShowsFragment();
