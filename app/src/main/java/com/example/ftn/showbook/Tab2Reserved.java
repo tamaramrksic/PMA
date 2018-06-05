@@ -50,10 +50,10 @@ public class Tab2Reserved  extends Fragment {
 
         //get data for adapter
         Bundle args = this.getArguments();
-        if(Objects.equals(args.getString("parent"), "main")) {
+        if(args.getString("parent").equals("main")) {
             getReservations();
         }
-        else if(Objects.equals(args.getString("parent"), "repertoire")) {
+        else if(args.getString("parent").equals("repertoire")) {
             getFacilityReservations();
         }
 

@@ -47,10 +47,10 @@ public class Tab3Interested extends Fragment {
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
         Bundle args = this.getArguments();
-        if(Objects.equals(args.getString("parent"), "main")) {
+        if(args.getString("parent").equals("main")) {
             getInterestedShows();
         }
-        else if(Objects.equals(args.getString("parent"), "repertoire")) {
+        else if(args.getString("parent").equals("repertoire")) {
             getFacilityInterestedShows();
         }
 
