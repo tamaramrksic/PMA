@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,16 +23,6 @@ public class TimetableFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
         String currentDate = sdf.format(Calendar.getInstance().getTime());
 
-        TextView col1 = rootView.findViewById(R.id.firstColumn);
-        col1.setText(currentDate);
-        TextView col2 = rootView.findViewById(R.id.secondColumn);
-        col2.setText("15-04-2018");
-        TextView col3 = rootView.findViewById(R.id.thirdColumn);
-        col3.setText("16-04-2018");
-        TextView col4 = rootView.findViewById(R.id.fourthColumn);
-        col4.setText("17-04-2018");
-        TextView col5 = rootView.findViewById(R.id.fifthColumn);
-        col5.setText("18-04-2018");
 
         final ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         if( actionBar != null) {
