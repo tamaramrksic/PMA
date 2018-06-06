@@ -180,4 +180,8 @@
 
     <string name="next">Dalje</string>
 
+    <string name="timetable_failure_message">Nije moguće učitati raspored prikazivanja.</string>
+    <string name="timetable_times_failure_message">Nije moguće učitati vremena prikazivanja.</string>
+    <string name="timetable_halls_failure_message">Nije moguće učitati sale.</string>
+
 </resources>

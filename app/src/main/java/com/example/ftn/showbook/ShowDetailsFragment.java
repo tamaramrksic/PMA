@@ -76,8 +76,13 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_see_timetable:
+                Fragment timetableFragment = new TimetableFragment();
+                Bundle timetableArgs = new Bundle();
+                timetableArgs.putLong("showId", args.getLong("showId"));
+                timetableArgs.putString("showName", args.getString("showName"));
+                timetableFragment.setArguments(timetableArgs);
                 fragmentManager.beginTransaction()
-                        .replace(R.id.main_container, new TimetableFragment())
+                        .replace(R.id.main_container, timetableFragment)
                         .addToBackStack(null)
                         .commit();
                 break;
