@@ -25,7 +25,6 @@ public class GetFacilitiesTask extends AsyncTask<Void, Void,Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         db = new DatabaseHelper(mContext);
-
         if(db.getAllFacilities().size() == 0 ) {
             Call<List<Facility>> call = ServiceUtils.pmaService.getAllFacilities();
             call.enqueue(new Callback<List<Facility>>() {
@@ -37,7 +36,7 @@ public class GetFacilitiesTask extends AsyncTask<Void, Void,Void> {
                     for (int i = 0; i < response.body().size(); i++) {
                         Long id = db.insertFacility(response.body().get(i).getName(), response.body().get(i).getType().toString(),
                                 response.body().get(i).getAddress(), response.body().get(i).getLocation().getName().toString(),
-                                response.body().get(i).getLatitude(), response.body().get(i).getLongitude());
+                                response.body().get(i).getLatitude(), response.body().get(i).getLongitude(), response.body().get(i).getId().toString());
                         System.out.println("dodat facility a id je " + id);
                     }
                     facilities = db.getAllFacilities();
@@ -55,5 +54,6 @@ public class GetFacilitiesTask extends AsyncTask<Void, Void,Void> {
         }
         return null;
     }
+
 
 }
