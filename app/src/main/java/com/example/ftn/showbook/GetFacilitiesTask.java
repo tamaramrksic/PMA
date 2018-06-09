@@ -25,7 +25,7 @@ public class GetFacilitiesTask extends AsyncTask<Void, Void,Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         db = new DatabaseHelper(mContext);
-        if(db.getAllFacilities().size() == 0 ) {
+        if(db.getAllFacilities() == null) {
             Call<List<Facility>> call = ServiceUtils.pmaService.getAllFacilities();
             call.enqueue(new Callback<List<Facility>>() {
                 @Override
