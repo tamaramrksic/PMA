@@ -29,13 +29,28 @@ import retrofit2.Response;
 
 public class TimetableFragment extends Fragment {
 
-    Button nextButton;
+    private Button nextButton;
+    private Bundle srfArgs;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_timetable, container, false);
         nextButton = rootView.findViewById(R.id.timetable_button);
+        srfArgs = new Bundle();
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SeatReserveFragment fragment = new SeatReserveFragment();
+                fragment.setArguments(srfArgs);
+
+                ((AppCompatActivity)getContext()).getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.main_container, fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
         Bundle args = this.getArguments();
         ((TextView)rootView.findViewById(R.id.timetable_title)).setText(args.getString("showName"));
@@ -65,12 +80,15 @@ public class TimetableFragment extends Fragment {
         Intent intent = getActivity().getIntent();
         final Long showId = args.getLong("showId");
         final Long facilityId = Long.parseLong(intent.getStringExtra("FacilityId"));
+        srfArgs.putLong("showId", showId);
+        srfArgs.putLong("facilityId", facilityId);
+        srfArgs.putString("showName", args.getString("showName"));
 
         eventDates.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 loadTimes(eventDates.getSelectedItem().toString(), showId, facilityId, rootView);
-
+                srfArgs.putString("date",eventDates.getSelectedItem().toString());
             }
 
             @Override
@@ -119,6 +137,8 @@ public class TimetableFragment extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                         loadFacilityHalls(eventTimes.getSelectedItem().toString(), date, showId, facilityId, rootView);
+                        srfArgs.putString("time", eventTimes.getSelectedItem().toString());
+
                     }
 
                     @Override
@@ -146,6 +166,7 @@ public class TimetableFragment extends Fragment {
                 if(eventHalls.getSelectedItem() == null) {
                     nextButton.setEnabled(false);
                 } else {
+                    srfArgs.putString("facilityHallName", eventHalls.getSelectedItem().toString());
                     nextButton.setEnabled(true);
                 }
             }
