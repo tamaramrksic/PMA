@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "394020093956",
+    "firebase_url": "https://showbook-2a1cc.firebaseio.com",
+    "project_id": "showbook-2a1cc",
+    "storage_bucket": "showbook-2a1cc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394020093956:android:ea90949bd041946c",
+        "android_client_info": {
+          "package_name": "com.example.ftn.showbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394020093956-09am8n8icsq3eh88i67aasscr0419v5k.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "394020093956-09am8n8icsq3eh88i67aasscr0419v5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOUDRbeZKtHnFMEkBVL5jrrOisi79iDCA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

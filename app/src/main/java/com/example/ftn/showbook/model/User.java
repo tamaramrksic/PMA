@@ -29,9 +29,21 @@ public class User {
     @Expose
     private String password;
 
+    @SerializedName("email")
+    @Expose
+    private String email;
+
+    @SerializedName("token")
+    @Expose
+    private String token;
+
     @SerializedName("maxDistance")
     @Expose
     private Integer maxDistance;
+
+    @SerializedName("commentNotification")
+    @Expose
+    private Boolean commentNotification;
 
     @SerializedName("location")
     @Expose
@@ -49,14 +61,18 @@ public class User {
 
     public User() {}
 
-    public User(Long id, String firstName, String lastName, String address, String username, String password, Integer maxDistance, Location location, FacilityType facilityType) {
+    public User(Long id, String firstName, String lastName, String address, String username, String password,
+                String email, String token, Integer maxDistance, Boolean commentNotification, Location location, FacilityType facilityType) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.username = username;
         this.password = password;
+        this.email = email;
+        this.token = token;
         this.maxDistance = maxDistance;
+        this.commentNotification = commentNotification;
         this.location = location;
         this.facilityType = facilityType;
     }
@@ -109,12 +125,36 @@ public class User {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public Integer getMaxDistance() {
         return maxDistance;
     }
 
     public void setMaxDistance(Integer maxDistance) {
         this.maxDistance = maxDistance;
+    }
+
+    public Boolean isCommentNotification() {
+        return commentNotification;
+    }
+
+    public void setCommentNotification(Boolean commentNotification) {
+        this.commentNotification = commentNotification;
     }
 
     public FacilityType getFacilityType() {
