@@ -236,4 +236,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return userDB;
     }
 
+    public void deleteAllFacilites(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + FacilityDB.TABLE_NAME);
+
+    }
+
 }

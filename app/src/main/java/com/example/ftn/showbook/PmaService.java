@@ -7,6 +7,7 @@ import com.example.ftn.showbook.model.Reservation;
 import com.example.ftn.showbook.model.Show;
 import com.example.ftn.showbook.model.User;
 import com.example.ftn.showbook.model.UserCredentials;
+import com.example.ftn.showbook.model.UserPreferences;
 
 import java.util.List;
 
@@ -96,4 +97,8 @@ public interface  PmaService {
 
     @POST("users/mail")
     Call<ResponseBody> sendMail(@Body Mail mail);
+
+    @PUT("users/preferences/{username}")
+    Call<ResponseBody> changePrefernces(@Body UserPreferences userPreferences, @Path("username")String username);
+    
 }
