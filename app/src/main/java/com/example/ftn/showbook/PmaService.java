@@ -44,13 +44,19 @@ public interface  PmaService {
     @GET("reservations/{username}")
     Call<List<Reservation>> getUserReservations(@Path("username")String username);
 
+    @GET("reservations/{username}/{facilityId}")
+    Call<List<Reservation>> getUserReservationsByFacility(@Path("username")String username, @Path("facilityId") Long facilityIdfacilityId);
+
     @GET("reservations/seen/{username}")
     Call<List<Reservation>> getUserSeenShows(@Path("username")String username);
 
     @GET("shows/interested/{username}")
     Call<List<Show>> getUserInterestedShows(@Path("username")String username);
 
-    @GET("shows/interested/{username}/{idShow}")
+    @GET("shows/interested/{username}/{idFacility}")
+    Call<List<Show>> getFacilityInterestedShows(@Path("username")String username, @Path("idFacility")Long idFacility);
+
+    @GET("shows/interested/is/{username}/{idShow}")
     Call<Boolean> isInterestedShow(@Path("username")String username, @Path("idShow")Long idShow);
 
     @POST("shows/interested/add/{username}/{idShow}")
