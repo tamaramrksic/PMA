@@ -19,6 +19,7 @@ public class FacilityDB {
     public static final String COLUMN_LOCATION = "location";
     public static final String COLUMN_LATITUDE= "latitude";
     public static final String COLUMN_LONGITUDE = "longitude";
+    public static final String COLUMN_BACKID = "backId";
 
     private Integer id;
     private String name;
@@ -27,6 +28,7 @@ public class FacilityDB {
     private String location;
     private String latitude;
     private String longitude;
+    private String backId;
 
     // Create table SQL query
     public static final String CREATE_TABLE =
@@ -37,12 +39,13 @@ public class FacilityDB {
                     + COLUMN_ADDRESS + " TEXT,"
                     + COLUMN_LOCATION + " TEXT,"
                     + COLUMN_LATITUDE + " TEXT,"
-                    + COLUMN_LONGITUDE + " TEXT"
+                    + COLUMN_LONGITUDE + " TEXT,"
+                    + COLUMN_BACKID + " TEXT "
                     + ")";
 
     FacilityDB(){}
 
-    public FacilityDB(Integer id, String name, String type, String address, String location, String latitude, String longitude) {
+    public FacilityDB(Integer id, String name, String type, String address, String location, String latitude, String longitude, String backId) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -50,6 +53,7 @@ public class FacilityDB {
         this.location = location;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.backId = backId;
     }
 
     public Integer getId() {
@@ -108,7 +112,13 @@ public class FacilityDB {
         this.longitude = longitude;
     }
 
+    public String getBackId() {
+        return backId;
+    }
 
+    public void setBackId(String backId) {
+        this.backId = backId;
+    }
 
     public static double haversineDistance(double lat1, double lon1, double lat2, double lon2)
     {

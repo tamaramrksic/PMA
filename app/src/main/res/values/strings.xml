@@ -179,6 +179,7 @@
     <string name="rating_button">Oceni!</string>
     <string name="rating_button_change">Izmeni ocenu!</string>
     <string name="rating">Ocena:</string>
+    <string name="internet_disabled">Internet je isključen.</string>
 
     <string name="notification_title">Komentar za </string>
     <string name="notification_text"> je komentarisao/la događaj za koji ste zainteresovani.</string>

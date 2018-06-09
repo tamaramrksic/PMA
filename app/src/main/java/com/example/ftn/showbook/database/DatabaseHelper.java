@@ -33,6 +33,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(FacilityDB.CREATE_TABLE);
     }
 
+
+
     // Upgrading database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -71,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public Long insertFacility(String name, String type, String address, String location,String latitude,
-                           String longitude) {
+                           String longitude, String backId) {
         // get writable database as we want to write data
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -82,6 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FacilityDB.COLUMN_LOCATION, location);
         values.put(FacilityDB.COLUMN_LATITUDE, latitude);
         values.put(FacilityDB.COLUMN_LONGITUDE, longitude);
+        values.put(FacilityDB.COLUMN_BACKID, backId);
 
 
 
@@ -117,7 +120,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         cursor.getString(cursor.getColumnIndex(FacilityDB.COLUMN_ADDRESS)),
                         cursor.getString(cursor.getColumnIndex(FacilityDB.COLUMN_LOCATION)),
                         cursor.getString(cursor.getColumnIndex(FacilityDB.COLUMN_LATITUDE)),
-                        cursor.getString(cursor.getColumnIndex(FacilityDB.COLUMN_LONGITUDE))
+                        cursor.getString(cursor.getColumnIndex(FacilityDB.COLUMN_LONGITUDE)),
+                        cursor.getString(cursor.getColumnIndex(FacilityDB.COLUMN_BACKID))
                 );
                 cursor.moveToNext();
                 facilityDBList.add(facilityDB);

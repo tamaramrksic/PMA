@@ -27,6 +27,7 @@ import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ftn.showbook.database.DatabaseHelper;
@@ -42,6 +43,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.ui.IconGenerator;
 
 import java.io.IOException;
 import java.sql.SQLOutput;
@@ -67,7 +69,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     private Intent intent;
     private Geocoder geocoder;
     private String address;
-    private Integer numberOfDialog;
+    private Integer numberOfDialogLocation;
+    private Integer numberOfDialogLocationPermission;
     public static HomeFragment newInstance() {
 
         HomeFragment hf = new HomeFragment();
@@ -90,7 +93,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
         db = new DatabaseHelper(getActivity());
         intent = getActivity().getIntent();
         geocoder = new Geocoder(getActivity());
-        numberOfDialog = 0;
+        numberOfDialogLocation = Integer.parseInt(intent.getStringExtra("numLoc"));
+        numberOfDialogLocationPermission = Integer.parseInt(intent.getStringExtra("numPerLoc"));
         UserDB user = db.getUserByUsername(intent.getStringExtra("drawerUsername"));
         address = user.getAddress()+ ", "+user.getLocation() + ", Srbija";
 
@@ -127,9 +131,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
 
         if (!gps && !wifi){
             //new LocationDialog(getActivity()).prepareDialog().show();
-            if(numberOfDialog<1) {
+            numberOfDialogLocation = Integer.parseInt(intent.getStringExtra("numLoc"));
+            if(numberOfDialogLocation<1) {
                 showLocatonDialog();
-                numberOfDialog++;
+                intent.putExtra("numLoc", "1");
             }
         } else {
             // Toast.makeText(getActivity(), "noService",
@@ -148,10 +153,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
                 // System.out.println("Latitude jee " + myLocation.getLatitude());
             }else {
                 System.out.println("nema odobrenje izgleda");
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                        1);
-
+                numberOfDialogLocationPermission = Integer.parseInt(intent.getStringExtra("numPerLoc"));
+                if(numberOfDialogLocationPermission<1) {
+                    ActivityCompat.requestPermissions(getActivity(),
+                            new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                            1);
+                    intent.putExtra("numPerLoc", "1");
+                }
             }
         }
         if(markers == null)
@@ -203,7 +211,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
                 return true;
             }
         });
-
+/*
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
@@ -222,7 +230,23 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
                 return false;
             }
         });
+*/
 
+        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+
+                if(markers.get(marker) != null) {
+                    FacilityDB facilityDB = markers.get(marker);
+                    System.out.println("pritisnut je neki facilitiy a id mu je " + facilityDB.getId());
+                    intent.putExtra("FacilityId", facilityDB.getBackId());
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.main_container, new RepertoireFragment())
+                            .addToBackStack(null)
+                            .commit();
+                }
+            }
+        });
         if (myLocationLatLng != null) {
             addMarker(myLocationLatLng);
         }
@@ -306,7 +330,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
 
         for(FacilityDB facility : list)
         {
-
             if(facility.getType().equals("CINEMA")) {
                 LatLng loc = new LatLng(Double.parseDouble(facility.getLatitude()), Double.parseDouble(facility.getLongitude()));
                 Marker marker = map.addMarker(new MarkerOptions()
