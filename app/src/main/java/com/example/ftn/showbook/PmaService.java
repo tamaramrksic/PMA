@@ -2,6 +2,7 @@ package com.example.ftn.showbook;
 import com.example.ftn.showbook.model.Comment;
 import com.example.ftn.showbook.model.Event;
 import com.example.ftn.showbook.model.Facility;
+import com.example.ftn.showbook.model.Mail;
 import com.example.ftn.showbook.model.Repertoire;
 import com.example.ftn.showbook.model.Reservation;
 import com.example.ftn.showbook.model.Show;
@@ -89,6 +90,15 @@ public interface  PmaService {
     Call<List<String>> getEventTimes(@Path("showId")Long showId, @Path("facilityId")Long facilityId, @Path("date")String date);
     @GET("events/{showId}/{facilityId}/{date}/{time}")
     Call<List<String>> getEventHalls(@Path("showId")Long showId, @Path("facilityId")Long facilityId, @Path("date")String date, @Path("time")String time);
+    @GET("users/{username}/show/{showId}")
+    Call<List<User>> getUserForNotifications(@Path("username")String username, @Path("showId")Long showId);
 
+    @PUT("users/{username}/token/{token}")
+    Call<User> setUserToken(@Path("username")String username, @Path("token") String token);
 
+    @PUT("users/{username}/token")
+    Call<User> removeUserToken(@Path("username")String username);
+
+    @POST("users/mail")
+    Call<ResponseBody> sendMail(@Body Mail mail);
 }

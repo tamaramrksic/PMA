@@ -166,9 +166,11 @@
     <string name="interested_shows_failure_message">Nije moguće učitati predstave/filmove za koje ste zainteresovani.</string>
 
     <string name="no_comments_message">Trenutno nema komentara.</string>
+    <string name="no_comment_failure">Nije moguće učitati komentare.</string>
 
     <string name="leave_comment_title">Ostavite komentar za </string>
     <string name="send_comment_failure">Nije moguće sačuvati Vaš komentar.</string>
+    <string name="send_comment_notifications_failure">Greška prilikom slanja notifikacija.</string>
 
 
     <string name="add_interested_show_failure_message">Nije moguće dodati predstavu/film na listu zainteresovanih.</string>
@@ -184,4 +186,8 @@
     <string name="timetable_times_failure_message">Nije moguće učitati vremena prikazivanja.</string>
     <string name="timetable_halls_failure_message">Nije moguće učitati sale.</string>
 
+    <string name="internet_disabled">Internet je isključen.</string>
+
+    <string name="notification_title">Komentar za </string>
+    <string name="notification_text"> je komentarisao/la događaj za koji ste zainteresovani.</string>
 </resources>

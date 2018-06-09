@@ -27,11 +27,8 @@ import retrofit2.Response;
 public class ShowCommentsFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-   // private String[] comments = {"Odlican film!", "Sjajno! Sve preporuke. :)"};
-    private String[] usernames = {"user1", "user2"};
     private ArrayList<Comment> comments;
     private TextView emptyView;
     private Intent intent;
@@ -53,9 +50,7 @@ public class ShowCommentsFragment extends Fragment {
                 ((LinearLayoutManager)mLayoutManager).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
         intent = getActivity().getIntent();
-        // set adapter
-       // mAdapter = new CommentListAdapter(getContext(), comments, usernames);
-       // mRecyclerView.setAdapter(mAdapter);
+
         getCommentsForShow();
         return rootView;
     }
@@ -81,7 +76,7 @@ public class ShowCommentsFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Comment>> call, Throwable t) {
-                Toast.makeText(getActivity(),getResources().getString(R.string.repertoire_failure_message), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),getResources().getString(R.string.no_comment_failure), Toast.LENGTH_LONG).show();
             }
 
         });
