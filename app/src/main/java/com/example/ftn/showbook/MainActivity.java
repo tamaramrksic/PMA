@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.ftn.showbook.model.User;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     private  DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
+    private FragmentManager fragmentManager;
+    private String notification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,28 +41,10 @@ public class MainActivity extends AppCompatActivity {
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
-        final FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         Fragment fragment = fragmentManager.findFragmentById(R.id.main_container);
 
-        String notification = getIntent().getStringExtra("notification");
-        System.out.println("Notification " + notification);
-
-        if (notification != null) {
-            if (notification.equals("commentsFragment")) {
-                ShowCommentsFragment showCommentsFragment = new ShowCommentsFragment();
-                Bundle scArgs = new Bundle();
-                scArgs.putLong("showId", getIntent().getLongExtra("showId",0L));
-                scArgs.putString("showName", getIntent().getStringExtra("showName"));
-                showCommentsFragment.setArguments(scArgs);
-
-                fragmentManager.beginTransaction()
-                        .replace(R.id.main_container, showCommentsFragment)
-                        .addToBackStack(null)
-                        .commit();
-            }
-
-
-        }
+        notification = getIntent().getStringExtra("notification");
 
         if (fragment == null && notification == null) {
             fragmentManager.beginTransaction()
@@ -154,53 +137,35 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        System.out.println("BACK PRESSED");
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-            System.out.println("START");
         } else {
             FragmentManager manager = getSupportFragmentManager();
             if(manager.getBackStackEntryCount() > 0) {
-                System.out.println("count " + manager.getBackStackEntryCount());
-                System.out.println("> 0");
-//                System.out.println("size " + manager.getBackStackEntryAt(manager.getBackStackEntryCount()-1).toString());
-//                Fragment a = manager.getFragments().get(manager.getBackStackEntryCount()-1);
-//                System.out.println(a.getClass().toString());
                 super.onBackPressed();
                 Fragment currentFragment = manager.findFragmentById(R.id.main_container);
                 if(currentFragment instanceof HomeFragment){
-                    System.out.println("home");
                     mNavigationView.getMenu().getItem(0).setChecked(true);
                     getSupportActionBar().setTitle(mNavigationView.getMenu().getItem(0).getTitle());
                 }
                 else if(currentFragment instanceof Tab2Reserved){
-                    System.out.println("reserved");
                     mNavigationView.getMenu().getItem(1).setChecked(true);
                     getSupportActionBar().setTitle(mNavigationView.getMenu().getItem(1).getTitle());
                 }
                 else if(currentFragment instanceof Tab3Interested){
-                    System.out.println("interested");
                     mNavigationView.getMenu().getItem(2).setChecked(true);
                     getSupportActionBar().setTitle(mNavigationView.getMenu().getItem(2).getTitle());
                 }
                 else if(currentFragment instanceof SeenShowsFragment){
-                    System.out.println("seen");
                     mNavigationView.getMenu().getItem(3).setChecked(true);
                     getSupportActionBar().setTitle(mNavigationView.getMenu().getItem(3).getTitle());
 
                 }
                 else if(currentFragment instanceof SettingsFragment){
-                    System.out.println("settings");
                     mNavigationView.getMenu().getItem(4).setChecked(true);
                     getSupportActionBar().setTitle(mNavigationView.getMenu().getItem(4).getTitle());
                 }
-                else if(currentFragment instanceof ShowCommentsFragment){
-                    System.out.println("showComments");
-//                    mNavigationView.getMenu().getItem(4).setChecked(true);
-//                    getSupportActionBar().setTitle(mNavigationView.getMenu().getItem(4).getTitle());
-                }
             } else {
-                System.out.println("else finish");
                 super.onBackPressed();
                 finish();
             }
@@ -208,17 +173,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //moved here from TimetableFragment
-    public void timeClicked(View view) {
-        TextView textView = (TextView)view;
-        //        Toast.makeText(this, textView.getText(), Toast.LENGTH_LONG).show();
-
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_container, new SeatReserveFragment())
-                .addToBackStack(null)
-                .commit();
-
-    }
 
     public void removeUserToken(String username) {
 
@@ -241,10 +195,35 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onDestroy() {
-        // TODO Auto-generated method stub
-        removeUserToken(getIntent().getStringExtra("drawerUsername"));
+        if (notification == null) {
+            removeUserToken(getIntent().getStringExtra("drawerUsername"));
+        }
         super.onDestroy();
 
+    }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (notification != null) {
+            if (notification.equals("commentsFragment")) {
+                ShowCommentsFragment showCommentsFragment = new ShowCommentsFragment();
+                Bundle scArgs = new Bundle();
+                scArgs.putLong("showId", getIntent().getLongExtra("showId",0L));
+                scArgs.putString("showName", getIntent().getStringExtra("showName"));
+                showCommentsFragment.setArguments(scArgs);
+
+                fragmentManager.beginTransaction()
+                        .replace(R.id.main_container, showCommentsFragment)
+                        .commit();
+            }
+        }
     }
 
 

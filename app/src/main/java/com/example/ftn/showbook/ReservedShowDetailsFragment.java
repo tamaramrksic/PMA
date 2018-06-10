@@ -49,10 +49,11 @@ public class ReservedShowDetailsFragment extends Fragment {
         if (args.getString("fragmentName").equals("reserved")) {
             cancelReservationBtn.setVisibility(View.VISIBLE);
             ratingBar.setVisibility(View.INVISIBLE);
-
+            ratingButton.setVisibility(View.INVISIBLE);
         } else if (args.getString("fragmentName").equals("seen")) {
             cancelReservationBtn.setVisibility(View.INVISIBLE);
             ratingBar.setVisibility(View.VISIBLE);
+            ratingButton.setVisibility(View.VISIBLE);
             ((RatingBar)rootView.findViewById(R.id.rating_bar)).setRating(Float.parseFloat(args.getString("rating")));
             oldRate = Integer.parseInt(args.getString("rating"));
             if(oldRate != 0) {
@@ -109,7 +110,7 @@ public class ReservedShowDetailsFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(getActivity(),getResources().getString(R.string.cancel_reservation_failure_message), Toast.LENGTH_LONG).show();
+
                     }
 
                 });

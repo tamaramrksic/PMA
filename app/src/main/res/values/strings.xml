@@ -180,6 +180,15 @@
     <string name="rating_button">Oceni!</string>
     <string name="rating_button_change">Izmeni ocenu!</string>
     <string name="rating">Ocena:</string>
+
+    <string name="next">Dalje</string>
+
+    <string name="timetable_failure_message">Nije moguće učitati raspored prikazivanja.</string>
+    <string name="timetable_times_failure_message">Nije moguće učitati vremena prikazivanja.</string>
+    <string name="timetable_halls_failure_message">Nije moguće učitati sale.</string>
+    <string name="hall_seats_failure_message">Nije moguće učitati sedišta.</string>
+
+
     <string name="internet_disabled">Internet je isključen.</string>
 
     <string name="notification_title">Komentar za </string>
