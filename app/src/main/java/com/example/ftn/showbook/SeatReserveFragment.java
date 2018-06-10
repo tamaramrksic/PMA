@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,12 +31,12 @@ public class SeatReserveFragment extends Fragment {
     private Bundle args;
     private final List<Long> selectedSeats = new ArrayList<>();
     private Long eventId;
-    private Fragment currentFragment;
+    private FragmentManager fragmentManager;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_seat_reserve, container, false);
-        currentFragment = this;
         args = this.getArguments();
 
         getActivity().setTitle(getResources().getString(R.string.seat_reserve_fragment_title));
@@ -54,6 +55,7 @@ public class SeatReserveFragment extends Fragment {
                 makeReservation();
             }
         });
+
 
         return rootView;
     }
@@ -126,9 +128,17 @@ public class SeatReserveFragment extends Fragment {
                 @Override
                 public void onResponse(Call<Reservation> call, Response<Reservation> response) {
                     Toast.makeText(getActivity(),getResources().getString(R.string.make_reservation_success), Toast.LENGTH_LONG).show();
-                    //refresh
-                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                    fragmentTransaction.detach(currentFragment).attach(currentFragment).commit();
+                   //redirect to reservations
+                    fragmentManager = getActivity().getSupportFragmentManager();
+                    Tab2Reserved newFragment = new Tab2Reserved();
+                    Bundle bundleReserved = new Bundle();
+                    bundleReserved.putString("parent", "main");
+                    newFragment.setArguments(bundleReserved);
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.main_container, newFragment)
+                            .addToBackStack(null)
+                            .commit();
+
                 }
 
                 @Override
