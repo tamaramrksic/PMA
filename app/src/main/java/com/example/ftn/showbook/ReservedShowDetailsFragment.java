@@ -66,7 +66,6 @@ public class ReservedShowDetailsFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-
                 Call<ResponseBody> call = ServiceUtils.pmaService.cancelReservation(args.getLong("reservationId"));
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -74,29 +73,20 @@ public class ReservedShowDetailsFragment extends Fragment {
                         ((AppCompatActivity)getContext()).getSupportFragmentManager().popBackStack();
 
                     }
-
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Toast.makeText(getActivity(),getResources().getString(R.string.cancel_reservation_failure_message), Toast.LENGTH_LONG).show();
                     }
-
                 });
-
-
-
             }
         });
-
-
 
         ratingButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
                 Float ratingFloat = ratingBar.getRating();
                 Integer rating = Math.round(ratingFloat);
-
 
                 Call<ResponseBody> call = ServiceUtils.pmaService.ratingReservation(reservationId, username,rating);
                 call.enqueue(new Callback<ResponseBody>() {
@@ -106,22 +96,14 @@ public class ReservedShowDetailsFragment extends Fragment {
                         ((AppCompatActivity)getContext()).getSupportFragmentManager().popBackStack();
 
                     }
-
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Toast.makeText(getActivity(),getResources().getString(R.string.cancel_reservation_failure_message), Toast.LENGTH_LONG).show();
                     }
-
                 });
-
-
-
             }
         });
 
-
         return rootView;
     }
-
-
 }
