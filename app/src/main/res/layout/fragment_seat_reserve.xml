@@ -13,7 +13,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_below="@id/show_image"
-    android:text="@string/show_name_value"
     android:textSize="25sp"
     android:gravity="center"
     android:textStyle="bold"/>
@@ -34,9 +33,9 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/date_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/date_value"
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -56,9 +55,9 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/time_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/time_value"
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -78,9 +77,9 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/hall_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hall_value"
             android:textSize="18sp"/>
 
 

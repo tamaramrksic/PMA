@@ -1,9 +1,11 @@
 package com.example.ftn.showbook;
 import com.example.ftn.showbook.model.Comment;
+import com.example.ftn.showbook.model.Event;
 import com.example.ftn.showbook.model.Facility;
 import com.example.ftn.showbook.model.Mail;
 import com.example.ftn.showbook.model.Repertoire;
 import com.example.ftn.showbook.model.Reservation;
+import com.example.ftn.showbook.model.SeatAvailability;
 import com.example.ftn.showbook.model.Show;
 import com.example.ftn.showbook.model.User;
 import com.example.ftn.showbook.model.UserCredentials;
@@ -82,9 +84,17 @@ public interface  PmaService {
     @GET("comments/{showId}")
     Call<List<Comment>> getCommentsByShow(@Path("showId")Long id);
 
-
     @GET("reservations/rating/{id}/{username}/{rating}")
     Call<ResponseBody> ratingReservation(@Path("id")Long id,@Path("username")String username,  @Path("rating")Integer rating);
+
+    //EVENTS
+    @GET("events/{showId}/{facilityId}/{date}")
+    Call<List<String>> getEventTimes(@Path("showId")Long showId, @Path("facilityId")Long facilityId, @Path("date")String date);
+    @GET("events/{showId}/{facilityId}/{date}/{time}")
+    Call<List<String>> getEventHalls(@Path("showId")Long showId, @Path("facilityId")Long facilityId, @Path("date")String date, @Path("time")String time);
+
+    @GET("events/{showId}/{facilityId}/{facilityHallName}/{date}/{time}")
+    Call<List<SeatAvailability>> getEventSeats(@Path("showId")Long showId, @Path("facilityId")Long facilityId, @Path("facilityHallName")String facilityHallName, @Path("date")String date, @Path("time")String time);
 
     @GET("users/{username}/show/{showId}")
     Call<List<User>> getUserForNotifications(@Path("username")String username, @Path("showId")Long showId);
