@@ -2,6 +2,7 @@ package com.example.ftn.showbook;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DividerItemDecoration;
@@ -45,13 +46,22 @@ public class Tab1Repertoire extends Fragment {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
                 ((LinearLayoutManager) mLayoutManager).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
-
         // set adapter
-
-
+        System.out.println("uslo u repertoar");
+        RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), shows, "repertoire");
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setVisibility(View.VISIBLE);
+        emptyView.setVisibility(View.GONE);
         return rootView;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        intent = getActivity().getIntent();
+        facilityId = Long.parseLong(intent.getStringExtra("FacilityId"));
+        getRepertoire();
+    }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -62,26 +72,6 @@ public class Tab1Repertoire extends Fragment {
             ft.detach(this).attach(this).commit();
 
         }
-    }
-
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        intent = getActivity().getIntent();
-        facilityId = Long.parseLong(intent.getStringExtra("FacilityId"));
-        getRepertoire();
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), shows, "repertoire");
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setVisibility(View.VISIBLE);
-        emptyView.setVisibility(View.GONE);
     }
 
 
@@ -111,4 +101,6 @@ public class Tab1Repertoire extends Fragment {
 
         });
     }
+
+
 }

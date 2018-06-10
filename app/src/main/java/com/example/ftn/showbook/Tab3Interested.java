@@ -45,13 +45,7 @@ public class Tab3Interested extends Fragment {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
                 ((LinearLayoutManager) mLayoutManager).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
-
-        return rootView;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        System.out.println("uslo u zainteresovane");
         Bundle args = this.getArguments();
         if(args.getString("parent").equals("main")) {
             getInterestedShows();
@@ -59,25 +53,7 @@ public class Tab3Interested extends Fragment {
         else if(args.getString("parent").equals("repertoire")) {
             getFacilityInterestedShows();
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        Bundle args = this.getArguments();
-        if(args.getString("parent").equals("main")) {
-            RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows,"interested");
-            mRecyclerView.setAdapter(mAdapter);
-            mRecyclerView.setVisibility(View.VISIBLE);
-            emptyView.setVisibility(View.GONE);
-        }
-        else if(args.getString("parent").equals("repertoire")) {
-            RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows, "interested");
-            mRecyclerView.setAdapter(mAdapter);
-            mRecyclerView.setVisibility(View.VISIBLE);
-            emptyView.setVisibility(View.GONE);
-        }
+        return rootView;
     }
 
     public void getInterestedShows() {

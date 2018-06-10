@@ -239,7 +239,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
 
                 if(markers.get(marker) != null) {
                     FacilityDB facilityDB = markers.get(marker);
-                    System.out.println("pritisnut je neki facilitiy a id mu je " + facilityDB.getId());
+                    System.out.println("pritisnut je neki facilitiy a id mu je " + facilityDB.getBackId());
                     intent.putExtra("FacilityId", facilityDB.getBackId());
                     fragmentManager.beginTransaction()
                             .replace(R.id.main_container, new RepertoireFragment())
