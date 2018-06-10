@@ -17,7 +17,6 @@ import com.example.ftn.showbook.model.Reservation;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -116,4 +115,6 @@ public class Tab2Reserved  extends Fragment {
             }
         });
     }
+
+
 }

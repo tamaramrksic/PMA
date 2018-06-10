@@ -25,11 +25,6 @@ import retrofit2.Response;
 
 public class Tab1Repertoire extends Fragment {
 
-    Integer[] imgid={
-            R.drawable.avengers,
-            R.drawable.peter_rabbit,
-            R.drawable.hari
-    };
     private Intent intent;
     private ArrayList<Show> shows;
     private RecyclerView mRecyclerView;
@@ -39,6 +34,7 @@ public class Tab1Repertoire extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab1repertoire, container, false);
+
         mRecyclerView = rootView.findViewById(R.id.tab1_recycler_view);
         emptyView = rootView.findViewById(R.id.no_repertoire_view);
         // use a linear layout manager
@@ -53,7 +49,6 @@ public class Tab1Repertoire extends Fragment {
         facilityId = Long.parseLong(intent.getStringExtra("FacilityId"));
         // set adapter
 
-        System.out.println("KREIRAN TAB 1");
         getRepertoire();
 
         return rootView;
@@ -64,18 +59,10 @@ public class Tab1Repertoire extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
             // Refresh your fragment here
-            System.out.println("na repertoaru je ");
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.detach(this).attach(this).commit();
 
         }
-    }
-
-    @Override
-    public void onResume() {
-        // TODO Auto-generated method stub
-        super.onResume();
-
     }
 
 

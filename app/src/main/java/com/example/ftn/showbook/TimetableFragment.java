@@ -36,6 +36,9 @@ public class TimetableFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_timetable, container, false);
+
+        getActivity().setTitle(getResources().getString(R.string.timetable_fragment_title));
+
         nextButton = rootView.findViewById(R.id.timetable_button);
         srfArgs = new Bundle();
 

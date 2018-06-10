@@ -31,6 +31,7 @@ public class RepertoireFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_repertoire, container, false);
+        getActivity().setTitle(getResources().getString(R.string.app_name));
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -84,14 +85,17 @@ public class RepertoireFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
+                    getActivity().setTitle(getResources().getString(R.string.app_name));
                     return new Tab1Repertoire();
                 case 1:
+                    getActivity().setTitle(getResources().getString(R.string.nav_reserved_label));
                     Fragment tab2Reserved = new Tab2Reserved();
                     Bundle bundleReserved = new Bundle();
                     bundleReserved.putString("parent", "repertoire");
                     tab2Reserved.setArguments(bundleReserved);
                     return tab2Reserved;
                 case 2:
+                    getActivity().setTitle(getResources().getString(R.string.nav_interested_label));
                     Fragment tab3Interested = new Tab3Interested();
                     Bundle bundleInterested = new Bundle();
                     bundleInterested.putString("parent", "repertoire");
