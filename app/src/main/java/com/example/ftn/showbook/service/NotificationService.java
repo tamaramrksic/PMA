@@ -37,7 +37,6 @@ public class NotificationService extends FirebaseMessagingService
 
 // Create an Intent for the activity you want to start
         Intent resultIntent = new Intent(this, MainActivity.class);
-//        resultIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         resultIntent.putExtra("notification", "commentsFragment");
         resultIntent.putExtra("drawerUsername", remoteMessage.getData().get("username")); //mozda nece biti potrebno kad se zavrse notifikacije

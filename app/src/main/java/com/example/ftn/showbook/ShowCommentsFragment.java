@@ -37,6 +37,8 @@ public class ShowCommentsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_show_comments, container, false);
         args = this.getArguments();
+
+        getActivity().setTitle(getResources().getString(R.string.show_comments_title));
         mRecyclerView = rootView.findViewById(R.id.comments_recycler_view);
         emptyView = rootView.findViewById(R.id.no_comments_view);
         // use a linear layout manager

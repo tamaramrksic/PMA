@@ -38,6 +38,8 @@ public class SeatReserveFragment extends Fragment {
         currentFragment = this;
         args = this.getArguments();
 
+        getActivity().setTitle(getResources().getString(R.string.seat_reserve_fragment_title));
+
         ((TextView)rootView.findViewById(R.id.show_name_heading)).setText(args.getString("showName"));
         ((TextView)rootView.findViewById(R.id.date_value)).setText(args.getString("date"));
         ((TextView)rootView.findViewById(R.id.time_value)).setText(args.getString("time"));

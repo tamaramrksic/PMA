@@ -121,6 +121,50 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+        fragmentManager.addOnBackStackChangedListener(
+                new FragmentManager.OnBackStackChangedListener() {
+                    public void onBackStackChanged() {
+                            Fragment currentFragment = fragmentManager.findFragmentById(R.id.main_container);
+                            if(currentFragment instanceof HomeFragment){
+                                mNavigationView.getMenu().getItem(0).setChecked(true);
+                                getSupportActionBar().setTitle(getResources().getString(R.string.nav_map_label));
+                            }
+                            else if(currentFragment instanceof Tab2Reserved){
+                                mNavigationView.getMenu().getItem(1).setChecked(true);
+                                getSupportActionBar().setTitle(getResources().getString(R.string.nav_reserved_label));
+                            }
+                            else if(currentFragment instanceof Tab3Interested){
+                                mNavigationView.getMenu().getItem(2).setChecked(true);
+                                getSupportActionBar().setTitle(getResources().getString(R.string.nav_interested_label));
+                            }
+                            else if(currentFragment instanceof SeenShowsFragment){
+                                mNavigationView.getMenu().getItem(3).setChecked(true);
+                                getSupportActionBar().setTitle(getResources().getString(R.string.nav_seen_label));
+
+                            }
+                            else if(currentFragment instanceof SettingsFragment){
+                                mNavigationView.getMenu().getItem(4).setChecked(true);
+                                getSupportActionBar().setTitle(getResources().getString(R.string.nav_settings_label));
+                            } else if(currentFragment instanceof ShowDetailsFragment){
+                                getSupportActionBar().setTitle(getResources().getString(R.string.show_fragment_details_title));
+                            } else if(currentFragment instanceof ReservedShowDetailsFragment){
+                                getSupportActionBar().setTitle(getResources().getString(R.string.reserved_show_fragment_title));
+                            } else if(currentFragment instanceof SeatReserveFragment){
+                                getSupportActionBar().setTitle(getResources().getString(R.string.seat_reserve_fragment_title));
+                            } else if(currentFragment instanceof ShowCommentsFragment){
+                                getSupportActionBar().setTitle(getResources().getString(R.string.show_comments_title));
+                            } else if(currentFragment instanceof RepertoireFragment){
+                                getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+                            } else if(currentFragment instanceof TimetableFragment){
+                                getSupportActionBar().setTitle(getResources().getString(R.string.timetable_fragment_title));
+                            }
+                            else if(currentFragment instanceof CommentFragment){
+                                getSupportActionBar().setTitle(getResources().getString(R.string.leave_comment_title));
+                            }
+
+                        }
+                });
+
 
     }
 
@@ -146,24 +190,18 @@ public class MainActivity extends AppCompatActivity {
                 Fragment currentFragment = manager.findFragmentById(R.id.main_container);
                 if(currentFragment instanceof HomeFragment){
                     mNavigationView.getMenu().getItem(0).setChecked(true);
-                    getSupportActionBar().setTitle(mNavigationView.getMenu().getItem(0).getTitle());
                 }
                 else if(currentFragment instanceof Tab2Reserved){
                     mNavigationView.getMenu().getItem(1).setChecked(true);
-                    getSupportActionBar().setTitle(mNavigationView.getMenu().getItem(1).getTitle());
                 }
                 else if(currentFragment instanceof Tab3Interested){
                     mNavigationView.getMenu().getItem(2).setChecked(true);
-                    getSupportActionBar().setTitle(mNavigationView.getMenu().getItem(2).getTitle());
                 }
                 else if(currentFragment instanceof SeenShowsFragment){
                     mNavigationView.getMenu().getItem(3).setChecked(true);
-                    getSupportActionBar().setTitle(mNavigationView.getMenu().getItem(3).getTitle());
-
                 }
-                else if(currentFragment instanceof SettingsFragment){
+                else if(currentFragment instanceof SettingsFragment) {
                     mNavigationView.getMenu().getItem(4).setChecked(true);
-                    getSupportActionBar().setTitle(mNavigationView.getMenu().getItem(4).getTitle());
                 }
             } else {
                 super.onBackPressed();
@@ -225,6 +263,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
 
 
 

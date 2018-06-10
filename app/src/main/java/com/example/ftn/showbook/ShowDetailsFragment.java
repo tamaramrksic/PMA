@@ -30,6 +30,8 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_show_details, container, false);
         args = this.getArguments();
+        getActivity().setTitle(getResources().getString(R.string.show_fragment_details_title));
+
         ((ImageView)rootView.findViewById(R.id.show_image)).setImageResource(ShowListAdapter.getImage(args.getLong("showId")));
         ((TextView)rootView.findViewById(R.id.show_name)).setText(args.getString("showName"));
         ((TextView)rootView.findViewById(R.id.show_directors)).setText(args.getString("showDirectors"));
@@ -74,6 +76,7 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
         fragmentManager = getActivity().getSupportFragmentManager();
         return rootView;
     }
+
 
     @Override
     public void onClick(View view) {

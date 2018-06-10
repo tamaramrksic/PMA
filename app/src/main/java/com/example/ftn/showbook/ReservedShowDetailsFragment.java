@@ -31,7 +31,9 @@ public class ReservedShowDetailsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_reserved_show_details, container, false);
         final Bundle args = this.getArguments();
         intent = getActivity().getIntent();
-         username = intent.getStringExtra("drawerUsername");
+
+        getActivity().setTitle(getResources().getString(R.string.reserved_show_fragment_title));
+        username = intent.getStringExtra("drawerUsername");
         ((ImageView)rootView.findViewById(R.id.show_image)).setImageResource(ShowListAdapter.getImage(args.getLong("showId")));
         ((TextView)rootView.findViewById(R.id.show_name_heading)).setText(args.getString("showName"));
         ((TextView)rootView.findViewById(R.id.show_duration_value)).setText(args.getString("showDuration") + " min");
