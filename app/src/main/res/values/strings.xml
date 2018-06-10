@@ -164,6 +164,7 @@
 
     <string name="no_interested_shows_message">Trenutno nema filmova/predstava za koji ste zainteresovani.</string>
     <string name="interested_shows_failure_message">Nije moguće učitati predstave/filmove za koje ste zainteresovani.</string>
+    <string name="is_interested_failure_message">Došlo je do greške prilikom provere.</string>
 
     <string name="no_comments_message">Trenutno nema komentara.</string>
     <string name="no_comment_failure">Nije moguće učitati komentare.</string>
@@ -200,4 +201,8 @@
     <string name="timetable_fragment_title">Izbor datuma, vremena i sale</string>
 
 
+
+    <string name="no_seats_selected">Niste označili sedišta za izabranu projekciju.</string>
+    <string name="make_reservation_success">Rezervacija je uspešno kreirana.</string>
+    <string name="make_reservation_failure">Došlo je do greške prilikom kreiranja rezervacije.</string>
 </resources>

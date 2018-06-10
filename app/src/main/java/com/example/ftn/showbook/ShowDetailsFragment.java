@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.ViewManager;
 import android.widget.Button;
 
 import android.widget.ImageView;
@@ -47,9 +48,11 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
         final Button interestedBtn = rootView.findViewById(R.id.button_interested_in);
         interestedBtn.setOnClickListener(this);
 
-        if (args.getString("fragmentName").equals("interested")) {
+        if (args.getString("fragmentName").equals("interested_main")) {
             interestedBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_remove,0,0,0);
             interestedBtn.setTag("add");
+            final Button timetableBtn = rootView.findViewById(R.id.button_see_timetable);
+            ((ViewManager)timetableBtn.getParent()).removeView(timetableBtn);
         } else if(args.getString("fragmentName").equals("repertoire")) {
             Call<Boolean> call = ServiceUtils.pmaService.isInterestedShow(getActivity().getIntent().getStringExtra("drawerUsername"), args.getLong("showId"));
             call.enqueue(new Callback<Boolean>() {
@@ -65,7 +68,7 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
                 }
                 @Override
                 public void onFailure(Call<Boolean> call, Throwable t) {
-                    Toast.makeText(getActivity(), R.string.fail_message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.is_interested_failure_message, Toast.LENGTH_SHORT).show();
                 }
             });
         }

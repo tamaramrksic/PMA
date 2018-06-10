@@ -70,7 +70,7 @@ public class Tab3Interested extends Fragment {
                     emptyView.setVisibility(View.VISIBLE);
                 }
                 else {
-                    RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows,"interested");
+                    RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows,"interested_main");
                     mRecyclerView.setAdapter(mAdapter);
                     mRecyclerView.setVisibility(View.VISIBLE);
                     emptyView.setVisibility(View.GONE);
@@ -100,7 +100,7 @@ public class Tab3Interested extends Fragment {
                     emptyView.setVisibility(View.VISIBLE);
                 }
                 else {
-                    RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows, "interested");
+                    RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows, "repertoire");
                     mRecyclerView.setAdapter(mAdapter);
                     mRecyclerView.setVisibility(View.VISIBLE);
                     emptyView.setVisibility(View.GONE);
