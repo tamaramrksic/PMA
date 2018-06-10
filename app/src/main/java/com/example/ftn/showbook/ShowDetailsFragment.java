@@ -63,7 +63,7 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
                 }
                 @Override
                 public void onFailure(Call<Boolean> call, Throwable t) {
-                    Toast.makeText(getActivity(), R.string.fail_message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.is_interested_failure_message, Toast.LENGTH_SHORT).show();
                 }
             });
         }
