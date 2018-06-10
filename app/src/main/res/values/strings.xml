@@ -113,9 +113,8 @@
     <string name="tab_text_1">Repertoar</string>
     <string name="tab_text_2">Rezervacija</string>
     <string name="tab_text_3">Zainteresovan</string>
-    <string name="action_settings">Podesavanja</string>
+    <string name="action_settings">Podešavanja</string>
     <string name="title_activity_timetable">TimetableActivity</string>
-    <string name="title_activity_proba">ProbaActivity</string>
 
     <string name="title_timetable">Schedule</string>
 
@@ -123,6 +122,7 @@
     <string name="nav_reserved_label">Rezervacije</string>
     <string name="nav_interested_label">Zainteresovan</string>
     <string name="nav_seen_label">Pogledano</string>
+    <string name="nav_settings_label">Podešavanja</string>
     <string name="nav_logout_label">Odjavi se</string>
 
 
@@ -164,11 +164,12 @@
 
     <string name="no_interested_shows_message">Trenutno nema filmova/predstava za koji ste zainteresovani.</string>
     <string name="interested_shows_failure_message">Nije moguće učitati predstave/filmove za koje ste zainteresovani.</string>
+    <string name="is_interested_failure_message">Došlo je do greške prilikom provere.</string>
 
     <string name="no_comments_message">Trenutno nema komentara.</string>
     <string name="no_comment_failure">Nije moguće učitati komentare.</string>
 
-    <string name="leave_comment_title">Ostavite komentar za </string>
+    <string name="leave_comment_title">Ostavite komentar</string>
     <string name="send_comment_failure">Nije moguće sačuvati Vaš komentar.</string>
     <string name="send_comment_notifications_failure">Greška prilikom slanja notifikacija.</string>
 
@@ -192,4 +193,16 @@
 
     <string name="notification_title">Komentar za </string>
     <string name="notification_text"> je komentarisao/la događaj za koji ste zainteresovani.</string>
+
+    <string name="show_comments_title">Komentari</string>
+    <string name="show_fragment_details_title">Detalji filma/predstave</string>
+    <string name="reserved_show_fragment_title">Detalji rezervacije</string>
+    <string name="seat_reserve_fragment_title">Izbor sedišta</string>
+    <string name="timetable_fragment_title">Izbor datuma, vremena i sale</string>
+
+
+
+    <string name="no_seats_selected">Niste označili sedišta za izabranu projekciju.</string>
+    <string name="make_reservation_success">Rezervacija je uspešno kreirana.</string>
+    <string name="make_reservation_failure">Došlo je do greške prilikom kreiranja rezervacije.</string>
 </resources>

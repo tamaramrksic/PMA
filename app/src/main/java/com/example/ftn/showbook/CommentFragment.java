@@ -55,7 +55,7 @@ public class CommentFragment extends Fragment implements View.OnClickListener {
         args = this.getArguments();
         context = getActivity().getApplicationContext();
 
-//        getActivity().setTitle(getResources().getString(R.string.leave_comment_title) + args.getString("showName"));
+        getActivity().setTitle(getResources().getString(R.string.leave_comment_title));
         ((ImageView)rootView.findViewById(R.id.show_image)).setImageResource(ShowListAdapter.getImage(args.getLong("showId")));
         ((TextView)rootView.findViewById(R.id.show_name_heading)).setText(args.getString("showName"));
         commentEditText = rootView.findViewById(R.id.write_comment);

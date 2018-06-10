@@ -10,6 +10,7 @@ import com.example.ftn.showbook.model.Show;
 import com.example.ftn.showbook.model.User;
 import com.example.ftn.showbook.model.UserCredentials;
 import com.example.ftn.showbook.model.UserPreferences;
+import com.example.ftn.showbook.model.dto.ReservationInfo;
 
 import java.util.List;
 
@@ -78,6 +79,9 @@ public interface  PmaService {
     @DELETE("reservations/{id}")
     Call<ResponseBody> cancelReservation(@Path("id")Long id);
 
+    @POST("reservations/reserve")
+    Call<Reservation> makeReservation(@Body ReservationInfo reservationInfo);
+
     @POST("comments/{showId}/{username}")
     Call<Comment> commentShow(@Body Comment comment, @Path("showId")Long id, @Path("username")String username);
 
@@ -85,14 +89,13 @@ public interface  PmaService {
     Call<List<Comment>> getCommentsByShow(@Path("showId")Long id);
 
     @GET("reservations/rating/{id}/{username}/{rating}")
-    Call<ResponseBody> ratingReservation(@Path("id")Long id,@Path("username")String username,  @Path("rating")Integer rating);
+    Call<ResponseBody> ratingReservation(@Path("id")Long id,@Path("username")String username, @Path("rating")Integer rating);
 
     //EVENTS
     @GET("events/{showId}/{facilityId}/{date}")
     Call<List<String>> getEventTimes(@Path("showId")Long showId, @Path("facilityId")Long facilityId, @Path("date")String date);
     @GET("events/{showId}/{facilityId}/{date}/{time}")
     Call<List<String>> getEventHalls(@Path("showId")Long showId, @Path("facilityId")Long facilityId, @Path("date")String date, @Path("time")String time);
-
     @GET("events/{showId}/{facilityId}/{facilityHallName}/{date}/{time}")
     Call<List<SeatAvailability>> getEventSeats(@Path("showId")Long showId, @Path("facilityId")Long facilityId, @Path("facilityHallName")String facilityHallName, @Path("date")String date, @Path("time")String time);
 

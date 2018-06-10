@@ -25,11 +25,6 @@ import retrofit2.Response;
 
 public class Tab1Repertoire extends Fragment {
 
-    Integer[] imgid={
-            R.drawable.avengers,
-            R.drawable.peter_rabbit,
-            R.drawable.hari
-    };
     private Intent intent;
     private ArrayList<Show> shows;
     private RecyclerView mRecyclerView;
@@ -39,6 +34,7 @@ public class Tab1Repertoire extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab1repertoire, container, false);
+
         mRecyclerView = rootView.findViewById(R.id.tab1_recycler_view);
         emptyView = rootView.findViewById(R.id.no_repertoire_view);
         // use a linear layout manager
@@ -51,9 +47,6 @@ public class Tab1Repertoire extends Fragment {
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
         // set adapter
-
-       // System.out.println("KREIRAN TAB 1");
-      //  getRepertoire();
 
 
         return rootView;
@@ -70,6 +63,7 @@ public class Tab1Repertoire extends Fragment {
 
         }
     }
+
 
 
     @Override
@@ -89,6 +83,7 @@ public class Tab1Repertoire extends Fragment {
         mRecyclerView.setVisibility(View.VISIBLE);
         emptyView.setVisibility(View.GONE);
     }
+
 
     public void getRepertoire() {
         Call<List<Show>> call = ServiceUtils.pmaService.getShowsByFacility(facilityId);

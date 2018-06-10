@@ -24,10 +24,6 @@ import retrofit2.Response;
 
 public class SeenShowsFragment  extends Fragment {
 
-    Integer[] imgid={
-            R.drawable.avengers,
-            R.drawable.peter_rabbit
-    };
     private ArrayList<Reservation> seenShows;
     private RecyclerView mRecyclerView;
     private TextView emptyView;
@@ -36,6 +32,8 @@ public class SeenShowsFragment  extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_seen_shows, container, false);
+
+        getActivity().setTitle(getResources().getString(R.string.nav_seen_label));
 
         mRecyclerView = rootView.findViewById(R.id.seen_show_recycler_view);
         emptyView = rootView.findViewById(R.id.no_seen_shows_view);

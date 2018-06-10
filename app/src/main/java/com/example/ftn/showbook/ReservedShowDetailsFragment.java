@@ -31,7 +31,9 @@ public class ReservedShowDetailsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_reserved_show_details, container, false);
         final Bundle args = this.getArguments();
         intent = getActivity().getIntent();
-         username = intent.getStringExtra("drawerUsername");
+
+        getActivity().setTitle(getResources().getString(R.string.reserved_show_fragment_title));
+        username = intent.getStringExtra("drawerUsername");
         ((ImageView)rootView.findViewById(R.id.show_image)).setImageResource(ShowListAdapter.getImage(args.getLong("showId")));
         ((TextView)rootView.findViewById(R.id.show_name_heading)).setText(args.getString("showName"));
         ((TextView)rootView.findViewById(R.id.show_duration_value)).setText(args.getString("showDuration") + " min");
@@ -67,7 +69,6 @@ public class ReservedShowDetailsFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-
                 Call<ResponseBody> call = ServiceUtils.pmaService.cancelReservation(args.getLong("reservationId"));
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -75,29 +76,20 @@ public class ReservedShowDetailsFragment extends Fragment {
                         ((AppCompatActivity)getContext()).getSupportFragmentManager().popBackStack();
 
                     }
-
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Toast.makeText(getActivity(),getResources().getString(R.string.cancel_reservation_failure_message), Toast.LENGTH_LONG).show();
                     }
-
                 });
-
-
-
             }
         });
-
-
 
         ratingButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
                 Float ratingFloat = ratingBar.getRating();
                 Integer rating = Math.round(ratingFloat);
-
 
                 Call<ResponseBody> call = ServiceUtils.pmaService.ratingReservation(reservationId, username,rating);
                 call.enqueue(new Callback<ResponseBody>() {
@@ -107,22 +99,14 @@ public class ReservedShowDetailsFragment extends Fragment {
                         ((AppCompatActivity)getContext()).getSupportFragmentManager().popBackStack();
 
                     }
-
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
 
                     }
-
                 });
-
-
-
             }
         });
 
-
         return rootView;
     }
-
-
 }

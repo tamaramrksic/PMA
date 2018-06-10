@@ -34,6 +34,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         addPreferencesFromResource(R.xml.preferences);
         intent = getActivity().getIntent();
 
+        getActivity().setTitle(getResources().getString(R.string.nav_settings_label));
+
         db = new DatabaseHelper(getActivity());
         String username = intent.getStringExtra("drawerUsername");
         userDB = db.getUserByUsername(username);
