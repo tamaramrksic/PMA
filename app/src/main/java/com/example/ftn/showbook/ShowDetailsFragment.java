@@ -51,7 +51,7 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
             interestedBtn.setTag("add");
             final Button timetableBtn = rootView.findViewById(R.id.button_see_timetable);
             ((ViewManager)timetableBtn.getParent()).removeView(timetableBtn);
-        } else if(args.getString("fragmentName").equals("interested_repertoire")) {
+        } else if(args.getString("fragmentName").equals("repertoire")) {
             Call<Boolean> call = ServiceUtils.pmaService.isInterestedShow(getActivity().getIntent().getStringExtra("drawerUsername"), args.getLong("showId"));
             call.enqueue(new Callback<Boolean>() {
                 @Override
