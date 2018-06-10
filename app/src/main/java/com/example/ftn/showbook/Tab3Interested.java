@@ -2,6 +2,7 @@ package com.example.ftn.showbook;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -46,6 +47,12 @@ public class Tab3Interested extends Fragment {
                 ((LinearLayoutManager) mLayoutManager).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
+        return rootView;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         Bundle args = this.getArguments();
         if(args.getString("parent").equals("main")) {
             getInterestedShows();
@@ -53,8 +60,25 @@ public class Tab3Interested extends Fragment {
         else if(args.getString("parent").equals("repertoire")) {
             getFacilityInterestedShows();
         }
+    }
 
-        return rootView;
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Bundle args = this.getArguments();
+        if(args.getString("parent").equals("main")) {
+            RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows,"interested");
+            mRecyclerView.setAdapter(mAdapter);
+            mRecyclerView.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+        }
+        else if(args.getString("parent").equals("repertoire")) {
+            RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows, "interested");
+            mRecyclerView.setAdapter(mAdapter);
+            mRecyclerView.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+        }
     }
 
     public void getInterestedShows() {

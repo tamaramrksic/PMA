@@ -48,6 +48,14 @@ public class Tab2Reserved  extends Fragment {
                 ((LinearLayoutManager) mLayoutManager).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
+
+
+        return rootView;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         //get data for adapter
         Bundle args = this.getArguments();
         if(args.getString("parent").equals("main")) {
@@ -57,7 +65,24 @@ public class Tab2Reserved  extends Fragment {
             getFacilityReservations();
         }
 
-        return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Bundle args = this.getArguments();
+        if(args.getString("parent").equals("main")) {
+            RecyclerView.Adapter mAdapter = new ReservationListAdapter(getActivity(), reservations, "reserved");
+            mRecyclerView.setAdapter(mAdapter);
+            mRecyclerView.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+        }
+        else if(args.getString("parent").equals("repertoire")) {
+            RecyclerView.Adapter mAdapter = new ReservationListAdapter(getActivity(), reservations, "reserved");
+            mRecyclerView.setAdapter(mAdapter);
+            mRecyclerView.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+        }
     }
 
     public void getReservations() {

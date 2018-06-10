@@ -49,42 +49,53 @@ public class Tab1Repertoire extends Fragment {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
                 ((LinearLayoutManager) mLayoutManager).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
-        intent = getActivity().getIntent();
-        facilityId = Long.parseLong(intent.getStringExtra("FacilityId"));
+
         // set adapter
 
-        System.out.println("KREIRAN TAB 1");
-        getRepertoire();
+       // System.out.println("KREIRAN TAB 1");
+      //  getRepertoire();
+
 
         return rootView;
     }
+
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
             // Refresh your fragment here
-            System.out.println("na repertoaru je ");
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.detach(this).attach(this).commit();
 
         }
     }
 
+
     @Override
-    public void onResume() {
-        // TODO Auto-generated method stub
-        super.onResume();
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        intent = getActivity().getIntent();
+        facilityId = Long.parseLong(intent.getStringExtra("FacilityId"));
+        getRepertoire();
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), shows, "repertoire");
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setVisibility(View.VISIBLE);
+        emptyView.setVisibility(View.GONE);
+    }
 
     public void getRepertoire() {
         Call<List<Show>> call = ServiceUtils.pmaService.getShowsByFacility(facilityId);
         call.enqueue(new Callback<List<Show>>() {
             @Override
             public void onResponse(Call<List<Show>> call, Response<List<Show>> response) {
-                    shows = new ArrayList<>(response.body());
+                shows = new ArrayList<>(response.body());
                 if (shows.isEmpty()) {
                     mRecyclerView.setVisibility(View.GONE);
                     emptyView.setVisibility(View.VISIBLE);
