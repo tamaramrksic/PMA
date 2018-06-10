@@ -193,4 +193,8 @@
 
     <string name="notification_title">Komentar za </string>
     <string name="notification_text"> je komentarisao/la događaj za koji ste zainteresovani.</string>
+
+    <string name="no_seats_selected">Niste označili sedišta za izabranu projekciju.</string>
+    <string name="make_reservation_success">Rezervacija je uspešno kreirana.</string>
+    <string name="make_reservation_failure">Došlo je do greške prilikom kreiranja rezervacije.</string>
 </resources>
