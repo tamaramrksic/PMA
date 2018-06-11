@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -22,6 +23,7 @@ import com.example.ftn.showbook.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -62,6 +64,8 @@ public class RegisterActivity extends AppCompatActivity{
                 String username_string = username.getText().toString();
                 EditText password = (EditText) findViewById(R.id.password);
                 String password_string = password.getText().toString();
+                EditText email = (EditText) findViewById(R.id.email);
+                String email_string = email.getText().toString();
                 EditText address = (EditText) findViewById(R.id.address);
                 String address_string = address.getText().toString();
                 Spinner city = (Spinner) findViewById(R.id.city);
@@ -91,6 +95,13 @@ public class RegisterActivity extends AppCompatActivity{
                 }
                 if (address_string.length() == 0) {
                     address.setError(getResources().getString(R.string.address_required));
+                }
+                if(email_string.length()==0) {
+                    email.setError(getResources().getString(R.string.email_required));
+                }
+
+                if(!Patterns.EMAIL_ADDRESS.matcher(email_string).matches()) {
+                    email.setError(getResources().getString(R.string.email_required_form));
                 }
                 if (city_number.equals(0L)) {
                    /* TextView errorText = (TextView)city.getSelectedView();
@@ -124,13 +135,15 @@ public class RegisterActivity extends AppCompatActivity{
                 }
                 if(first_name_string.length() != 0 && last_name_string.length() != 0 &&
                         username_string.length() != 0 && password_string.length() != 0 &&
-                        address_string.length() != 0 && !city_number.equals(0L)) {
+                        address_string.length() != 0 && !city_number.equals(0L) && email_string.length()!=0
+                        && Patterns.EMAIL_ADDRESS.matcher(email_string).matches()) {
                     User user = new User();
                     user.setFirstName(first_name_string);
                     user.setLastName(last_name_string);
                     user.setUsername(username_string);
                     user.setPassword(password_string);
                     user.setAddress(address_string);
+                    user.setEmail(email_string);
                     Call<User> call = ServiceUtils.pmaService.registr(user, city_number);
                     call.enqueue(new Callback<User>() {
                         @Override

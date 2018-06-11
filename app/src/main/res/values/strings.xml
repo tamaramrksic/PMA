@@ -7,6 +7,7 @@
     <string name="first_name">Ime</string>
     <string name="last_name">Prezime</string>
     <string name="adress">Adresa</string>
+    <string name="email">E-mail</string>
     <string name="city">Grad</string>
     <string name="city_hint">Izaberi grad</string>
     <string name="already_registred">Već ste registrovani? Uloguj se!</string>
@@ -133,7 +134,7 @@
 
     <string name="invalid_login_message">Neispravano korisničko ime i/ili lozinka!</string>
     <string name="success_message">Uspešno!</string>
-    <string name="fail_message">Takvo korisničko ime već postoji!</string>
+    <string name="fail_message">Takvo korisničko ime ili e-mail već postoji!</string>
     <string name="fail_pass_message">Šifre se ne poklapaju!</string>
     <string name="first_name_required">Ime je obavezno!</string>
     <string name="last_name_required">Prezime je obavezno!</string>
@@ -141,8 +142,8 @@
     <string name="username_required">Korisničko ime je obavezno!</string>
     <string name="password_required">Šifra je obavezna!</string>
     <string name="city_required">Odabir grada je obavezan!</string>
-
-
+    <string name="email_required">E-mail adresa je obavezna!</string>
+    <string name="email_required_form">Ovo nije e-mail adresa!</string>
     <string name="location_disabled_message">Lokacija je onemogućena, da li želiš da je omogućiš?</string>
 
     <string name="oops">Uups</string>
