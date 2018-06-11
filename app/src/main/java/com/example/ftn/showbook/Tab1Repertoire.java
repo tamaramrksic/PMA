@@ -52,6 +52,7 @@ public class Tab1Repertoire extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setVisibility(View.VISIBLE);
         emptyView.setVisibility(View.GONE);
+
         return rootView;
     }
 

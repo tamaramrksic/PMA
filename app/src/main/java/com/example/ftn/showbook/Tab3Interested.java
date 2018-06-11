@@ -122,7 +122,7 @@ public class Tab3Interested extends Fragment {
                     emptyView.setVisibility(View.VISIBLE);
                 }
                 else {
-                    RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows, "repertoire");
+                    RecyclerView.Adapter mAdapter = new ShowListAdapter(getContext(), interestedShows, "repertoire");
                     mRecyclerView.setAdapter(mAdapter);
                     mRecyclerView.setVisibility(View.VISIBLE);
                     emptyView.setVisibility(View.GONE);
@@ -136,4 +136,8 @@ public class Tab3Interested extends Fragment {
 
         });
     }
+
+
+
+
 }

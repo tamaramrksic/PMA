@@ -36,7 +36,7 @@ public class RepertoireFragment extends Fragment {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new RepertoireFragment.SectionsPagerAdapter(getActivity().getSupportFragmentManager());
+        mSectionsPagerAdapter = new RepertoireFragment.SectionsPagerAdapter(getChildFragmentManager());
 
         mViewPager = view.findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -128,5 +128,7 @@ public class RepertoireFragment extends Fragment {
         }
 
 
+
     }
+
 }
