@@ -75,7 +75,7 @@ public class Tab2Reserved  extends Fragment{
                     emptyView.setVisibility(View.VISIBLE);
                 }
                 else {
-                    RecyclerView.Adapter mAdapter = new ReservationListAdapter(getActivity(), reservations, "reserved");
+                    RecyclerView.Adapter mAdapter = new ReservationListAdapter(getContext(), reservations, "reserved");
                     mRecyclerView.setAdapter(mAdapter);
                     mRecyclerView.setVisibility(View.VISIBLE);
                     emptyView.setVisibility(View.GONE);
