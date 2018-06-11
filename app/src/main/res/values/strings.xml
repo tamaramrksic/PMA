@@ -175,7 +175,10 @@
 
 
     <string name="add_interested_show_failure_message">Nije moguće dodati predstavu/film na listu zainteresovanih.</string>
+    <string name="add_interested_show_success_message">Predstava/film je uspešno dodata na Vašu listu zainteresovanih.</string>
     <string name="remove_interested_show_failure_message">Nije moguće ukloniti predstavu/film sa liste zainteresovanih.</string>
+    <string name="remove_interested_show_success_message">Predstava/film je uspešno uklonjen sa Vaše liste zainteresovanih.</string>
+
 
     <string name="rating_button">Oceni!</string>
     <string name="rating_button_change">Izmeni ocenu!</string>

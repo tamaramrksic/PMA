@@ -50,7 +50,7 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
 
         if (args.getString("fragmentName").equals("interested_main")) {
             interestedBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_remove,0,0,0);
-            interestedBtn.setTag("add");
+            interestedBtn.setTag("remove");
             final Button timetableBtn = rootView.findViewById(R.id.button_see_timetable);
             ((ViewManager)timetableBtn.getParent()).removeView(timetableBtn);
         } else if(args.getString("fragmentName").equals("repertoire")) {
@@ -123,6 +123,7 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
                     call.enqueue(new Callback<Show>() {
                         @Override
                         public void onResponse(Call<Show> call, Response<Show> response) {
+                            Toast.makeText(getActivity(), R.string.add_interested_show_success_message, Toast.LENGTH_SHORT).show();
                             interestedBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_remove,0,0,0);
                             interestedBtn.setTag("remove");
                         }
@@ -137,6 +138,7 @@ public class ShowDetailsFragment extends Fragment implements View.OnClickListene
                     call.enqueue(new Callback<Show>() {
                         @Override
                         public void onResponse(Call<Show> call, Response<Show> response) {
+                            Toast.makeText(getActivity(), R.string.remove_interested_show_success_message, Toast.LENGTH_SHORT).show();
                             interestedBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_add,0,0,0);
                             interestedBtn.setTag("add");
                         }
