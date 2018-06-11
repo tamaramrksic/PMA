@@ -67,13 +67,13 @@ public class Tab3Interested extends Fragment {
 
         Bundle args = this.getArguments();
         if(args.getString("parent").equals("main")) {
-            RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows,"interested");
+            RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows,"interested_main");
             mRecyclerView.setAdapter(mAdapter);
             mRecyclerView.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
         }
         else if(args.getString("parent").equals("repertoire")) {
-            RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows, "interested");
+            RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), interestedShows, "repertoire");
             mRecyclerView.setAdapter(mAdapter);
             mRecyclerView.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
