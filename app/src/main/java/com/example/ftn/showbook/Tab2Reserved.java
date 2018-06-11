@@ -1,5 +1,6 @@
 package com.example.ftn.showbook;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class Tab2Reserved  extends Fragment {
+public class Tab2Reserved  extends Fragment{
 
     private ArrayList<Reservation> reservations;
     private RecyclerView mRecyclerView;
@@ -46,16 +47,7 @@ public class Tab2Reserved  extends Fragment {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
                 ((LinearLayoutManager) mLayoutManager).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
-
-
-
-        return rootView;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //get data for adapter
+        System.out.println("uslo u rezervacije");
         Bundle args = this.getArguments();
         if(args.getString("parent").equals("main")) {
             getReservations();
@@ -64,25 +56,10 @@ public class Tab2Reserved  extends Fragment {
             getFacilityReservations();
         }
 
+        return rootView;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        Bundle args = this.getArguments();
-        if(args.getString("parent").equals("main")) {
-            RecyclerView.Adapter mAdapter = new ReservationListAdapter(getActivity(), reservations, "reserved");
-            mRecyclerView.setAdapter(mAdapter);
-            mRecyclerView.setVisibility(View.VISIBLE);
-            emptyView.setVisibility(View.GONE);
-        }
-        else if(args.getString("parent").equals("repertoire")) {
-            RecyclerView.Adapter mAdapter = new ReservationListAdapter(getActivity(), reservations, "reserved");
-            mRecyclerView.setAdapter(mAdapter);
-            mRecyclerView.setVisibility(View.VISIBLE);
-            emptyView.setVisibility(View.GONE);
-        }
-    }
+
 
     public void getReservations() {
         Intent intent = getActivity().getIntent();
