@@ -29,7 +29,7 @@ import retrofit2.Response;
 public class SeatReserveFragment extends Fragment {
 
     private Bundle args;
-    private final List<Long> selectedSeats = new ArrayList<>();
+    private List<Long> selectedSeats = new ArrayList<>();
     private Long eventId;
     private FragmentManager fragmentManager;
 
@@ -129,6 +129,7 @@ public class SeatReserveFragment extends Fragment {
                 public void onResponse(Call<Reservation> call, Response<Reservation> response) {
                     Toast.makeText(getActivity(),getResources().getString(R.string.make_reservation_success), Toast.LENGTH_LONG).show();
                    //redirect to reservations
+                    selectedSeats = new ArrayList<>();
                     fragmentManager = getActivity().getSupportFragmentManager();
                     Tab2Reserved newFragment = new Tab2Reserved();
                     Bundle bundleReserved = new Bundle();
