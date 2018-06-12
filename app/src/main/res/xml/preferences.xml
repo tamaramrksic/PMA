@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background ="@drawable/cinema10"
+    >
+    <PreferenceCategory
+        android:title="@string/pref_title_1"
+        android:key="pref_title_1">
+        <ListPreference
+            android:dialogTitle="@string/pref_distance_title"
+            android:entries="@array/pref_distance_entries"
+            android:entryValues="@array/pref_distance_values"
+            android:key="@string/pref_distance"
+            android:title="@string/pref_distance_title"
+            android:summary="%s" />
+
+        <ListPreference
+            android:dialogTitle="@string/pref_facility_type_title"
+            android:entries="@array/pref_facility_type_entries"
+            android:entryValues="@array/pref_facility_type_values"
+            android:key="@string/pref_facility_type"
+            android:title="@string/pref_facility_type_title"
+            android:summary="%s" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_title_2"
+        android:key="pref_title_2">
+
+        <CheckBoxPreference
+
+            android:key="@string/pref_notification_key"
+            android:summary="@string/pref_notification_summary"
+            android:title="@string/pref_notification_title"
+            android:defaultValue="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_title_3"
+        android:key="pref_title_3">
+        <Preference android:title="@string/change_pass"
+            android:key="@string/pref_change_password" />
+        <Preference android:title="@string/change_profile"
+            android:key="@string/pref_change_profile" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

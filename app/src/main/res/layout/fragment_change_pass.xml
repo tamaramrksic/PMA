@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/password_dialog"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal|center_vertical"
+    android:gravity="center_horizontal|center_vertical"
+    >
+   <!--<android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_pass"
+            android:textSize="20dp"
+            android:textColor="@color/colorText"
+            android:textStyle="bold" />
+    </android.support.v7.widget.Toolbar>
+-->
+
+
+    <EditText
+        android:id="@+id/old_password"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:drawableLeft="@drawable/ic_action_password"
+        android:ems="10"
+        android:hint="@string/old_pass"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/new_password"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/old_password"
+        android:drawableLeft="@drawable/ic_action_password"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/new_pass"
+        android:inputType="textPassword" />
+    <EditText
+        android:id="@+id/conf_password"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/new_password"
+        android:layout_centerHorizontal="true"
+        android:drawableLeft="@drawable/ic_action_password"
+        android:ems="10"
+        android:hint="@string/conf_pass"
+        android:inputType="textPassword" />
+
+
+
+    <!--<Button
+        android:id="@+id/button"
+        android:layout_width="208dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="110dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorText"
+        android:text="@string/change_pass_button" />
+        -->
+
+</RelativeLayout>

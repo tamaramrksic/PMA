@@ -1,3 +1,212 @@
 <resources>
     <string name="app_name">ShowBook</string>
+    <string name="registration">Registruj se!</string>
+    <string name="username">Korisničko ime</string>
+    <string name="password">Lozinka</string>
+    <string name="login">Uloguj se!</string>
+    <string name="first_name">Ime</string>
+    <string name="last_name">Prezime</string>
+    <string name="adress">Adresa</string>
+    <string name="email">E-mail</string>
+    <string name="city">Grad</string>
+    <string name="city_hint">Izaberi grad</string>
+    <string name="already_registred">Već ste registrovani? Uloguj se!</string>
+    <string-array name="cities">
+        <item>Izaberi grad</item>
+        <item>Novi Sad</item>
+        <item>Beograd</item>
+        <item>Subotica</item>
+    </string-array>
+    <string-array name="cities_update">
+        <item>Novi Sad</item>
+        <item>Beograd</item>
+        <item>Subotica</item>
+    </string-array>
+    <string name="change_pass">Izmena šifre</string>
+    <string name="change_pass_button">Sačuvaj izmenu</string>
+    <string name="old_pass">Stara šifra</string>
+    <string name="new_pass">Nova šifre</string>
+    <string name="conf_pass">Potvrda šifre</string>
+
+    <string name="cancel">Odustani</string>
+    <string name="settings">Podešavanja</string>
+
+    <string name="pref_title_1">Podešavanja pretrage</string>
+    <string name="pref_distance_title">Udaljenost</string>
+    <string name="pref_distance">pref_distance</string>
+    <string-array name="pref_distance_entries">
+        <item>5 km</item>
+        <item>10 km</item>
+        <item>15 km</item>
+        <item>20 km</item>
+    </string-array>
+
+    <string-array name="pref_distance_values">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
+
+    <string name="pref_facility_type_title">Tip ustanove</string>
+    <string name="pref_facility_type">pref_facility_type</string>
+    <string-array name="pref_facility_type_entries">
+        <item>Bioskop</item>
+        <item>Pozorište</item>
+        <item>Oba</item>
+    </string-array>
+
+    <string-array name="pref_facility_type_values">
+        <item>CINEMA</item>
+        <item>THEATER</item>
+        <item>ALL</item>
+    </string-array>
+
+    <string name="pref_title_2">Notifikacije</string>
+    <string name="pref_notification_title">Obavestenja za komentar</string>
+    <string name="pref_notification_key">obavestenja</string>
+    <string name="pref_notification_summary">Primaj notifikacije na komentare</string>
+
+    <string name="pref_title_3">Korisnicka podesavanja</string>
+
+    <string name="pref_change_profile">pref_change_profile</string>
+    <string name="pref_change_password">pref_change_password</string>
+
+    <string name="change_profile">Izmena profila</string>
+
+    <!--_value strings are dummy data and should be deleted...-->
+    <string name="show_name_value">Osvetnici: rat beskraja 3D</string>
+    <string name="show_duration_label">Trajanje: </string>
+    <string name="show_duration_value">155 min</string>
+    <string name="date_label">Datum: </string>
+    <string name="date_value">18.04.2018</string>
+    <string name="time_label">Vreme: </string>
+    <string name="time_value">20:00</string>
+    <string name="hall_label">Sala: </string>
+    <string name="hall_value">A1</string>
+    <string name="facility_label">Objekat: </string>
+    <string name="num_of_seats_label">Broj karata: </string>
+    <string name="num_of_seats_value">2</string>
+    <string name="total_price_label">Ukupan iznos: </string>
+    <string name="total_price_value">1000 rsd</string>
+    <string name="cancel_reservation">Otkazi rezervaciju</string>
+    <string name="confirm_reservation">Rezervisi</string>
+
+    <string name="show_director_label">Reziser: </string>
+    <string name="show_director_value">Anthony Russo, Joe Russo</string>
+    <string name="show_performers_label">Glumci: </string>
+    <string name="show_performers_value">Robert Downey Jr, Benedict Cumberbatch</string>
+    <string name="show_genre_label">Zanr: </string>
+    <string name="show_genre_value">Akcioni, Avantura, SF</string>
+    <string name="show_description_label">Opis: </string>
+    <string name="show_description_value">Očekujte neočekivano sa svim voljenim herojima okupljenim na novom zadatku.</string>
+    <string name="see_timetable">Raspored termina</string>
+    <string name="add_in_interested">Zainteresovan</string>
+    <string name="see_comments">Vidi komentare</string>
+
+    <string name="comment_label">Komentarisi</string>
+    <string name="write_comment_hint">Ovde mozete uneti vas komentar...</string>
+    <string name="send_comment">Posalji komentar</string>
+    <string name="title_activity_show_comments">Komentari</string>
+
+
+    <string name="title_activity_repertoire">RepertoireActivity</string>
+    <string name="tab_text_1">Repertoar</string>
+    <string name="tab_text_2">Rezervacija</string>
+    <string name="tab_text_3">Zainteresovan</string>
+    <string name="action_settings">Podešavanja</string>
+    <string name="title_activity_timetable">TimetableActivity</string>
+
+    <string name="title_timetable">Schedule</string>
+
+    <string name="nav_map_label">Mapa</string>
+    <string name="nav_reserved_label">Rezervacije</string>
+    <string name="nav_interested_label">Zainteresovan</string>
+    <string name="nav_seen_label">Pogledano</string>
+    <string name="nav_settings_label">Podešavanja</string>
+    <string name="nav_logout_label">Odjavi se</string>
+
+
+    <string name="find">Pronadji</string>
+    <string name="hint_find">Ukucaj adresu</string>
+
+    <string name="google_map_api">AIzaSyCe3gdaNJoKjz_sFrfGYHWra9NsMgRCiRU</string>
+
+    <string name="invalid_login_message">Neispravano korisničko ime i/ili lozinka!</string>
+    <string name="success_message">Uspešno!</string>
+    <string name="fail_message">Takvo korisničko ime ili e-mail već postoji!</string>
+    <string name="fail_pass_message">Šifre se ne poklapaju!</string>
+    <string name="first_name_required">Ime je obavezno!</string>
+    <string name="last_name_required">Prezime je obavezno!</string>
+    <string name="address_required">Adresa je obavezan!</string>
+    <string name="username_required">Korisničko ime je obavezno!</string>
+    <string name="password_required">Šifra je obavezna!</string>
+    <string name="city_required">Odabir grada je obavezan!</string>
+    <string name="email_required">E-mail adresa je obavezna!</string>
+    <string name="email_required_form">Ovo nije e-mail adresa!</string>
+    <string name="location_disabled_message">Lokacija je onemogućena, da li želiš da je omogućiš?</string>
+
+    <string name="oops">Uups</string>
+
+    <string name="yes">Da</string>
+    <string name="no">Ne</string>
+    <string name="pref_radius">pref_radius</string>
+
+    <string name="no_reservations_message">Nemate rezervacija.</string>
+    <string name="no_repertoire_message">Repertoar trenutno ne postoji.</string>
+
+    <string name="reservations_failure_message">Nije moguće učitati Vaše rezervacije.</string>
+    <string name="cancel_reservation_failure_message">Nije moguće otkazati registraciju.</string>
+
+
+    <string name="repertoire_failure_message">Nije moguće učitati repertoar.</string>
+    <string name="no_seen_shows_message">Nemate pogledanih predstava ni filmova.</string>
+    <string name="seen_shows_failure_message">Nije moguće učitati Vaše pogledane predstave/filmove.</string>
+
+    <string name="no_interested_shows_message">Trenutno nema filmova/predstava za koji ste zainteresovani.</string>
+    <string name="interested_shows_failure_message">Nije moguće učitati predstave/filmove za koje ste zainteresovani.</string>
+    <string name="is_interested_failure_message">Došlo je do greške prilikom provere.</string>
+
+    <string name="no_comments_message">Trenutno nema komentara.</string>
+    <string name="no_comment_failure">Nije moguće učitati komentare.</string>
+
+    <string name="leave_comment_title">Ostavite komentar</string>
+    <string name="send_comment_failure">Nije moguće sačuvati Vaš komentar.</string>
+    <string name="send_comment_notifications_failure">Greška prilikom slanja notifikacija.</string>
+
+
+    <string name="add_interested_show_failure_message">Nije moguće dodati predstavu/film na listu zainteresovanih.</string>
+    <string name="add_interested_show_success_message">Predstava/film je uspešno dodata na Vašu listu zainteresovanih.</string>
+    <string name="remove_interested_show_failure_message">Nije moguće ukloniti predstavu/film sa liste zainteresovanih.</string>
+    <string name="remove_interested_show_success_message">Predstava/film je uspešno uklonjen sa Vaše liste zainteresovanih.</string>
+
+
+    <string name="rating_button">Oceni!</string>
+    <string name="rating_button_change">Izmeni ocenu!</string>
+    <string name="rating">Ocena:</string>
+
+    <string name="next">Dalje</string>
+
+    <string name="timetable_failure_message">Nije moguće učitati raspored prikazivanja.</string>
+    <string name="timetable_times_failure_message">Nije moguće učitati vremena prikazivanja.</string>
+    <string name="timetable_halls_failure_message">Nije moguće učitati sale.</string>
+    <string name="hall_seats_failure_message">Nije moguće učitati sedišta.</string>
+
+
+    <string name="internet_disabled">Internet je isključen.</string>
+
+    <string name="notification_title">Komentar za </string>
+    <string name="notification_text"> je komentarisao/la događaj za koji ste zainteresovani.</string>
+
+    <string name="show_comments_title">Komentari</string>
+    <string name="show_fragment_details_title">Detalji filma/predstave</string>
+    <string name="reserved_show_fragment_title">Detalji rezervacije</string>
+    <string name="seat_reserve_fragment_title">Izbor sedišta</string>
+    <string name="timetable_fragment_title">Izbor datuma, vremena i sale</string>
+
+
+
+    <string name="no_seats_selected">Niste označili sedišta za izabranu projekciju.</string>
+    <string name="make_reservation_success">Rezervacija je uspešno kreirana.</string>
+    <string name="make_reservation_failure">Došlo je do greške prilikom kreiranja rezervacije.</string>
 </resources>
