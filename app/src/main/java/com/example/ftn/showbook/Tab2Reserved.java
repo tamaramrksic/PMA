@@ -47,7 +47,7 @@ public class Tab2Reserved  extends Fragment{
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
                 ((LinearLayoutManager) mLayoutManager).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
-        System.out.println("uslo u rezervacije");
+        //.out.println("uslo u rezervacije");
         Bundle args = this.getArguments();
         if(args.getString("parent").equals("main")) {
             getReservations();

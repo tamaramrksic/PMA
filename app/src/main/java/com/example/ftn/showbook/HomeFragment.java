@@ -212,34 +212,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
                 return true;
             }
         });
-/*
-        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                if(markers.get(marker) != null) {
-                    FacilityDB facilityDB = markers.get(marker);
-                    System.out.println("pritisnut je neki facilitiy a id mu je " + facilityDB.getId());
-                    intent.putExtra("FacilityId", facilityDB.getId().toString());
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.main_container, new RepertoireFragment())
-                            .addToBackStack(null)
-                            .commit();
-                }
-
-
-
-                return false;
-            }
-        });
-*/
-
         map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
 
                 if(markers.get(marker) != null) {
                     FacilityDB facilityDB = markers.get(marker);
-                    System.out.println("pritisnut je neki facilitiy a id mu je " + facilityDB.getBackId());
+                   // System.out.println("pritisnut je neki facilitiy a id mu je " + facilityDB.getBackId());
                     intent.putExtra("FacilityId", facilityDB.getBackId());
                     fragmentManager.beginTransaction()
                             .replace(R.id.main_container, new RepertoireFragment())
@@ -262,20 +241,16 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
 
     @Override
     public void onStatusChanged(String s, int i, Bundle bundle) {
-        System.out.println("STANJE SE PROMENILO I SAD JE " + s);
-        System.out.println("NEKO INT JE " + i);
 
     }
 
     @Override
     public void onProviderEnabled(String s) {
-        System.out.println("SADA JE OMOGUCEN PROVIDED: "+s);
 
     }
 
     @Override
     public void onProviderDisabled(String s) {
-        System.out.println("SADA JE ONEMOGUCE PROVIDER: "+s);
 
     }
 
@@ -314,7 +289,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
         String  personalRadius = userDb.getMaxDistance().toString();
         String lookupRadius = sharedPreferences.getString(getString(R.string.pref_radius), personalRadius);
         double radius = Double.parseDouble(lookupRadius);
-        System.out.println("sad je radijus " + radius);
+       // System.out.println("sad je radijus " + radius);
         List<FacilityDB> facilityDBS = db.getAllFacilities();
         List<FacilityDB> list = FacilityDB.filterByDistanceAndType(facilityDBS,
                 latLng.latitude, latLng.longitude, radius, userDb.getFacilityType());
@@ -363,7 +338,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
 
             List<Address> addresses = geocoder.getFromLocationName(address, 1);
             Address myLocationOff = addresses.get(0);
-            System.out.println("latitude je " + myLocationOff.getLatitude());
+           // System.out.println("latitude je " + myLocationOff.getLatitude());
 //            myLocation.setLatitude(myLocationOff.getLatitude());
             //      myLocation.setLongitude(myLocationOff.getLongitude());
             myLocationLatLng = new LatLng(myLocationOff.getLatitude(),myLocationOff.getLongitude() );
@@ -371,7 +346,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
             myLocation.setLongitude(myLocationOff.getLongitude() );
             myLocation.setLatitude(myLocationOff.getLatitude());
         }catch (IOException io) {
-            System.out.println("ovo je porukica  " +io.toString());
+           // System.out.println("ovo je porukica  " +io.toString());
         }
     }
 

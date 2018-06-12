@@ -62,12 +62,12 @@ public class ReservationListAdapter extends RecyclerView.Adapter<ReservationList
                     args.putString("facility", reservations.get(getAdapterPosition()).getEvent().getFacilityHall().getFacility().getName());
                     args.putString("numOfTickets", Integer.toString(reservations.get(getAdapterPosition()).getSeats().size()));
                     args.putString("totalPrice", reservations.get(getAdapterPosition()).getTotalPrice().toString());
-                    System.out.println("ocena rezervacije je " + reservations.get(getAdapterPosition()).getRating());
+                   // System.out.println("ocena rezervacije je " + reservations.get(getAdapterPosition()).getRating());
                     //System.out.println("ocena je " + reservations.get(getAdapterPosition()).getRating().getId());
                     if(reservations.get(getAdapterPosition()).getRating() == null) {
                         args.putString("rating", "0");
                     }else {
-                        System.out.println("ocena je " + reservations.get(getAdapterPosition()).getRating().getNum());
+                      //  System.out.println("ocena je " + reservations.get(getAdapterPosition()).getRating().getNum());
                         args.putString("rating", reservations.get(getAdapterPosition()).getRating().getNum().toString());
                     }
 

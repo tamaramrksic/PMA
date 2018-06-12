@@ -45,7 +45,7 @@ public class Tab3Interested extends Fragment {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
                 ((LinearLayoutManager) mLayoutManager).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
-        System.out.println("uslo u zainteresovane");
+        //System.out.println("uslo u zainteresovane");
         Bundle args = this.getArguments();
         if(args.getString("parent").equals("main")) {
             getInterestedShows();

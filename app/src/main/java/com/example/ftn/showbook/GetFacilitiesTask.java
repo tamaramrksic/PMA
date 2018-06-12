@@ -38,10 +38,10 @@ if(db.getAllFacilities().isEmpty()) {
                 Long id = db.insertFacility(response.body().get(i).getName(), response.body().get(i).getType().toString(),
                         response.body().get(i).getAddress(), response.body().get(i).getLocation().getName().toString(),
                         response.body().get(i).getLatitude(), response.body().get(i).getLongitude(), response.body().get(i).getId().toString());
-                System.out.println("dodat facility a id je " + id);
+                //System.out.println("dodat facility a id je " + id);
             }
             facilities = db.getAllFacilities();
-            System.out.println("dodat facility a velicina je " + facilities.size());
+            //System.out.println("dodat facility a velicina je " + facilities.size());
 
         }
 

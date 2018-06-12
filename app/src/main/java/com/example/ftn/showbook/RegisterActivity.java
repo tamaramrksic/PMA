@@ -151,7 +151,7 @@ public class RegisterActivity extends AppCompatActivity{
                             Long id = db.insertUser(response.body().getUsername(),response.body().getFirstName(),
                                     response.body().getLastName(), response.body().getAddress(),response.body().getLocation().getName().toString(), response.body().getMaxDistance(),
                                     response.body().getFacilityType().toString(), true);
-                            System.out.println("id " + id);
+                           // System.out.println("id " + id);
                             Toast.makeText(getApplicationContext(), getResources().getString(R.string.success_message), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);
@@ -159,7 +159,7 @@ public class RegisterActivity extends AppCompatActivity{
 
                         @Override
                         public void onFailure(Call<User> call, Throwable t) {
-                            System.out.println("Error!");
+                            //System.out.println("Error!");
                             Toast.makeText(getApplicationContext(), getResources().getString(R.string.fail_message), Toast.LENGTH_SHORT).show();
                         }
 

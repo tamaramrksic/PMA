@@ -47,7 +47,7 @@ public class Tab1Repertoire extends Fragment {
                 ((LinearLayoutManager) mLayoutManager).getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
         // set adapter
-        System.out.println("uslo u repertoar");
+        //System.out.println("uslo u repertoar");
         RecyclerView.Adapter mAdapter = new ShowListAdapter(getActivity(), shows, "repertoire");
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setVisibility(View.VISIBLE);

@@ -37,7 +37,7 @@ public class ChangePassFragment  extends DialogFragment {
                         intent = getActivity().getIntent();
                         String username = intent.getStringExtra("drawerUsername");
                         String password = intent.getStringExtra("userPass");
-                        System.out.println("USERNAME JE : "+ username + " a password je : " + password);
+                        //System.out.println("USERNAME JE : "+ username + " a password je : " + password);
                         EditText old_password = (EditText) getDialog().findViewById(R.id.old_password);
                         String old_password_value = old_password.getText().toString();
                         EditText new_password = (EditText) getDialog().findViewById(R.id.new_password);
@@ -45,7 +45,7 @@ public class ChangePassFragment  extends DialogFragment {
 
                         EditText conf_password = (EditText) getDialog().findViewById(R.id.conf_password);
                         String conf_password_value = conf_password.getText().toString();
-                        System.out.println("PASS novi JE : "+ new_password_value + " conf pass je  " + conf_password_value);
+                        //System.out.println("PASS novi JE : "+ new_password_value + " conf pass je  " + conf_password_value);
                         if(password.equals(old_password_value)&& new_password_value.equals(conf_password_value) && new_password_value.length()>2 ) {
                             UserCredentials userCredentials = new UserCredentials(username, new_password_value);
 
